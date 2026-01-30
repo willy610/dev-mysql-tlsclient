@@ -1,0 +1,14 @@
+name: tlsclient
+version: 0.1.0
+
+authors:
+  - Willy Svenningsson <willy@fager.st>
+
+dependencies:
+#   librfc8439:
+#     path: /Users/willys4/Documents/MYCRYSTAL/AAA/LIBS/librfc8439
+  shared:
+    path:  /Users/willys4/Documents/MYCRYSTAL/AAA/LIBS/shared
+crystal: '>= 1.14.0'
+
+license: MIT

@@ -1,0 +1,9 @@
+name: shared
+version: 0.1.0
+
+authors:
+  - Willy Svenningsson <willy@fager.st>
+
+crystal: '>= 1.14.0'
+
+license: MIT

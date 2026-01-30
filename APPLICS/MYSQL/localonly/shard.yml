@@ -1,0 +1,13 @@
+name: localonly
+version: 0.1.0
+
+authors:
+  - Willy Svenningsson <willy@fager.st>
+
+targets:
+  localonly:
+    main: src/localonly.cr
+
+crystal: '>= 1.14.0'
+
+license: MIT

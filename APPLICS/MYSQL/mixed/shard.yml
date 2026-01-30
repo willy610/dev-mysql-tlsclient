@@ -1,0 +1,28 @@
+name: mixed
+version: 0.1.0
+
+authors:
+  - Willy Svenningsson <willy@fager.st>
+
+dependencies:
+  mysql:
+    # github: crystal-lang/crystal-db
+    path: /Users/willys4/Documents/MYCRYSTAL/AAA/LIBS/mysql
+  db:
+    github: crystal-lang/crystal-db
+    version: ~> 0.13.1
+  librfc8439:
+    path: /Users/willys4/Documents/MYCRYSTAL/AAA/LIBS/librfc8439
+  tlsclient:
+    path:  /Users/willys4/Documents/MYCRYSTAL/AAA/LIBS/tlsclient
+  shared:
+    path:  /Users/willys4/Documents/MYCRYSTAL/AAA/LIBS/shared
+
+
+targets:
+  mixed:
+    main: src/mixed.cr
+
+crystal: '>= 1.14.0'
+
+license: MIT

@@ -1,0 +1,21 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+
+        {
+            "type": "lldb",
+            "request": "launch",
+            "name": "Debug",
+            "program": "${workspaceFolder}/bin/web1",
+            "args": ["1"],
+            "cwd": "${workspaceFolder}",
+            "initCommands": [
+                "command script import /Users/willys4/Documents/MYCRYSTAL/crystal-master/etc/lldb/crystal_formatters.py"
+            ]
+
+        }
+    ]
+}

@@ -1,0 +1,20 @@
+name: mysql
+version: 0.17.0
+
+authors:
+  - Juan Wajnerman <jwajnerman@manas.tech>
+  - Brian J. Cardiff <bcardiff@gmail.com>
+  - Willy Svenningsson <willy@fager.st>
+  
+dependencies:
+  db:
+    github: crystal-lang/crystal-db
+    version: ~> 0.13.1
+  tlsclient:
+    path: /Users/willys4/Documents/MYCRYSTAL/AAA/LIBS/tlsclient
+  shared:
+    path:  /Users/willys4/Documents/MYCRYSTAL/AAA/LIBS/shared
+
+crystal: '>= 1.14.0, < 2.0.0'
+
+license: MIT
