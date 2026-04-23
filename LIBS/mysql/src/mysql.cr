@@ -23,4 +23,9 @@ module MySql
   def self.to_array_to_bytes(str)
     tmp = self.to_bytes(str.split(' '))
   end
+
+  # def self.to_hex(val : Uint)
+  #   "0x%dx" % val
+  # end
+
 end

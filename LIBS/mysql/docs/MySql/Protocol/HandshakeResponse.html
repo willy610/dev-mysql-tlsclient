@@ -1,0 +1,1241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="generator" content="Crystal Docs 1.18.2">
+<meta name="crystal_docs.project_version" content="main-dev">
+<meta name="crystal_docs.project_name" content="mysql">
+
+
+
+<link href="../../css/style.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="../../js/doc.js"></script>
+
+  <meta name="repository-name" content="mysql">
+  <title>MySql::Protocol::HandshakeResponse - mysql main-dev</title>
+  <script type="text/javascript">
+    CrystalDocs.base_path = "../../";
+  </script>
+</head>
+<body>
+
+<svg class="hidden">
+  <symbol id="octicon-link" viewBox="0 0 16 16">
+    <path fill="currentColor" fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path>
+  </symbol>
+</svg>
+<input type="checkbox" id="sidebar-btn">
+<label for="sidebar-btn" id="sidebar-btn-label">
+  <svg class="open" xmlns="http://www.w3.org/2000/svg" height="2em" width="2em" viewBox="0 0 512 512"><title>Open Sidebar</title><path fill="currentColor" d="M80 96v64h352V96H80zm0 112v64h352v-64H80zm0 112v64h352v-64H80z"></path></svg>
+  <svg class="close" xmlns="http://www.w3.org/2000/svg" width="2em" height="2em" viewBox="0 0 512 512"><title>Close Sidebar</title><path fill="currentColor" d="m118.6 73.4-45.2 45.2L210.7 256 73.4 393.4l45.2 45.2L256 301.3l137.4 137.3 45.2-45.2L301.3 256l137.3-137.4-45.2-45.2L256 210.7Z"></path></svg>
+</label>
+<div class="sidebar">
+  <div class="sidebar-header">
+    <div class="search-box">
+      <input type="search" class="search-input" placeholder="Search..." spellcheck="false" aria-label="Search">
+    </div>
+
+    <div class="project-summary">
+      <h1 class="project-name">
+        <a href="../../index.html">
+          mysql
+        </a>
+      </h1>
+
+      <span class="project-version">
+        main-dev
+      </span>
+    </div>
+  </div>
+
+  <div class="search-results hidden">
+    <ul class="search-list"></ul>
+  </div>
+
+  <div class="types-list">
+    <ul>
+  
+  <li class=" " data-id="mysql/Crypto" data-name="crypto">
+      <a href="../../Crypto.html">Crypto</a>
+      
+    </li>
+  
+  <li class=" " data-id="mysql/Marshaller" data-name="marshaller">
+      <a href="../../Marshaller.html">Marshaller</a>
+      
+    </li>
+  
+  <li class="parent open current" data-id="mysql/MySql" data-name="mysql">
+      <a href="../../MySql.html">MySql</a>
+      
+        <ul>
+  
+  <li class=" " data-id="mysql/MySql/Any" data-name="mysql::any">
+      <a href="../../MySql/Any.html">Any</a>
+      
+    </li>
+  
+  <li class="parent " data-id="mysql/MySql/BRIDGE" data-name="mysql::bridge">
+      <a href="../../MySql/BRIDGE.html">BRIDGE</a>
+      
+        <ul>
+  
+  <li class=" " data-id="mysql/MySql/BRIDGE/BRIDGE" data-name="mysql::bridge::bridge">
+      <a href="../../MySql/BRIDGE/BRIDGE.html">BRIDGE</a>
+      
+    </li>
+  
+  <li class=" " data-id="mysql/MySql/BRIDGE/BRIDGEPlain" data-name="mysql::bridge::bridgeplain">
+      <a href="../../MySql/BRIDGE/BRIDGEPlain.html">BRIDGEPlain</a>
+      
+    </li>
+  
+  <li class=" " data-id="mysql/MySql/BRIDGE/BRIDGETls" data-name="mysql::bridge::bridgetls">
+      <a href="../../MySql/BRIDGE/BRIDGETls.html">BRIDGETls</a>
+      
+    </li>
+  
+</ul>
+
+      
+    </li>
+  
+  <li class=" " data-id="mysql/MySql/Collations" data-name="mysql::collations">
+      <a href="../../MySql/Collations.html">Collations</a>
+      
+    </li>
+  
+  <li class=" " data-id="mysql/MySql/ColumnSpec" data-name="mysql::columnspec">
+      <a href="../../MySql/ColumnSpec.html">ColumnSpec</a>
+      
+    </li>
+  
+  <li class="parent " data-id="mysql/MySql/Connection" data-name="mysql::connection">
+      <a href="../../MySql/Connection.html">Connection</a>
+      
+        <ul>
+  
+  <li class=" " data-id="mysql/MySql/Connection/Options" data-name="mysql::connection::options">
+      <a href="../../MySql/Connection/Options.html">Options</a>
+      
+    </li>
+  
+</ul>
+
+      
+    </li>
+  
+  <li class="parent " data-id="mysql/MySql/Driver" data-name="mysql::driver">
+      <a href="../../MySql/Driver.html">Driver</a>
+      
+        <ul>
+  
+  <li class=" " data-id="mysql/MySql/Driver/ConnectionBuilder" data-name="mysql::driver::connectionbuilder">
+      <a href="../../MySql/Driver/ConnectionBuilder.html">ConnectionBuilder</a>
+      
+    </li>
+  
+</ul>
+
+      
+    </li>
+  
+  <li class=" " data-id="mysql/MySql/MessageComStamtPrepare" data-name="mysql::messagecomstamtprepare">
+      <a href="../../MySql/MessageComStamtPrepare.html">MessageComStamtPrepare</a>
+      
+    </li>
+  
+  <li class=" " data-id="mysql/MySql/MessagePerformExecOrQuery" data-name="mysql::messageperformexecorquery">
+      <a href="../../MySql/MessagePerformExecOrQuery.html">MessagePerformExecOrQuery</a>
+      
+    </li>
+  
+  <li class=" " data-id="mysql/MySql/MessagePerformExecOrQueryUnPrep" data-name="mysql::messageperformexecorqueryunprep">
+      <a href="../../MySql/MessagePerformExecOrQueryUnPrep.html">MessagePerformExecOrQueryUnPrep</a>
+      
+    </li>
+  
+  <li class="parent open current" data-id="mysql/MySql/Protocol" data-name="mysql::protocol">
+      <a href="../../MySql/Protocol.html">Protocol</a>
+      
+        <ul>
+  
+  <li class=" current" data-id="mysql/MySql/Protocol/HandshakeResponse" data-name="mysql::protocol::handshakeresponse">
+      <a href="../../MySql/Protocol/HandshakeResponse.html">HandshakeResponse</a>
+      
+    </li>
+  
+  <li class=" " data-id="mysql/MySql/Protocol/InHandshakeV10" data-name="mysql::protocol::inhandshakev10">
+      <a href="../../MySql/Protocol/InHandshakeV10.html">InHandshakeV10</a>
+      
+    </li>
+  
+  <li class=" " data-id="mysql/MySql/Protocol/InStateB" data-name="mysql::protocol::instateb">
+      <a href="../../MySql/Protocol/InStateB.html">InStateB</a>
+      
+    </li>
+  
+  <li class=" " data-id="mysql/MySql/Protocol/InStateC" data-name="mysql::protocol::instatec">
+      <a href="../../MySql/Protocol/InStateC.html">InStateC</a>
+      
+    </li>
+  
+  <li class=" " data-id="mysql/MySql/Protocol/InStateD" data-name="mysql::protocol::instated">
+      <a href="../../MySql/Protocol/InStateD.html">InStateD</a>
+      
+    </li>
+  
+  <li class=" " data-id="mysql/MySql/Protocol/InStateE" data-name="mysql::protocol::instatee">
+      <a href="../../MySql/Protocol/InStateE.html">InStateE</a>
+      
+    </li>
+  
+  <li class=" " data-id="mysql/MySql/Protocol/OutHandshakeResponse41" data-name="mysql::protocol::outhandshakeresponse41">
+      <a href="../../MySql/Protocol/OutHandshakeResponse41.html">OutHandshakeResponse41</a>
+      
+    </li>
+  
+  <li class=" " data-id="mysql/MySql/Protocol/OutHandshakeResponse41TLS" data-name="mysql::protocol::outhandshakeresponse41tls">
+      <a href="../../MySql/Protocol/OutHandshakeResponse41TLS.html">OutHandshakeResponse41TLS</a>
+      
+    </li>
+  
+  <li class=" " data-id="mysql/MySql/Protocol/OutPasswordEnCoded" data-name="mysql::protocol::outpasswordencoded">
+      <a href="../../MySql/Protocol/OutPasswordEnCoded.html">OutPasswordEnCoded</a>
+      
+    </li>
+  
+  <li class=" " data-id="mysql/MySql/Protocol/OutPasswordThroughTLS" data-name="mysql::protocol::outpasswordthroughtls">
+      <a href="../../MySql/Protocol/OutPasswordThroughTLS.html">OutPasswordThroughTLS</a>
+      
+    </li>
+  
+  <li class=" " data-id="mysql/MySql/Protocol/OutRequestPublicKeyAfter_sha256_password" data-name="mysql::protocol::outrequestpublickeyafter_sha256_password">
+      <a href="../../MySql/Protocol/OutRequestPublicKeyAfter_sha256_password.html">OutRequestPublicKeyAfter_sha256_password</a>
+      
+    </li>
+  
+  <li class=" " data-id="mysql/MySql/Protocol/OutRequestPublicKeyCommon" data-name="mysql::protocol::outrequestpublickeycommon">
+      <a href="../../MySql/Protocol/OutRequestPublicKeyCommon.html">OutRequestPublicKeyCommon</a>
+      
+    </li>
+  
+  <li class=" " data-id="mysql/MySql/Protocol/ResponceOn_caching_sha2_password" data-name="mysql::protocol::responceon_caching_sha2_password">
+      <a href="../../MySql/Protocol/ResponceOn_caching_sha2_password.html">ResponceOn_caching_sha2_password</a>
+      
+    </li>
+  
+  <li class=" " data-id="mysql/MySql/Protocol/SendRSAOAEPencoded" data-name="mysql::protocol::sendrsaoaepencoded">
+      <a href="../../MySql/Protocol/SendRSAOAEPencoded.html">SendRSAOAEPencoded</a>
+      
+    </li>
+  
+</ul>
+
+      
+    </li>
+  
+  <li class=" " data-id="mysql/MySql/ResultSet" data-name="mysql::resultset">
+      <a href="../../MySql/ResultSet.html">ResultSet</a>
+      
+    </li>
+  
+  <li class="parent " data-id="mysql/MySql/RSAOAEP" data-name="mysql::rsaoaep">
+      <a href="../../MySql/RSAOAEP.html">RSAOAEP</a>
+      
+        <ul>
+  
+  <li class=" " data-id="mysql/MySql/RSAOAEP/RSAOAEPencode" data-name="mysql::rsaoaep::rsaoaepencode">
+      <a href="../../MySql/RSAOAEP/RSAOAEPencode.html">RSAOAEPencode</a>
+      
+    </li>
+  
+</ul>
+
+      
+    </li>
+  
+  <li class=" " data-id="mysql/MySql/SQLResponceReader" data-name="mysql::sqlresponcereader">
+      <a href="../../MySql/SQLResponceReader.html">SQLResponceReader</a>
+      
+    </li>
+  
+  <li class=" " data-id="mysql/MySql/Statement" data-name="mysql::statement">
+      <a href="../../MySql/Statement.html">Statement</a>
+      
+    </li>
+  
+  <li class=" " data-id="mysql/MySql/TextResultSet" data-name="mysql::textresultset">
+      <a href="../../MySql/TextResultSet.html">TextResultSet</a>
+      
+    </li>
+  
+  <li class=" " data-id="mysql/MySql/UnpreparedStatement" data-name="mysql::unpreparedstatement">
+      <a href="../../MySql/UnpreparedStatement.html">UnpreparedStatement</a>
+      
+    </li>
+  
+</ul>
+
+      
+    </li>
+  
+  <li class="parent " data-id="mysql/PubKeyMySql" data-name="pubkeymysql">
+      <a href="../../PubKeyMySql.html">PubKeyMySql</a>
+      
+        <ul>
+  
+  <li class=" " data-id="mysql/PubKeyMySql/Asn1Type" data-name="pubkeymysql::asn1type">
+      <a href="../../PubKeyMySql/Asn1Type.html">Asn1Type</a>
+      
+    </li>
+  
+</ul>
+
+      
+    </li>
+  
+</ul>
+
+  </div>
+</div>
+
+
+<div class="main-content">
+<h1 class="type-name">
+
+  <span class="kind">
+    enum
+  </span> MySql::<wbr>Protocol::<wbr>HandshakeResponse
+
+</h1>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <h2>
+    <a id="defined-in" class="anchor" href="#defined-in">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Defined in:
+  </h2>
+  
+    
+      mysql/packets.cr
+    
+    <br/>
+  
+
+
+
+  
+    <h2>
+      <a id="enum-members" class="anchor" href="#enum-members">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+      Enum Members
+    </h2>
+  
+  <dl>
+    
+      <dt class="entry-const" id="CLIENT_LONG_PASSWORD">
+        <strong>CLIENT_LONG_PASSWORD</strong> = <code><span class="n">1_u32</span></code>
+      </dt>
+      
+    
+      <dt class="entry-const" id="CLIENT_FOUND_ROWS">
+        <strong>CLIENT_FOUND_ROWS</strong> = <code><span class="n">2_u32</span></code>
+      </dt>
+      
+    
+      <dt class="entry-const" id="CLIENT_LONG_FLAG">
+        <strong>CLIENT_LONG_FLAG</strong> = <code><span class="n">4_u32</span></code>
+      </dt>
+      
+    
+      <dt class="entry-const" id="CLIENT_CONNECT_WITH_DB">
+        <strong>CLIENT_CONNECT_WITH_DB</strong> = <code><span class="n">8_u32</span></code>
+      </dt>
+      
+    
+      <dt class="entry-const" id="CLIENT_NO_SCHEMA">
+        <strong>CLIENT_NO_SCHEMA</strong> = <code><span class="n">16_u32</span></code>
+      </dt>
+      
+    
+      <dt class="entry-const" id="CLIENT_COMPRESS">
+        <strong>CLIENT_COMPRESS</strong> = <code><span class="n">32_u32</span></code>
+      </dt>
+      
+    
+      <dt class="entry-const" id="CLIENT_ODBC">
+        <strong>CLIENT_ODBC</strong> = <code><span class="n">64_u32</span></code>
+      </dt>
+      
+    
+      <dt class="entry-const" id="CLIENT_LOCAL_FILES">
+        <strong>CLIENT_LOCAL_FILES</strong> = <code><span class="n">128_u32</span></code>
+      </dt>
+      
+    
+      <dt class="entry-const" id="CLIENT_IGNORE_SPACE">
+        <strong>CLIENT_IGNORE_SPACE</strong> = <code><span class="n">256_u32</span></code>
+      </dt>
+      
+    
+      <dt class="entry-const" id="CLIENT_PROTOCOL_41">
+        <strong>CLIENT_PROTOCOL_41</strong> = <code><span class="n">512_u32</span></code>
+      </dt>
+      
+    
+      <dt class="entry-const" id="CLIENT_INTERACTIVE">
+        <strong>CLIENT_INTERACTIVE</strong> = <code><span class="n">1024_u32</span></code>
+      </dt>
+      
+    
+      <dt class="entry-const" id="CLIENT_SSL">
+        <strong>CLIENT_SSL</strong> = <code><span class="n">2048_u32</span></code>
+      </dt>
+      
+    
+      <dt class="entry-const" id="CLIENT_IGNORE_SIGPIPE">
+        <strong>CLIENT_IGNORE_SIGPIPE</strong> = <code><span class="n">4096_u32</span></code>
+      </dt>
+      
+    
+      <dt class="entry-const" id="CLIENT_TRANSACTIONS">
+        <strong>CLIENT_TRANSACTIONS</strong> = <code><span class="n">8192_u32</span></code>
+      </dt>
+      
+    
+      <dt class="entry-const" id="CLIENT_RESERVED">
+        <strong>CLIENT_RESERVED</strong> = <code><span class="n">16384_u32</span></code>
+      </dt>
+      
+    
+      <dt class="entry-const" id="CLIENT_SECURE_CONNECTION">
+        <strong>CLIENT_SECURE_CONNECTION</strong> = <code><span class="n">32768_u32</span></code>
+      </dt>
+      
+    
+      <dt class="entry-const" id="CLIENT_MULTI_STATEMENTS">
+        <strong>CLIENT_MULTI_STATEMENTS</strong> = <code><span class="n">65536_u32</span></code>
+      </dt>
+      
+    
+      <dt class="entry-const" id="CLIENT_MULTI_RESULTS">
+        <strong>CLIENT_MULTI_RESULTS</strong> = <code><span class="n">131072_u32</span></code>
+      </dt>
+      
+    
+      <dt class="entry-const" id="CLIENT_PS_MULTI_RESULTS">
+        <strong>CLIENT_PS_MULTI_RESULTS</strong> = <code><span class="n">262144_u32</span></code>
+      </dt>
+      
+    
+      <dt class="entry-const" id="CLIENT_PLUGIN_AUTH">
+        <strong>CLIENT_PLUGIN_AUTH</strong> = <code><span class="n">524288_u32</span></code>
+      </dt>
+      
+    
+      <dt class="entry-const" id="CLIENT_CONNECT_ATTRS">
+        <strong>CLIENT_CONNECT_ATTRS</strong> = <code><span class="n">1048576_u32</span></code>
+      </dt>
+      
+    
+      <dt class="entry-const" id="CLIENT_PLUGIN_AUTH_LENENC_CLIENT_DATA">
+        <strong>CLIENT_PLUGIN_AUTH_LENENC_CLIENT_DATA</strong> = <code><span class="n">2097152_u32</span></code>
+      </dt>
+      
+    
+      <dt class="entry-const" id="CLIENT_CAN_HANDLE_EXPIRED_PASSWORDS">
+        <strong>CLIENT_CAN_HANDLE_EXPIRED_PASSWORDS</strong> = <code><span class="n">4194304_u32</span></code>
+      </dt>
+      
+    
+      <dt class="entry-const" id="CLIENT_SESSION_TRACK">
+        <strong>CLIENT_SESSION_TRACK</strong> = <code><span class="n">8388608_u32</span></code>
+      </dt>
+      
+    
+      <dt class="entry-const" id="CLIENT_DEPRECATE_EOF">
+        <strong>CLIENT_DEPRECATE_EOF</strong> = <code><span class="n">16777216_u32</span></code>
+      </dt>
+      
+    
+  </dl>
+
+
+
+  
+
+  
+
+  
+
+  
+  <h2>
+    <a id="instance-method-summary" class="anchor" href="#instance-method-summary">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Instance Method Summary
+  </h2>
+  <ul class="list-summary">
+    
+      <li class="entry-summary">
+        <a href="#client_can_handle_expired_passwords%3F-instance-method" class="signature"><strong>#client_can_handle_expired_passwords?</strong></a>
+        
+          <div class="summary"><p>Returns <code>true</code> if this enum value equals <code><a href="../../MySql/Protocol/HandshakeResponse.html#CLIENT_CAN_HANDLE_EXPIRED_PASSWORDS">CLIENT_CAN_HANDLE_EXPIRED_PASSWORDS</a></code></p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#client_compress%3F-instance-method" class="signature"><strong>#client_compress?</strong></a>
+        
+          <div class="summary"><p>Returns <code>true</code> if this enum value equals <code><a href="../../MySql/Protocol/HandshakeResponse.html#CLIENT_COMPRESS">CLIENT_COMPRESS</a></code></p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#client_connect_attrs%3F-instance-method" class="signature"><strong>#client_connect_attrs?</strong></a>
+        
+          <div class="summary"><p>Returns <code>true</code> if this enum value equals <code><a href="../../MySql/Protocol/HandshakeResponse.html#CLIENT_CONNECT_ATTRS">CLIENT_CONNECT_ATTRS</a></code></p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#client_connect_with_db%3F-instance-method" class="signature"><strong>#client_connect_with_db?</strong></a>
+        
+          <div class="summary"><p>Returns <code>true</code> if this enum value equals <code><a href="../../MySql/Protocol/HandshakeResponse.html#CLIENT_CONNECT_WITH_DB">CLIENT_CONNECT_WITH_DB</a></code></p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#client_deprecate_eof%3F-instance-method" class="signature"><strong>#client_deprecate_eof?</strong></a>
+        
+          <div class="summary"><p>Returns <code>true</code> if this enum value equals <code><a href="../../MySql/Protocol/HandshakeResponse.html#CLIENT_DEPRECATE_EOF">CLIENT_DEPRECATE_EOF</a></code></p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#client_found_rows%3F-instance-method" class="signature"><strong>#client_found_rows?</strong></a>
+        
+          <div class="summary"><p>Returns <code>true</code> if this enum value equals <code><a href="../../MySql/Protocol/HandshakeResponse.html#CLIENT_FOUND_ROWS">CLIENT_FOUND_ROWS</a></code></p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#client_ignore_sigpipe%3F-instance-method" class="signature"><strong>#client_ignore_sigpipe?</strong></a>
+        
+          <div class="summary"><p>Returns <code>true</code> if this enum value equals <code><a href="../../MySql/Protocol/HandshakeResponse.html#CLIENT_IGNORE_SIGPIPE">CLIENT_IGNORE_SIGPIPE</a></code></p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#client_ignore_space%3F-instance-method" class="signature"><strong>#client_ignore_space?</strong></a>
+        
+          <div class="summary"><p>Returns <code>true</code> if this enum value equals <code><a href="../../MySql/Protocol/HandshakeResponse.html#CLIENT_IGNORE_SPACE">CLIENT_IGNORE_SPACE</a></code></p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#client_interactive%3F-instance-method" class="signature"><strong>#client_interactive?</strong></a>
+        
+          <div class="summary"><p>Returns <code>true</code> if this enum value equals <code><a href="../../MySql/Protocol/HandshakeResponse.html#CLIENT_INTERACTIVE">CLIENT_INTERACTIVE</a></code></p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#client_local_files%3F-instance-method" class="signature"><strong>#client_local_files?</strong></a>
+        
+          <div class="summary"><p>Returns <code>true</code> if this enum value equals <code><a href="../../MySql/Protocol/HandshakeResponse.html#CLIENT_LOCAL_FILES">CLIENT_LOCAL_FILES</a></code></p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#client_long_flag%3F-instance-method" class="signature"><strong>#client_long_flag?</strong></a>
+        
+          <div class="summary"><p>Returns <code>true</code> if this enum value equals <code><a href="../../MySql/Protocol/HandshakeResponse.html#CLIENT_LONG_FLAG">CLIENT_LONG_FLAG</a></code></p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#client_long_password%3F-instance-method" class="signature"><strong>#client_long_password?</strong></a>
+        
+          <div class="summary"><p>Returns <code>true</code> if this enum value equals <code><a href="../../MySql/Protocol/HandshakeResponse.html#CLIENT_LONG_PASSWORD">CLIENT_LONG_PASSWORD</a></code></p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#client_multi_results%3F-instance-method" class="signature"><strong>#client_multi_results?</strong></a>
+        
+          <div class="summary"><p>Returns <code>true</code> if this enum value equals <code><a href="../../MySql/Protocol/HandshakeResponse.html#CLIENT_MULTI_RESULTS">CLIENT_MULTI_RESULTS</a></code></p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#client_multi_statements%3F-instance-method" class="signature"><strong>#client_multi_statements?</strong></a>
+        
+          <div class="summary"><p>Returns <code>true</code> if this enum value equals <code><a href="../../MySql/Protocol/HandshakeResponse.html#CLIENT_MULTI_STATEMENTS">CLIENT_MULTI_STATEMENTS</a></code></p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#client_no_schema%3F-instance-method" class="signature"><strong>#client_no_schema?</strong></a>
+        
+          <div class="summary"><p>Returns <code>true</code> if this enum value equals <code><a href="../../MySql/Protocol/HandshakeResponse.html#CLIENT_NO_SCHEMA">CLIENT_NO_SCHEMA</a></code></p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#client_odbc%3F-instance-method" class="signature"><strong>#client_odbc?</strong></a>
+        
+          <div class="summary"><p>Returns <code>true</code> if this enum value equals <code><a href="../../MySql/Protocol/HandshakeResponse.html#CLIENT_ODBC">CLIENT_ODBC</a></code></p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#client_plugin_auth%3F-instance-method" class="signature"><strong>#client_plugin_auth?</strong></a>
+        
+          <div class="summary"><p>Returns <code>true</code> if this enum value equals <code><a href="../../MySql/Protocol/HandshakeResponse.html#CLIENT_PLUGIN_AUTH">CLIENT_PLUGIN_AUTH</a></code></p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#client_plugin_auth_lenenc_client_data%3F-instance-method" class="signature"><strong>#client_plugin_auth_lenenc_client_data?</strong></a>
+        
+          <div class="summary"><p>Returns <code>true</code> if this enum value equals <code><a href="../../MySql/Protocol/HandshakeResponse.html#CLIENT_PLUGIN_AUTH_LENENC_CLIENT_DATA">CLIENT_PLUGIN_AUTH_LENENC_CLIENT_DATA</a></code></p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#client_protocol_41%3F-instance-method" class="signature"><strong>#client_protocol_41?</strong></a>
+        
+          <div class="summary"><p>Returns <code>true</code> if this enum value equals <code><a href="../../MySql/Protocol/HandshakeResponse.html#CLIENT_PROTOCOL_41">CLIENT_PROTOCOL_41</a></code></p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#client_ps_multi_results%3F-instance-method" class="signature"><strong>#client_ps_multi_results?</strong></a>
+        
+          <div class="summary"><p>Returns <code>true</code> if this enum value equals <code><a href="../../MySql/Protocol/HandshakeResponse.html#CLIENT_PS_MULTI_RESULTS">CLIENT_PS_MULTI_RESULTS</a></code></p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#client_reserved%3F-instance-method" class="signature"><strong>#client_reserved?</strong></a>
+        
+          <div class="summary"><p>Returns <code>true</code> if this enum value equals <code><a href="../../MySql/Protocol/HandshakeResponse.html#CLIENT_RESERVED">CLIENT_RESERVED</a></code></p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#client_secure_connection%3F-instance-method" class="signature"><strong>#client_secure_connection?</strong></a>
+        
+          <div class="summary"><p>Returns <code>true</code> if this enum value equals <code><a href="../../MySql/Protocol/HandshakeResponse.html#CLIENT_SECURE_CONNECTION">CLIENT_SECURE_CONNECTION</a></code></p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#client_session_track%3F-instance-method" class="signature"><strong>#client_session_track?</strong></a>
+        
+          <div class="summary"><p>Returns <code>true</code> if this enum value equals <code><a href="../../MySql/Protocol/HandshakeResponse.html#CLIENT_SESSION_TRACK">CLIENT_SESSION_TRACK</a></code></p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#client_ssl%3F-instance-method" class="signature"><strong>#client_ssl?</strong></a>
+        
+          <div class="summary"><p>Returns <code>true</code> if this enum value equals <code><a href="../../MySql/Protocol/HandshakeResponse.html#CLIENT_SSL">CLIENT_SSL</a></code></p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#client_transactions%3F-instance-method" class="signature"><strong>#client_transactions?</strong></a>
+        
+          <div class="summary"><p>Returns <code>true</code> if this enum value equals <code><a href="../../MySql/Protocol/HandshakeResponse.html#CLIENT_TRANSACTIONS">CLIENT_TRANSACTIONS</a></code></p></div>
+        
+      </li>
+    
+  </ul>
+
+
+
+  <div class="methods-inherited">
+    
+      
+
+
+      
+
+
+      
+
+
+      
+
+
+    
+      
+
+
+      
+
+
+      
+
+
+      
+
+
+    
+      
+
+
+      
+
+
+      
+
+
+      
+
+
+    
+      
+
+
+      
+
+
+      
+
+
+      
+
+
+    
+  </div>
+
+  
+
+  
+
+  
+
+  
+  <h2>
+    <a id="instance-method-detail" class="anchor" href="#instance-method-detail">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Instance Method Detail
+  </h2>
+  
+    <div class="entry-detail" id="client_can_handle_expired_passwords?-instance-method">
+      <div class="signature">
+        
+        def <strong>client_can_handle_expired_passwords?</strong>
+
+        <a class="method-permalink" href="#client_can_handle_expired_passwords%3F-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns <code>true</code> if this enum value equals <code><a href="../../MySql/Protocol/HandshakeResponse.html#CLIENT_CAN_HANDLE_EXPIRED_PASSWORDS">CLIENT_CAN_HANDLE_EXPIRED_PASSWORDS</a></code></p>
+        </div>
+      
+      <br/>
+      <div>
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="client_compress?-instance-method">
+      <div class="signature">
+        
+        def <strong>client_compress?</strong>
+
+        <a class="method-permalink" href="#client_compress%3F-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns <code>true</code> if this enum value equals <code><a href="../../MySql/Protocol/HandshakeResponse.html#CLIENT_COMPRESS">CLIENT_COMPRESS</a></code></p>
+        </div>
+      
+      <br/>
+      <div>
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="client_connect_attrs?-instance-method">
+      <div class="signature">
+        
+        def <strong>client_connect_attrs?</strong>
+
+        <a class="method-permalink" href="#client_connect_attrs%3F-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns <code>true</code> if this enum value equals <code><a href="../../MySql/Protocol/HandshakeResponse.html#CLIENT_CONNECT_ATTRS">CLIENT_CONNECT_ATTRS</a></code></p>
+        </div>
+      
+      <br/>
+      <div>
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="client_connect_with_db?-instance-method">
+      <div class="signature">
+        
+        def <strong>client_connect_with_db?</strong>
+
+        <a class="method-permalink" href="#client_connect_with_db%3F-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns <code>true</code> if this enum value equals <code><a href="../../MySql/Protocol/HandshakeResponse.html#CLIENT_CONNECT_WITH_DB">CLIENT_CONNECT_WITH_DB</a></code></p>
+        </div>
+      
+      <br/>
+      <div>
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="client_deprecate_eof?-instance-method">
+      <div class="signature">
+        
+        def <strong>client_deprecate_eof?</strong>
+
+        <a class="method-permalink" href="#client_deprecate_eof%3F-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns <code>true</code> if this enum value equals <code><a href="../../MySql/Protocol/HandshakeResponse.html#CLIENT_DEPRECATE_EOF">CLIENT_DEPRECATE_EOF</a></code></p>
+        </div>
+      
+      <br/>
+      <div>
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="client_found_rows?-instance-method">
+      <div class="signature">
+        
+        def <strong>client_found_rows?</strong>
+
+        <a class="method-permalink" href="#client_found_rows%3F-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns <code>true</code> if this enum value equals <code><a href="../../MySql/Protocol/HandshakeResponse.html#CLIENT_FOUND_ROWS">CLIENT_FOUND_ROWS</a></code></p>
+        </div>
+      
+      <br/>
+      <div>
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="client_ignore_sigpipe?-instance-method">
+      <div class="signature">
+        
+        def <strong>client_ignore_sigpipe?</strong>
+
+        <a class="method-permalink" href="#client_ignore_sigpipe%3F-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns <code>true</code> if this enum value equals <code><a href="../../MySql/Protocol/HandshakeResponse.html#CLIENT_IGNORE_SIGPIPE">CLIENT_IGNORE_SIGPIPE</a></code></p>
+        </div>
+      
+      <br/>
+      <div>
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="client_ignore_space?-instance-method">
+      <div class="signature">
+        
+        def <strong>client_ignore_space?</strong>
+
+        <a class="method-permalink" href="#client_ignore_space%3F-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns <code>true</code> if this enum value equals <code><a href="../../MySql/Protocol/HandshakeResponse.html#CLIENT_IGNORE_SPACE">CLIENT_IGNORE_SPACE</a></code></p>
+        </div>
+      
+      <br/>
+      <div>
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="client_interactive?-instance-method">
+      <div class="signature">
+        
+        def <strong>client_interactive?</strong>
+
+        <a class="method-permalink" href="#client_interactive%3F-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns <code>true</code> if this enum value equals <code><a href="../../MySql/Protocol/HandshakeResponse.html#CLIENT_INTERACTIVE">CLIENT_INTERACTIVE</a></code></p>
+        </div>
+      
+      <br/>
+      <div>
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="client_local_files?-instance-method">
+      <div class="signature">
+        
+        def <strong>client_local_files?</strong>
+
+        <a class="method-permalink" href="#client_local_files%3F-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns <code>true</code> if this enum value equals <code><a href="../../MySql/Protocol/HandshakeResponse.html#CLIENT_LOCAL_FILES">CLIENT_LOCAL_FILES</a></code></p>
+        </div>
+      
+      <br/>
+      <div>
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="client_long_flag?-instance-method">
+      <div class="signature">
+        
+        def <strong>client_long_flag?</strong>
+
+        <a class="method-permalink" href="#client_long_flag%3F-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns <code>true</code> if this enum value equals <code><a href="../../MySql/Protocol/HandshakeResponse.html#CLIENT_LONG_FLAG">CLIENT_LONG_FLAG</a></code></p>
+        </div>
+      
+      <br/>
+      <div>
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="client_long_password?-instance-method">
+      <div class="signature">
+        
+        def <strong>client_long_password?</strong>
+
+        <a class="method-permalink" href="#client_long_password%3F-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns <code>true</code> if this enum value equals <code><a href="../../MySql/Protocol/HandshakeResponse.html#CLIENT_LONG_PASSWORD">CLIENT_LONG_PASSWORD</a></code></p>
+        </div>
+      
+      <br/>
+      <div>
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="client_multi_results?-instance-method">
+      <div class="signature">
+        
+        def <strong>client_multi_results?</strong>
+
+        <a class="method-permalink" href="#client_multi_results%3F-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns <code>true</code> if this enum value equals <code><a href="../../MySql/Protocol/HandshakeResponse.html#CLIENT_MULTI_RESULTS">CLIENT_MULTI_RESULTS</a></code></p>
+        </div>
+      
+      <br/>
+      <div>
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="client_multi_statements?-instance-method">
+      <div class="signature">
+        
+        def <strong>client_multi_statements?</strong>
+
+        <a class="method-permalink" href="#client_multi_statements%3F-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns <code>true</code> if this enum value equals <code><a href="../../MySql/Protocol/HandshakeResponse.html#CLIENT_MULTI_STATEMENTS">CLIENT_MULTI_STATEMENTS</a></code></p>
+        </div>
+      
+      <br/>
+      <div>
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="client_no_schema?-instance-method">
+      <div class="signature">
+        
+        def <strong>client_no_schema?</strong>
+
+        <a class="method-permalink" href="#client_no_schema%3F-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns <code>true</code> if this enum value equals <code><a href="../../MySql/Protocol/HandshakeResponse.html#CLIENT_NO_SCHEMA">CLIENT_NO_SCHEMA</a></code></p>
+        </div>
+      
+      <br/>
+      <div>
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="client_odbc?-instance-method">
+      <div class="signature">
+        
+        def <strong>client_odbc?</strong>
+
+        <a class="method-permalink" href="#client_odbc%3F-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns <code>true</code> if this enum value equals <code><a href="../../MySql/Protocol/HandshakeResponse.html#CLIENT_ODBC">CLIENT_ODBC</a></code></p>
+        </div>
+      
+      <br/>
+      <div>
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="client_plugin_auth?-instance-method">
+      <div class="signature">
+        
+        def <strong>client_plugin_auth?</strong>
+
+        <a class="method-permalink" href="#client_plugin_auth%3F-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns <code>true</code> if this enum value equals <code><a href="../../MySql/Protocol/HandshakeResponse.html#CLIENT_PLUGIN_AUTH">CLIENT_PLUGIN_AUTH</a></code></p>
+        </div>
+      
+      <br/>
+      <div>
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="client_plugin_auth_lenenc_client_data?-instance-method">
+      <div class="signature">
+        
+        def <strong>client_plugin_auth_lenenc_client_data?</strong>
+
+        <a class="method-permalink" href="#client_plugin_auth_lenenc_client_data%3F-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns <code>true</code> if this enum value equals <code><a href="../../MySql/Protocol/HandshakeResponse.html#CLIENT_PLUGIN_AUTH_LENENC_CLIENT_DATA">CLIENT_PLUGIN_AUTH_LENENC_CLIENT_DATA</a></code></p>
+        </div>
+      
+      <br/>
+      <div>
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="client_protocol_41?-instance-method">
+      <div class="signature">
+        
+        def <strong>client_protocol_41?</strong>
+
+        <a class="method-permalink" href="#client_protocol_41%3F-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns <code>true</code> if this enum value equals <code><a href="../../MySql/Protocol/HandshakeResponse.html#CLIENT_PROTOCOL_41">CLIENT_PROTOCOL_41</a></code></p>
+        </div>
+      
+      <br/>
+      <div>
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="client_ps_multi_results?-instance-method">
+      <div class="signature">
+        
+        def <strong>client_ps_multi_results?</strong>
+
+        <a class="method-permalink" href="#client_ps_multi_results%3F-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns <code>true</code> if this enum value equals <code><a href="../../MySql/Protocol/HandshakeResponse.html#CLIENT_PS_MULTI_RESULTS">CLIENT_PS_MULTI_RESULTS</a></code></p>
+        </div>
+      
+      <br/>
+      <div>
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="client_reserved?-instance-method">
+      <div class="signature">
+        
+        def <strong>client_reserved?</strong>
+
+        <a class="method-permalink" href="#client_reserved%3F-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns <code>true</code> if this enum value equals <code><a href="../../MySql/Protocol/HandshakeResponse.html#CLIENT_RESERVED">CLIENT_RESERVED</a></code></p>
+        </div>
+      
+      <br/>
+      <div>
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="client_secure_connection?-instance-method">
+      <div class="signature">
+        
+        def <strong>client_secure_connection?</strong>
+
+        <a class="method-permalink" href="#client_secure_connection%3F-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns <code>true</code> if this enum value equals <code><a href="../../MySql/Protocol/HandshakeResponse.html#CLIENT_SECURE_CONNECTION">CLIENT_SECURE_CONNECTION</a></code></p>
+        </div>
+      
+      <br/>
+      <div>
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="client_session_track?-instance-method">
+      <div class="signature">
+        
+        def <strong>client_session_track?</strong>
+
+        <a class="method-permalink" href="#client_session_track%3F-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns <code>true</code> if this enum value equals <code><a href="../../MySql/Protocol/HandshakeResponse.html#CLIENT_SESSION_TRACK">CLIENT_SESSION_TRACK</a></code></p>
+        </div>
+      
+      <br/>
+      <div>
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="client_ssl?-instance-method">
+      <div class="signature">
+        
+        def <strong>client_ssl?</strong>
+
+        <a class="method-permalink" href="#client_ssl%3F-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns <code>true</code> if this enum value equals <code><a href="../../MySql/Protocol/HandshakeResponse.html#CLIENT_SSL">CLIENT_SSL</a></code></p>
+        </div>
+      
+      <br/>
+      <div>
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="client_transactions?-instance-method">
+      <div class="signature">
+        
+        def <strong>client_transactions?</strong>
+
+        <a class="method-permalink" href="#client_transactions%3F-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns <code>true</code> if this enum value equals <code><a href="../../MySql/Protocol/HandshakeResponse.html#CLIENT_TRANSACTIONS">CLIENT_TRANSACTIONS</a></code></p>
+        </div>
+      
+      <br/>
+      <div>
+        
+      </div>
+    </div>
+  
+
+
+
+</div>
+
+</body>
+</html>

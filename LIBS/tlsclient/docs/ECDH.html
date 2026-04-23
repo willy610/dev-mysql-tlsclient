@@ -1,0 +1,575 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="generator" content="Crystal Docs 1.18.2">
+<meta name="crystal_docs.project_version" content="main-dev">
+<meta name="crystal_docs.project_name" content="tlsclient">
+
+
+
+<link href="css/style.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="js/doc.js"></script>
+
+  <meta name="repository-name" content="tlsclient">
+  <title>ECDH - tlsclient main-dev</title>
+  <script type="text/javascript">
+    CrystalDocs.base_path = "";
+  </script>
+</head>
+<body>
+
+<svg class="hidden">
+  <symbol id="octicon-link" viewBox="0 0 16 16">
+    <path fill="currentColor" fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path>
+  </symbol>
+</svg>
+<input type="checkbox" id="sidebar-btn">
+<label for="sidebar-btn" id="sidebar-btn-label">
+  <svg class="open" xmlns="http://www.w3.org/2000/svg" height="2em" width="2em" viewBox="0 0 512 512"><title>Open Sidebar</title><path fill="currentColor" d="M80 96v64h352V96H80zm0 112v64h352v-64H80zm0 112v64h352v-64H80z"></path></svg>
+  <svg class="close" xmlns="http://www.w3.org/2000/svg" width="2em" height="2em" viewBox="0 0 512 512"><title>Close Sidebar</title><path fill="currentColor" d="m118.6 73.4-45.2 45.2L210.7 256 73.4 393.4l45.2 45.2L256 301.3l137.4 137.3 45.2-45.2L301.3 256l137.3-137.4-45.2-45.2L256 210.7Z"></path></svg>
+</label>
+<div class="sidebar">
+  <div class="sidebar-header">
+    <div class="search-box">
+      <input type="search" class="search-input" placeholder="Search..." spellcheck="false" aria-label="Search">
+    </div>
+
+    <div class="project-summary">
+      <h1 class="project-name">
+        <a href="index.html">
+          tlsclient
+        </a>
+      </h1>
+
+      <span class="project-version">
+        main-dev
+      </span>
+    </div>
+  </div>
+
+  <div class="search-results hidden">
+    <ul class="search-list"></ul>
+  </div>
+
+  <div class="types-list">
+    <ul>
+  
+  <li class=" " data-id="tlsclient/Certificate" data-name="certificate">
+      <a href="Certificate.html">Certificate</a>
+      
+    </li>
+  
+  <li class=" " data-id="tlsclient/Curve" data-name="curve">
+      <a href="Curve.html">Curve</a>
+      
+    </li>
+  
+  <li class=" " data-id="tlsclient/DERIVED_SECRET" data-name="derived_secret">
+      <a href="DERIVED_SECRET.html">DERIVED_SECRET</a>
+      
+    </li>
+  
+  <li class=" current" data-id="tlsclient/ECDH" data-name="ecdh">
+      <a href="ECDH.html">ECDH</a>
+      
+    </li>
+  
+  <li class=" " data-id="tlsclient/ECDHContainer" data-name="ecdhcontainer">
+      <a href="ECDHContainer.html">ECDHContainer</a>
+      
+    </li>
+  
+  <li class="parent " data-id="tlsclient/EllipticCurve" data-name="ellipticcurve">
+      <a href="EllipticCurve.html">EllipticCurve</a>
+      
+        <ul>
+  
+  <li class=" " data-id="tlsclient/EllipticCurve/Curve" data-name="ellipticcurve::curve">
+      <a href="EllipticCurve/Curve.html">Curve</a>
+      
+    </li>
+  
+  <li class=" " data-id="tlsclient/EllipticCurve/Inf" data-name="ellipticcurve::inf">
+      <a href="EllipticCurve/Inf.html">Inf</a>
+      
+    </li>
+  
+  <li class=" " data-id="tlsclient/EllipticCurve/KeyPair" data-name="ellipticcurve::keypair">
+      <a href="EllipticCurve/KeyPair.html">KeyPair</a>
+      
+    </li>
+  
+  <li class=" " data-id="tlsclient/EllipticCurve/Point" data-name="ellipticcurve::point">
+      <a href="EllipticCurve/Point.html">Point</a>
+      
+    </li>
+  
+  <li class=" " data-id="tlsclient/EllipticCurve/SubGroup" data-name="ellipticcurve::subgroup">
+      <a href="EllipticCurve/SubGroup.html">SubGroup</a>
+      
+    </li>
+  
+</ul>
+
+      
+    </li>
+  
+  <li class=" " data-id="tlsclient/HalfConnection" data-name="halfconnection">
+      <a href="HalfConnection.html">HalfConnection</a>
+      
+    </li>
+  
+  <li class=" " data-id="tlsclient/HKDF" data-name="hkdf">
+      <a href="HKDF.html">HKDF</a>
+      
+    </li>
+  
+  <li class=" " data-id="tlsclient/HKDF_EXPAND_LABEL" data-name="hkdf_expand_label">
+      <a href="HKDF_EXPAND_LABEL.html">HKDF_EXPAND_LABEL</a>
+      
+    </li>
+  
+  <li class=" " data-id="tlsclient/HMAC" data-name="hmac">
+      <a href="HMAC.html">HMAC</a>
+      
+    </li>
+  
+  <li class=" " data-id="tlsclient/Inf" data-name="inf">
+      <a href="Inf.html">Inf</a>
+      
+    </li>
+  
+  <li class=" " data-id="tlsclient/KeyPair" data-name="keypair">
+      <a href="KeyPair.html">KeyPair</a>
+      
+    </li>
+  
+  <li class=" " data-id="tlsclient/Point" data-name="point">
+      <a href="Point.html">Point</a>
+      
+    </li>
+  
+  <li class=" " data-id="tlsclient/SubGroup" data-name="subgroup">
+      <a href="SubGroup.html">SubGroup</a>
+      
+    </li>
+  
+  <li class="parent " data-id="tlsclient/TLSClient" data-name="tlsclient">
+      <a href="TLSClient.html">TLSClient</a>
+      
+        <ul>
+  
+  <li class=" " data-id="tlsclient/TLSClient/Client" data-name="tlsclient::client">
+      <a href="TLSClient/Client.html">Client</a>
+      
+    </li>
+  
+  <li class=" " data-id="tlsclient/TLSClient/ClientHelloMessage" data-name="tlsclient::clienthellomessage">
+      <a href="TLSClient/ClientHelloMessage.html">ClientHelloMessage</a>
+      
+    </li>
+  
+  <li class=" " data-id="tlsclient/TLSClient/ServerHelloMessage" data-name="tlsclient::serverhellomessage">
+      <a href="TLSClient/ServerHelloMessage.html">ServerHelloMessage</a>
+      
+    </li>
+  
+</ul>
+
+      
+    </li>
+  
+  <li class="parent " data-id="tlsclient/TLSDefinitions" data-name="tlsdefinitions">
+      <a href="TLSDefinitions.html">TLSDefinitions</a>
+      
+        <ul>
+  
+  <li class=" " data-id="tlsclient/TLSDefinitions/ExtensionType" data-name="tlsdefinitions::extensiontype">
+      <a href="TLSDefinitions/ExtensionType.html">ExtensionType</a>
+      
+    </li>
+  
+  <li class=" " data-id="tlsclient/TLSDefinitions/TlSHandshakeType" data-name="tlsdefinitions::tlshandshaketype">
+      <a href="TLSDefinitions/TlSHandshakeType.html">TlSHandshakeType</a>
+      
+    </li>
+  
+  <li class=" " data-id="tlsclient/TLSDefinitions/TLSRecordType" data-name="tlsdefinitions::tlsrecordtype">
+      <a href="TLSDefinitions/TLSRecordType.html">TLSRecordType</a>
+      
+    </li>
+  
+</ul>
+
+      
+    </li>
+  
+  <li class=" " data-id="tlsclient/Transcriptor" data-name="transcriptor">
+      <a href="Transcriptor.html">Transcriptor</a>
+      
+    </li>
+  
+  <li class=" " data-id="tlsclient/Utils" data-name="utils">
+      <a href="Utils.html">Utils</a>
+      
+    </li>
+  
+</ul>
+
+  </div>
+</div>
+
+
+<div class="main-content">
+<h1 class="type-name">
+
+  <span class="kind">
+    class
+  </span> ECDH
+
+</h1>
+
+
+  <ul class="superclass-hierarchy"><li class="superclass"><a href="ECDH.html">ECDH</a></li><li class="superclass">Reference</li><li class="superclass">Object</li></ul>
+
+
+
+
+  <h2>
+    <a id="overview" class="anchor" href="#overview">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Overview
+  </h2>
+
+  <p>module Allt
+https://github.com/alexmgr/tinyec</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <h2>
+    <a id="defined-in" class="anchor" href="#defined-in">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Defined in:
+  </h2>
+  
+    
+      tlsclient/edhc.cr
+    
+    <br/>
+  
+
+
+
+
+
+  
+  <h2>
+    <a id="constructors" class="anchor" href="#constructors">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Constructors
+  </h2>
+  <ul class="list-summary">
+    
+      <li class="entry-summary">
+        <a href="#new-class-method" class="signature"><strong>.new</strong></a>
+        
+      </li>
+    
+  </ul>
+
+
+  
+  <h2>
+    <a id="class-method-summary" class="anchor" href="#class-method-summary">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Class Method Summary
+  </h2>
+  <ul class="list-summary">
+    
+      <li class="entry-summary">
+        <a href="#egcd%28a%2Cb%29-class-method" class="signature"><strong>.egcd</strong>(a, b)</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#mod_inv%28a%2Cp%29%3ABigInt-class-method" class="signature"><strong>.mod_inv</strong>(a, p) : BigInt</a>
+        
+      </li>
+    
+  </ul>
+
+
+  
+
+  
+  <h2>
+    <a id="instance-method-summary" class="anchor" href="#instance-method-summary">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Instance Method Summary
+  </h2>
+  <ul class="list-summary">
+    
+      <li class="entry-summary">
+        <a href="#calc_public_key_xy%3AArray%28BigInt%29-instance-method" class="signature"><strong>#calc_public_key_xy</strong> : Array(BigInt)</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#curve%3AEllipticCurve%3A%3ACurve-instance-method" class="signature"><strong>#curve</strong> : EllipticCurve::Curve</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#priv_multi%3ABigInt-instance-method" class="signature"><strong>#priv_multi</strong> : BigInt</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#priv_multi%3D%28priv_multi%3ABigInt%29-instance-method" class="signature"><strong>#priv_multi=</strong>(priv_multi : BigInt)</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#pub_key%3APoint%7CNil%7CInf%7CNil%7CNil%7CNil-instance-method" class="signature"><strong>#pub_key</strong> : Point | Nil | Inf | Nil | Nil | Nil</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#pub_key%3D%28pub_key%3APoint%7CNil%7CInf%7CNil%7CNil%7CNil%29-instance-method" class="signature"><strong>#pub_key=</strong>(pub_key : Point | Nil | Inf | Nil | Nil | Nil)</a>
+        
+      </li>
+    
+  </ul>
+
+
+
+  <div class="methods-inherited">
+    
+      
+
+
+      
+
+
+      
+
+
+      
+
+
+    
+      
+
+
+      
+
+
+      
+
+
+      
+
+
+    
+  </div>
+
+  
+  <h2>
+    <a id="constructor-detail" class="anchor" href="#constructor-detail">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Constructor Detail
+  </h2>
+  
+    <div class="entry-detail" id="new-class-method">
+      <div class="signature">
+        
+        def self.<strong>new</strong>
+
+        <a class="method-permalink" href="#new-class-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+      </div>
+    </div>
+  
+
+
+  
+  <h2>
+    <a id="class-method-detail" class="anchor" href="#class-method-detail">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Class Method Detail
+  </h2>
+  
+    <div class="entry-detail" id="egcd(a,b)-class-method">
+      <div class="signature">
+        
+        def self.<strong>egcd</strong>(a, b)
+
+        <a class="method-permalink" href="#egcd%28a%2Cb%29-class-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="mod_inv(a,p):BigInt-class-method">
+      <div class="signature">
+        
+        def self.<strong>mod_inv</strong>(a, p) : BigInt
+
+        <a class="method-permalink" href="#mod_inv%28a%2Cp%29%3ABigInt-class-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+      </div>
+    </div>
+  
+
+
+  
+
+  
+  <h2>
+    <a id="instance-method-detail" class="anchor" href="#instance-method-detail">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Instance Method Detail
+  </h2>
+  
+    <div class="entry-detail" id="calc_public_key_xy:Array(BigInt)-instance-method">
+      <div class="signature">
+        
+        def <strong>calc_public_key_xy</strong> : Array(BigInt)
+
+        <a class="method-permalink" href="#calc_public_key_xy%3AArray%28BigInt%29-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="curve:EllipticCurve::Curve-instance-method">
+      <div class="signature">
+        
+        def <strong>curve</strong> : <a href="EllipticCurve/Curve.html">EllipticCurve::Curve</a>
+
+        <a class="method-permalink" href="#curve%3AEllipticCurve%3A%3ACurve-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="priv_multi:BigInt-instance-method">
+      <div class="signature">
+        
+        def <strong>priv_multi</strong> : BigInt
+
+        <a class="method-permalink" href="#priv_multi%3ABigInt-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="priv_multi=(priv_multi:BigInt)-instance-method">
+      <div class="signature">
+        
+        def <strong>priv_multi=</strong>(priv_multi : BigInt)
+
+        <a class="method-permalink" href="#priv_multi%3D%28priv_multi%3ABigInt%29-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="pub_key:Point|Nil|Inf|Nil|Nil|Nil-instance-method">
+      <div class="signature">
+        
+        def <strong>pub_key</strong> : <a href="Point.html">Point</a> | Nil | <a href="Inf.html">Inf</a> | Nil | Nil | Nil
+
+        <a class="method-permalink" href="#pub_key%3APoint%7CNil%7CInf%7CNil%7CNil%7CNil-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="pub_key=(pub_key:Point|Nil|Inf|Nil|Nil|Nil)-instance-method">
+      <div class="signature">
+        
+        def <strong>pub_key=</strong>(pub_key : <a href="Point.html">Point</a> | Nil | <a href="Inf.html">Inf</a> | Nil | Nil | Nil)
+
+        <a class="method-permalink" href="#pub_key%3D%28pub_key%3APoint%7CNil%7CInf%7CNil%7CNil%7CNil%29-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+      </div>
+    </div>
+  
+
+
+
+</div>
+
+</body>
+</html>

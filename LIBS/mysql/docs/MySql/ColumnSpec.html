@@ -1,0 +1,753 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="generator" content="Crystal Docs 1.18.2">
+<meta name="crystal_docs.project_version" content="main-dev">
+<meta name="crystal_docs.project_name" content="mysql">
+
+
+
+<link href="../css/style.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="../js/doc.js"></script>
+
+  <meta name="repository-name" content="mysql">
+  <title>MySql::ColumnSpec - mysql main-dev</title>
+  <script type="text/javascript">
+    CrystalDocs.base_path = "../";
+  </script>
+</head>
+<body>
+
+<svg class="hidden">
+  <symbol id="octicon-link" viewBox="0 0 16 16">
+    <path fill="currentColor" fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path>
+  </symbol>
+</svg>
+<input type="checkbox" id="sidebar-btn">
+<label for="sidebar-btn" id="sidebar-btn-label">
+  <svg class="open" xmlns="http://www.w3.org/2000/svg" height="2em" width="2em" viewBox="0 0 512 512"><title>Open Sidebar</title><path fill="currentColor" d="M80 96v64h352V96H80zm0 112v64h352v-64H80zm0 112v64h352v-64H80z"></path></svg>
+  <svg class="close" xmlns="http://www.w3.org/2000/svg" width="2em" height="2em" viewBox="0 0 512 512"><title>Close Sidebar</title><path fill="currentColor" d="m118.6 73.4-45.2 45.2L210.7 256 73.4 393.4l45.2 45.2L256 301.3l137.4 137.3 45.2-45.2L301.3 256l137.3-137.4-45.2-45.2L256 210.7Z"></path></svg>
+</label>
+<div class="sidebar">
+  <div class="sidebar-header">
+    <div class="search-box">
+      <input type="search" class="search-input" placeholder="Search..." spellcheck="false" aria-label="Search">
+    </div>
+
+    <div class="project-summary">
+      <h1 class="project-name">
+        <a href="../index.html">
+          mysql
+        </a>
+      </h1>
+
+      <span class="project-version">
+        main-dev
+      </span>
+    </div>
+  </div>
+
+  <div class="search-results hidden">
+    <ul class="search-list"></ul>
+  </div>
+
+  <div class="types-list">
+    <ul>
+  
+  <li class=" " data-id="mysql/Crypto" data-name="crypto">
+      <a href="../Crypto.html">Crypto</a>
+      
+    </li>
+  
+  <li class=" " data-id="mysql/Marshaller" data-name="marshaller">
+      <a href="../Marshaller.html">Marshaller</a>
+      
+    </li>
+  
+  <li class="parent open current" data-id="mysql/MySql" data-name="mysql">
+      <a href="../MySql.html">MySql</a>
+      
+        <ul>
+  
+  <li class=" " data-id="mysql/MySql/Any" data-name="mysql::any">
+      <a href="../MySql/Any.html">Any</a>
+      
+    </li>
+  
+  <li class="parent " data-id="mysql/MySql/BRIDGE" data-name="mysql::bridge">
+      <a href="../MySql/BRIDGE.html">BRIDGE</a>
+      
+        <ul>
+  
+  <li class=" " data-id="mysql/MySql/BRIDGE/BRIDGE" data-name="mysql::bridge::bridge">
+      <a href="../MySql/BRIDGE/BRIDGE.html">BRIDGE</a>
+      
+    </li>
+  
+  <li class=" " data-id="mysql/MySql/BRIDGE/BRIDGEPlain" data-name="mysql::bridge::bridgeplain">
+      <a href="../MySql/BRIDGE/BRIDGEPlain.html">BRIDGEPlain</a>
+      
+    </li>
+  
+  <li class=" " data-id="mysql/MySql/BRIDGE/BRIDGETls" data-name="mysql::bridge::bridgetls">
+      <a href="../MySql/BRIDGE/BRIDGETls.html">BRIDGETls</a>
+      
+    </li>
+  
+</ul>
+
+      
+    </li>
+  
+  <li class=" " data-id="mysql/MySql/Collations" data-name="mysql::collations">
+      <a href="../MySql/Collations.html">Collations</a>
+      
+    </li>
+  
+  <li class=" current" data-id="mysql/MySql/ColumnSpec" data-name="mysql::columnspec">
+      <a href="../MySql/ColumnSpec.html">ColumnSpec</a>
+      
+    </li>
+  
+  <li class="parent " data-id="mysql/MySql/Connection" data-name="mysql::connection">
+      <a href="../MySql/Connection.html">Connection</a>
+      
+        <ul>
+  
+  <li class=" " data-id="mysql/MySql/Connection/Options" data-name="mysql::connection::options">
+      <a href="../MySql/Connection/Options.html">Options</a>
+      
+    </li>
+  
+</ul>
+
+      
+    </li>
+  
+  <li class="parent " data-id="mysql/MySql/Driver" data-name="mysql::driver">
+      <a href="../MySql/Driver.html">Driver</a>
+      
+        <ul>
+  
+  <li class=" " data-id="mysql/MySql/Driver/ConnectionBuilder" data-name="mysql::driver::connectionbuilder">
+      <a href="../MySql/Driver/ConnectionBuilder.html">ConnectionBuilder</a>
+      
+    </li>
+  
+</ul>
+
+      
+    </li>
+  
+  <li class=" " data-id="mysql/MySql/MessageComStamtPrepare" data-name="mysql::messagecomstamtprepare">
+      <a href="../MySql/MessageComStamtPrepare.html">MessageComStamtPrepare</a>
+      
+    </li>
+  
+  <li class=" " data-id="mysql/MySql/MessagePerformExecOrQuery" data-name="mysql::messageperformexecorquery">
+      <a href="../MySql/MessagePerformExecOrQuery.html">MessagePerformExecOrQuery</a>
+      
+    </li>
+  
+  <li class=" " data-id="mysql/MySql/MessagePerformExecOrQueryUnPrep" data-name="mysql::messageperformexecorqueryunprep">
+      <a href="../MySql/MessagePerformExecOrQueryUnPrep.html">MessagePerformExecOrQueryUnPrep</a>
+      
+    </li>
+  
+  <li class="parent " data-id="mysql/MySql/Protocol" data-name="mysql::protocol">
+      <a href="../MySql/Protocol.html">Protocol</a>
+      
+        <ul>
+  
+  <li class=" " data-id="mysql/MySql/Protocol/HandshakeResponse" data-name="mysql::protocol::handshakeresponse">
+      <a href="../MySql/Protocol/HandshakeResponse.html">HandshakeResponse</a>
+      
+    </li>
+  
+  <li class=" " data-id="mysql/MySql/Protocol/InHandshakeV10" data-name="mysql::protocol::inhandshakev10">
+      <a href="../MySql/Protocol/InHandshakeV10.html">InHandshakeV10</a>
+      
+    </li>
+  
+  <li class=" " data-id="mysql/MySql/Protocol/InStateB" data-name="mysql::protocol::instateb">
+      <a href="../MySql/Protocol/InStateB.html">InStateB</a>
+      
+    </li>
+  
+  <li class=" " data-id="mysql/MySql/Protocol/InStateC" data-name="mysql::protocol::instatec">
+      <a href="../MySql/Protocol/InStateC.html">InStateC</a>
+      
+    </li>
+  
+  <li class=" " data-id="mysql/MySql/Protocol/InStateD" data-name="mysql::protocol::instated">
+      <a href="../MySql/Protocol/InStateD.html">InStateD</a>
+      
+    </li>
+  
+  <li class=" " data-id="mysql/MySql/Protocol/InStateE" data-name="mysql::protocol::instatee">
+      <a href="../MySql/Protocol/InStateE.html">InStateE</a>
+      
+    </li>
+  
+  <li class=" " data-id="mysql/MySql/Protocol/OutHandshakeResponse41" data-name="mysql::protocol::outhandshakeresponse41">
+      <a href="../MySql/Protocol/OutHandshakeResponse41.html">OutHandshakeResponse41</a>
+      
+    </li>
+  
+  <li class=" " data-id="mysql/MySql/Protocol/OutHandshakeResponse41TLS" data-name="mysql::protocol::outhandshakeresponse41tls">
+      <a href="../MySql/Protocol/OutHandshakeResponse41TLS.html">OutHandshakeResponse41TLS</a>
+      
+    </li>
+  
+  <li class=" " data-id="mysql/MySql/Protocol/OutPasswordEnCoded" data-name="mysql::protocol::outpasswordencoded">
+      <a href="../MySql/Protocol/OutPasswordEnCoded.html">OutPasswordEnCoded</a>
+      
+    </li>
+  
+  <li class=" " data-id="mysql/MySql/Protocol/OutPasswordThroughTLS" data-name="mysql::protocol::outpasswordthroughtls">
+      <a href="../MySql/Protocol/OutPasswordThroughTLS.html">OutPasswordThroughTLS</a>
+      
+    </li>
+  
+  <li class=" " data-id="mysql/MySql/Protocol/OutRequestPublicKeyAfter_sha256_password" data-name="mysql::protocol::outrequestpublickeyafter_sha256_password">
+      <a href="../MySql/Protocol/OutRequestPublicKeyAfter_sha256_password.html">OutRequestPublicKeyAfter_sha256_password</a>
+      
+    </li>
+  
+  <li class=" " data-id="mysql/MySql/Protocol/OutRequestPublicKeyCommon" data-name="mysql::protocol::outrequestpublickeycommon">
+      <a href="../MySql/Protocol/OutRequestPublicKeyCommon.html">OutRequestPublicKeyCommon</a>
+      
+    </li>
+  
+  <li class=" " data-id="mysql/MySql/Protocol/ResponceOn_caching_sha2_password" data-name="mysql::protocol::responceon_caching_sha2_password">
+      <a href="../MySql/Protocol/ResponceOn_caching_sha2_password.html">ResponceOn_caching_sha2_password</a>
+      
+    </li>
+  
+  <li class=" " data-id="mysql/MySql/Protocol/SendRSAOAEPencoded" data-name="mysql::protocol::sendrsaoaepencoded">
+      <a href="../MySql/Protocol/SendRSAOAEPencoded.html">SendRSAOAEPencoded</a>
+      
+    </li>
+  
+</ul>
+
+      
+    </li>
+  
+  <li class=" " data-id="mysql/MySql/ResultSet" data-name="mysql::resultset">
+      <a href="../MySql/ResultSet.html">ResultSet</a>
+      
+    </li>
+  
+  <li class="parent " data-id="mysql/MySql/RSAOAEP" data-name="mysql::rsaoaep">
+      <a href="../MySql/RSAOAEP.html">RSAOAEP</a>
+      
+        <ul>
+  
+  <li class=" " data-id="mysql/MySql/RSAOAEP/RSAOAEPencode" data-name="mysql::rsaoaep::rsaoaepencode">
+      <a href="../MySql/RSAOAEP/RSAOAEPencode.html">RSAOAEPencode</a>
+      
+    </li>
+  
+</ul>
+
+      
+    </li>
+  
+  <li class=" " data-id="mysql/MySql/SQLResponceReader" data-name="mysql::sqlresponcereader">
+      <a href="../MySql/SQLResponceReader.html">SQLResponceReader</a>
+      
+    </li>
+  
+  <li class=" " data-id="mysql/MySql/Statement" data-name="mysql::statement">
+      <a href="../MySql/Statement.html">Statement</a>
+      
+    </li>
+  
+  <li class=" " data-id="mysql/MySql/TextResultSet" data-name="mysql::textresultset">
+      <a href="../MySql/TextResultSet.html">TextResultSet</a>
+      
+    </li>
+  
+  <li class=" " data-id="mysql/MySql/UnpreparedStatement" data-name="mysql::unpreparedstatement">
+      <a href="../MySql/UnpreparedStatement.html">UnpreparedStatement</a>
+      
+    </li>
+  
+</ul>
+
+      
+    </li>
+  
+  <li class="parent " data-id="mysql/PubKeyMySql" data-name="pubkeymysql">
+      <a href="../PubKeyMySql.html">PubKeyMySql</a>
+      
+        <ul>
+  
+  <li class=" " data-id="mysql/PubKeyMySql/Asn1Type" data-name="pubkeymysql::asn1type">
+      <a href="../PubKeyMySql/Asn1Type.html">Asn1Type</a>
+      
+    </li>
+  
+</ul>
+
+      
+    </li>
+  
+</ul>
+
+  </div>
+</div>
+
+
+<div class="main-content">
+<h1 class="type-name">
+
+  <span class="kind">
+    struct
+  </span> MySql::<wbr>ColumnSpec
+
+</h1>
+
+
+  <ul class="superclass-hierarchy"><li class="superclass"><a href="../MySql/ColumnSpec.html">MySql::ColumnSpec</a></li><li class="superclass">Struct</li><li class="superclass">Value</li><li class="superclass">Object</li></ul>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <h2>
+    <a id="defined-in" class="anchor" href="#defined-in">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Defined in:
+  </h2>
+  
+    
+      mysql.cr:6
+    
+    <br/>
+  
+    
+      mysql.cr:8
+    
+    <br/>
+  
+
+
+
+
+
+  
+  <h2>
+    <a id="constructors" class="anchor" href="#constructors">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Constructors
+  </h2>
+  <ul class="list-summary">
+    
+      <li class="entry-summary">
+        <a href="#new%28catalog%3AString%2Cschema%3AString%2Ctable%3AString%2Corg_table%3AString%2Cname%3AString%2Corg_name%3AString%2Ccharacter_set%3AUInt16%2Ccolumn_length%3AUInt32%2Ccolumn_type_code%3AUInt8%2Cflags%3AUInt16%2Cdecimal%3AUInt8%29-class-method" class="signature"><strong>.new</strong>(catalog : String, schema : String, table : String, org_table : String, name : String, org_name : String, character_set : UInt16, column_length : UInt32, column_type_code : UInt8, flags : UInt16, decimal : UInt8)</a>
+        
+      </li>
+    
+  </ul>
+
+
+  
+
+  
+
+  
+  <h2>
+    <a id="instance-method-summary" class="anchor" href="#instance-method-summary">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Instance Method Summary
+  </h2>
+  <ul class="list-summary">
+    
+      <li class="entry-summary">
+        <a href="#catalog%3AString-instance-method" class="signature"><strong>#catalog</strong> : String</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#character_set%3AUInt16-instance-method" class="signature"><strong>#character_set</strong> : UInt16</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#clone-instance-method" class="signature"><strong>#clone</strong></a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#column_length%3AUInt32-instance-method" class="signature"><strong>#column_length</strong> : UInt32</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#column_type-instance-method" class="signature"><strong>#column_type</strong></a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#column_type_code%3AUInt8-instance-method" class="signature"><strong>#column_type_code</strong> : UInt8</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#copy_with%28catalog_catalog%3D%40catalog%2Cschema_schema%3D%40schema%2Ctable_table%3D%40table%2Corg_table_org_table%3D%40org_table%2Cname_name%3D%40name%2Corg_name_org_name%3D%40org_name%2Ccharacter_set_character_set%3D%40character_set%2Ccolumn_length_column_length%3D%40column_length%2Ccolumn_type_code_column_type_code%3D%40column_type_code%2Cflags_flags%3D%40flags%2Cdecimal_decimal%3D%40decimal%29-instance-method" class="signature"><strong>#copy_with</strong>(catalog _catalog = @catalog, schema _schema = @schema, table _table = @table, org_table _org_table = @org_table, name _name = @name, org_name _org_name = @org_name, character_set _character_set = @character_set, column_length _column_length = @column_length, column_type_code _column_type_code = @column_type_code, flags _flags = @flags, decimal _decimal = @decimal)</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#decimal%3AUInt8-instance-method" class="signature"><strong>#decimal</strong> : UInt8</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#flags%3AUInt16-instance-method" class="signature"><strong>#flags</strong> : UInt16</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#name%3AString-instance-method" class="signature"><strong>#name</strong> : String</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#org_name%3AString-instance-method" class="signature"><strong>#org_name</strong> : String</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#org_table%3AString-instance-method" class="signature"><strong>#org_table</strong> : String</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#schema%3AString-instance-method" class="signature"><strong>#schema</strong> : String</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#table%3AString-instance-method" class="signature"><strong>#table</strong> : String</a>
+        
+      </li>
+    
+  </ul>
+
+
+
+  <div class="methods-inherited">
+    
+      
+
+
+      
+
+
+      
+
+
+      
+
+
+    
+      
+
+
+      
+
+
+      
+
+
+      
+
+
+    
+      
+
+
+      
+
+
+      
+
+
+      
+
+
+    
+  </div>
+
+  
+  <h2>
+    <a id="constructor-detail" class="anchor" href="#constructor-detail">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Constructor Detail
+  </h2>
+  
+    <div class="entry-detail" id="new(catalog:String,schema:String,table:String,org_table:String,name:String,org_name:String,character_set:UInt16,column_length:UInt32,column_type_code:UInt8,flags:UInt16,decimal:UInt8)-class-method">
+      <div class="signature">
+        
+        def self.<strong>new</strong>(catalog : String, schema : String, table : String, org_table : String, name : String, org_name : String, character_set : UInt16, column_length : UInt32, column_type_code : UInt8, flags : UInt16, decimal : UInt8)
+
+        <a class="method-permalink" href="#new%28catalog%3AString%2Cschema%3AString%2Ctable%3AString%2Corg_table%3AString%2Cname%3AString%2Corg_name%3AString%2Ccharacter_set%3AUInt16%2Ccolumn_length%3AUInt32%2Ccolumn_type_code%3AUInt8%2Cflags%3AUInt16%2Cdecimal%3AUInt8%29-class-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+      </div>
+    </div>
+  
+
+
+  
+
+  
+
+  
+  <h2>
+    <a id="instance-method-detail" class="anchor" href="#instance-method-detail">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Instance Method Detail
+  </h2>
+  
+    <div class="entry-detail" id="catalog:String-instance-method">
+      <div class="signature">
+        
+        def <strong>catalog</strong> : String
+
+        <a class="method-permalink" href="#catalog%3AString-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="character_set:UInt16-instance-method">
+      <div class="signature">
+        
+        def <strong>character_set</strong> : UInt16
+
+        <a class="method-permalink" href="#character_set%3AUInt16-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="clone-instance-method">
+      <div class="signature">
+        
+        def <strong>clone</strong>
+
+        <a class="method-permalink" href="#clone-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="column_length:UInt32-instance-method">
+      <div class="signature">
+        
+        def <strong>column_length</strong> : UInt32
+
+        <a class="method-permalink" href="#column_length%3AUInt32-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="column_type-instance-method">
+      <div class="signature">
+        
+        def <strong>column_type</strong>
+
+        <a class="method-permalink" href="#column_type-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="column_type_code:UInt8-instance-method">
+      <div class="signature">
+        
+        def <strong>column_type_code</strong> : UInt8
+
+        <a class="method-permalink" href="#column_type_code%3AUInt8-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="copy_with(catalog_catalog=@catalog,schema_schema=@schema,table_table=@table,org_table_org_table=@org_table,name_name=@name,org_name_org_name=@org_name,character_set_character_set=@character_set,column_length_column_length=@column_length,column_type_code_column_type_code=@column_type_code,flags_flags=@flags,decimal_decimal=@decimal)-instance-method">
+      <div class="signature">
+        
+        def <strong>copy_with</strong>(catalog _catalog = @catalog, schema _schema = @schema, table _table = @table, org_table _org_table = @org_table, name _name = @name, org_name _org_name = @org_name, character_set _character_set = @character_set, column_length _column_length = @column_length, column_type_code _column_type_code = @column_type_code, flags _flags = @flags, decimal _decimal = @decimal)
+
+        <a class="method-permalink" href="#copy_with%28catalog_catalog%3D%40catalog%2Cschema_schema%3D%40schema%2Ctable_table%3D%40table%2Corg_table_org_table%3D%40org_table%2Cname_name%3D%40name%2Corg_name_org_name%3D%40org_name%2Ccharacter_set_character_set%3D%40character_set%2Ccolumn_length_column_length%3D%40column_length%2Ccolumn_type_code_column_type_code%3D%40column_type_code%2Cflags_flags%3D%40flags%2Cdecimal_decimal%3D%40decimal%29-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="decimal:UInt8-instance-method">
+      <div class="signature">
+        
+        def <strong>decimal</strong> : UInt8
+
+        <a class="method-permalink" href="#decimal%3AUInt8-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="flags:UInt16-instance-method">
+      <div class="signature">
+        
+        def <strong>flags</strong> : UInt16
+
+        <a class="method-permalink" href="#flags%3AUInt16-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="name:String-instance-method">
+      <div class="signature">
+        
+        def <strong>name</strong> : String
+
+        <a class="method-permalink" href="#name%3AString-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="org_name:String-instance-method">
+      <div class="signature">
+        
+        def <strong>org_name</strong> : String
+
+        <a class="method-permalink" href="#org_name%3AString-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="org_table:String-instance-method">
+      <div class="signature">
+        
+        def <strong>org_table</strong> : String
+
+        <a class="method-permalink" href="#org_table%3AString-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="schema:String-instance-method">
+      <div class="signature">
+        
+        def <strong>schema</strong> : String
+
+        <a class="method-permalink" href="#schema%3AString-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="table:String-instance-method">
+      <div class="signature">
+        
+        def <strong>table</strong> : String
+
+        <a class="method-permalink" href="#table%3AString-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+      </div>
+    </div>
+  
+
+
+
+</div>
+
+</body>
+</html>

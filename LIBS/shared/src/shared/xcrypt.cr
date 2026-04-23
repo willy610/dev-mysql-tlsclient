@@ -1,6 +1,5 @@
 module Xcrypt
   def self.decrypt(header : Bytes, encrypted_message : Bytes, tag_received : Bytes, half_conn : HalfConnection)
-    # puts "\ndecrypt called\n"
     # WORKS DON'T TUCH
     result_tag_calc = IO::Memory.new
     key = half_conn.key
@@ -10,7 +9,6 @@ module Xcrypt
     tag_calc = for_tag_calc.calc_tag(key, iv_x, header, encrypted_message)
     # Compare calculated tag with provide from recived on wire
     if !constant_time_compare(tag_calc.to_slice, tag_received.to_slice)
-      # puts "encrypted_message=#{encrypted_message + tag_received}"
       puts "encrypted_message=\n#{(encrypted_message + tag_received).hexdump}"
       puts "tag_calc=          #{tag_calc}"
       puts "tag_received=      #{tag_received}"

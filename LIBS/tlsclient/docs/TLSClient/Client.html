@@ -1,0 +1,854 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="generator" content="Crystal Docs 1.18.2">
+<meta name="crystal_docs.project_version" content="main-dev">
+<meta name="crystal_docs.project_name" content="tlsclient">
+
+
+
+<link href="../css/style.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="../js/doc.js"></script>
+
+  <meta name="repository-name" content="tlsclient">
+  <title>TLSClient::Client - tlsclient main-dev</title>
+  <script type="text/javascript">
+    CrystalDocs.base_path = "../";
+  </script>
+</head>
+<body>
+
+<svg class="hidden">
+  <symbol id="octicon-link" viewBox="0 0 16 16">
+    <path fill="currentColor" fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path>
+  </symbol>
+</svg>
+<input type="checkbox" id="sidebar-btn">
+<label for="sidebar-btn" id="sidebar-btn-label">
+  <svg class="open" xmlns="http://www.w3.org/2000/svg" height="2em" width="2em" viewBox="0 0 512 512"><title>Open Sidebar</title><path fill="currentColor" d="M80 96v64h352V96H80zm0 112v64h352v-64H80zm0 112v64h352v-64H80z"></path></svg>
+  <svg class="close" xmlns="http://www.w3.org/2000/svg" width="2em" height="2em" viewBox="0 0 512 512"><title>Close Sidebar</title><path fill="currentColor" d="m118.6 73.4-45.2 45.2L210.7 256 73.4 393.4l45.2 45.2L256 301.3l137.4 137.3 45.2-45.2L301.3 256l137.3-137.4-45.2-45.2L256 210.7Z"></path></svg>
+</label>
+<div class="sidebar">
+  <div class="sidebar-header">
+    <div class="search-box">
+      <input type="search" class="search-input" placeholder="Search..." spellcheck="false" aria-label="Search">
+    </div>
+
+    <div class="project-summary">
+      <h1 class="project-name">
+        <a href="../index.html">
+          tlsclient
+        </a>
+      </h1>
+
+      <span class="project-version">
+        main-dev
+      </span>
+    </div>
+  </div>
+
+  <div class="search-results hidden">
+    <ul class="search-list"></ul>
+  </div>
+
+  <div class="types-list">
+    <ul>
+  
+  <li class=" " data-id="tlsclient/Certificate" data-name="certificate">
+      <a href="../Certificate.html">Certificate</a>
+      
+    </li>
+  
+  <li class=" " data-id="tlsclient/Curve" data-name="curve">
+      <a href="../Curve.html">Curve</a>
+      
+    </li>
+  
+  <li class=" " data-id="tlsclient/DERIVED_SECRET" data-name="derived_secret">
+      <a href="../DERIVED_SECRET.html">DERIVED_SECRET</a>
+      
+    </li>
+  
+  <li class=" " data-id="tlsclient/ECDH" data-name="ecdh">
+      <a href="../ECDH.html">ECDH</a>
+      
+    </li>
+  
+  <li class=" " data-id="tlsclient/ECDHContainer" data-name="ecdhcontainer">
+      <a href="../ECDHContainer.html">ECDHContainer</a>
+      
+    </li>
+  
+  <li class="parent " data-id="tlsclient/EllipticCurve" data-name="ellipticcurve">
+      <a href="../EllipticCurve.html">EllipticCurve</a>
+      
+        <ul>
+  
+  <li class=" " data-id="tlsclient/EllipticCurve/Curve" data-name="ellipticcurve::curve">
+      <a href="../EllipticCurve/Curve.html">Curve</a>
+      
+    </li>
+  
+  <li class=" " data-id="tlsclient/EllipticCurve/Inf" data-name="ellipticcurve::inf">
+      <a href="../EllipticCurve/Inf.html">Inf</a>
+      
+    </li>
+  
+  <li class=" " data-id="tlsclient/EllipticCurve/KeyPair" data-name="ellipticcurve::keypair">
+      <a href="../EllipticCurve/KeyPair.html">KeyPair</a>
+      
+    </li>
+  
+  <li class=" " data-id="tlsclient/EllipticCurve/Point" data-name="ellipticcurve::point">
+      <a href="../EllipticCurve/Point.html">Point</a>
+      
+    </li>
+  
+  <li class=" " data-id="tlsclient/EllipticCurve/SubGroup" data-name="ellipticcurve::subgroup">
+      <a href="../EllipticCurve/SubGroup.html">SubGroup</a>
+      
+    </li>
+  
+</ul>
+
+      
+    </li>
+  
+  <li class=" " data-id="tlsclient/HalfConnection" data-name="halfconnection">
+      <a href="../HalfConnection.html">HalfConnection</a>
+      
+    </li>
+  
+  <li class=" " data-id="tlsclient/HKDF" data-name="hkdf">
+      <a href="../HKDF.html">HKDF</a>
+      
+    </li>
+  
+  <li class=" " data-id="tlsclient/HKDF_EXPAND_LABEL" data-name="hkdf_expand_label">
+      <a href="../HKDF_EXPAND_LABEL.html">HKDF_EXPAND_LABEL</a>
+      
+    </li>
+  
+  <li class=" " data-id="tlsclient/HMAC" data-name="hmac">
+      <a href="../HMAC.html">HMAC</a>
+      
+    </li>
+  
+  <li class=" " data-id="tlsclient/Inf" data-name="inf">
+      <a href="../Inf.html">Inf</a>
+      
+    </li>
+  
+  <li class=" " data-id="tlsclient/KeyPair" data-name="keypair">
+      <a href="../KeyPair.html">KeyPair</a>
+      
+    </li>
+  
+  <li class=" " data-id="tlsclient/Point" data-name="point">
+      <a href="../Point.html">Point</a>
+      
+    </li>
+  
+  <li class=" " data-id="tlsclient/SubGroup" data-name="subgroup">
+      <a href="../SubGroup.html">SubGroup</a>
+      
+    </li>
+  
+  <li class="parent open current" data-id="tlsclient/TLSClient" data-name="tlsclient">
+      <a href="../TLSClient.html">TLSClient</a>
+      
+        <ul>
+  
+  <li class=" current" data-id="tlsclient/TLSClient/Client" data-name="tlsclient::client">
+      <a href="../TLSClient/Client.html">Client</a>
+      
+    </li>
+  
+  <li class=" " data-id="tlsclient/TLSClient/ClientHelloMessage" data-name="tlsclient::clienthellomessage">
+      <a href="../TLSClient/ClientHelloMessage.html">ClientHelloMessage</a>
+      
+    </li>
+  
+  <li class=" " data-id="tlsclient/TLSClient/ServerHelloMessage" data-name="tlsclient::serverhellomessage">
+      <a href="../TLSClient/ServerHelloMessage.html">ServerHelloMessage</a>
+      
+    </li>
+  
+</ul>
+
+      
+    </li>
+  
+  <li class="parent " data-id="tlsclient/TLSDefinitions" data-name="tlsdefinitions">
+      <a href="../TLSDefinitions.html">TLSDefinitions</a>
+      
+        <ul>
+  
+  <li class=" " data-id="tlsclient/TLSDefinitions/ExtensionType" data-name="tlsdefinitions::extensiontype">
+      <a href="../TLSDefinitions/ExtensionType.html">ExtensionType</a>
+      
+    </li>
+  
+  <li class=" " data-id="tlsclient/TLSDefinitions/TlSHandshakeType" data-name="tlsdefinitions::tlshandshaketype">
+      <a href="../TLSDefinitions/TlSHandshakeType.html">TlSHandshakeType</a>
+      
+    </li>
+  
+  <li class=" " data-id="tlsclient/TLSDefinitions/TLSRecordType" data-name="tlsdefinitions::tlsrecordtype">
+      <a href="../TLSDefinitions/TLSRecordType.html">TLSRecordType</a>
+      
+    </li>
+  
+</ul>
+
+      
+    </li>
+  
+  <li class=" " data-id="tlsclient/Transcriptor" data-name="transcriptor">
+      <a href="../Transcriptor.html">Transcriptor</a>
+      
+    </li>
+  
+  <li class=" " data-id="tlsclient/Utils" data-name="utils">
+      <a href="../Utils.html">Utils</a>
+      
+    </li>
+  
+</ul>
+
+  </div>
+</div>
+
+
+<div class="main-content">
+<h1 class="type-name">
+
+  <span class="kind">
+    class
+  </span> TLSClient::<wbr>Client
+
+</h1>
+
+
+  <ul class="superclass-hierarchy"><li class="superclass"><a href="../TLSClient/Client.html">TLSClient::Client</a></li><li class="superclass">Reference</li><li class="superclass">Object</li></ul>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <h2>
+    <a id="defined-in" class="anchor" href="#defined-in">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Defined in:
+  </h2>
+  
+    
+      tlsclient/client.cr
+    
+    <br/>
+  
+
+
+
+
+
+  
+  <h2>
+    <a id="constructors" class="anchor" href="#constructors">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Constructors
+  </h2>
+  <ul class="list-summary">
+    
+      <li class="entry-summary">
+        <a href="#new%28socket%3ATCPSocket%2Cclient_send_empty_certificate%3ABool%29-class-method" class="signature"><strong>.new</strong>(socket : TCPSocket, client_send_empty_certificate : Bool)</a>
+        
+      </li>
+    
+  </ul>
+
+
+  
+  <h2>
+    <a id="class-method-summary" class="anchor" href="#class-method-summary">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Class Method Summary
+  </h2>
+  <ul class="list-summary">
+    
+      <li class="entry-summary">
+        <a href="#alert_text_and_number-class-method" class="signature"><strong>.alert_text_and_number</strong></a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#resolve_alert_reason%28msg%29-class-method" class="signature"><strong>.resolve_alert_reason</strong>(msg)</a>
+        
+      </li>
+    
+  </ul>
+
+
+  
+
+  
+  <h2>
+    <a id="instance-method-summary" class="anchor" href="#instance-method-summary">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Instance Method Summary
+  </h2>
+  <ul class="list-summary">
+    
+      <li class="entry-summary">
+        <a href="#c_ap_traffic%3AHalfConnection-instance-method" class="signature"><strong>#c_ap_traffic</strong> : HalfConnection</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#c_ap_traffic%3D%28c_ap_traffic%3AHalfConnection%29-instance-method" class="signature"><strong>#c_ap_traffic=</strong>(c_ap_traffic : HalfConnection)</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#c_hs_traffic%3AHalfConnection-instance-method" class="signature"><strong>#c_hs_traffic</strong> : HalfConnection</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#c_hs_traffic%3D%28c_hs_traffic%3AHalfConnection%29-instance-method" class="signature"><strong>#c_hs_traffic=</strong>(c_hs_traffic : HalfConnection)</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#filter_tls_internals%28record_type%2Cmsg_decrypted%29%3ABool-instance-method" class="signature"><strong>#filter_tls_internals</strong>(record_type, msg_decrypted) : Bool</a>
+        
+          <div class="summary"><p>In application state  we must detect 'RecordTypeAlert' and terminate when not warning  we must detect 'RecordTypeHandshake::TypeHelloRequest' and terminate  we must detect 'RecordTypeHandshake::TypeNewSessionTicket' and dismiss it</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#get_value_RecordTypeApplicationData-instance-method" class="signature"><strong>#get_value_RecordTypeApplicationData</strong></a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#legacy_version%3AUInt16-instance-method" class="signature"><strong>#legacy_version</strong> : UInt16</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#message_version%3AUInt16-instance-method" class="signature"><strong>#message_version</strong> : UInt16</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#private_read_init_encrypted%28s_hs_traffic%3AHalfConnection%29-instance-method" class="signature"><strong>#private_read_init_encrypted</strong>(s_hs_traffic : HalfConnection)</a>
+        
+          <div class="summary"><p>********************************************************************** Read a full encrypted package</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#private_read_init_plain-instance-method" class="signature"><strong>#private_read_init_plain</strong></a>
+        
+          <div class="summary"><p>Read a full packet</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#private_write_ChangeCipherSpec-instance-method" class="signature"><strong>#private_write_ChangeCipherSpec</strong></a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#private_write_init_plain%28type%2Cthe_message%29-instance-method" class="signature"><strong>#private_write_init_plain</strong>(type, the_message)</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#s_ap_traffic%3AHalfConnection-instance-method" class="signature"><strong>#s_ap_traffic</strong> : HalfConnection</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#s_ap_traffic%3D%28s_ap_traffic%3AHalfConnection%29-instance-method" class="signature"><strong>#s_ap_traffic=</strong>(s_ap_traffic : HalfConnection)</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#s_hs_traffic%3AHalfConnection-instance-method" class="signature"><strong>#s_hs_traffic</strong> : HalfConnection</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#s_hs_traffic%3D%28s_hs_traffic%3AHalfConnection%29-instance-method" class="signature"><strong>#s_hs_traffic=</strong>(s_hs_traffic : HalfConnection)</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#socket%3ATCPSocket-instance-method" class="signature"><strong>#socket</strong> : TCPSocket</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#socket%3D%28socket%3ATCPSocket%29-instance-method" class="signature"><strong>#socket=</strong>(socket : TCPSocket)</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#the_ECDHD_container%3AECDHContainer-instance-method" class="signature"><strong>#the_ECDHD_container</strong> : ECDHContainer</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#the_ECDHD_container%3D%28the_ECDHD_container%3AECDHContainer%29-instance-method" class="signature"><strong>#the_ECDHD_container=</strong>(the_ECDHD_container : ECDHContainer)</a>
+        
+      </li>
+    
+  </ul>
+
+
+
+  <div class="methods-inherited">
+    
+      
+
+
+      
+
+
+      
+
+
+      
+
+
+    
+      
+
+
+      
+
+
+      
+
+
+      
+
+
+    
+  </div>
+
+  
+  <h2>
+    <a id="constructor-detail" class="anchor" href="#constructor-detail">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Constructor Detail
+  </h2>
+  
+    <div class="entry-detail" id="new(socket:TCPSocket,client_send_empty_certificate:Bool)-class-method">
+      <div class="signature">
+        
+        def self.<strong>new</strong>(socket : TCPSocket, client_send_empty_certificate : Bool)
+
+        <a class="method-permalink" href="#new%28socket%3ATCPSocket%2Cclient_send_empty_certificate%3ABool%29-class-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+      </div>
+    </div>
+  
+
+
+  
+  <h2>
+    <a id="class-method-detail" class="anchor" href="#class-method-detail">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Class Method Detail
+  </h2>
+  
+    <div class="entry-detail" id="alert_text_and_number-class-method">
+      <div class="signature">
+        
+        def self.<strong>alert_text_and_number</strong>
+
+        <a class="method-permalink" href="#alert_text_and_number-class-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="resolve_alert_reason(msg)-class-method">
+      <div class="signature">
+        
+        def self.<strong>resolve_alert_reason</strong>(msg)
+
+        <a class="method-permalink" href="#resolve_alert_reason%28msg%29-class-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+      </div>
+    </div>
+  
+
+
+  
+
+  
+  <h2>
+    <a id="instance-method-detail" class="anchor" href="#instance-method-detail">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Instance Method Detail
+  </h2>
+  
+    <div class="entry-detail" id="c_ap_traffic:HalfConnection-instance-method">
+      <div class="signature">
+        
+        def <strong>c_ap_traffic</strong> : <a href="../HalfConnection.html">HalfConnection</a>
+
+        <a class="method-permalink" href="#c_ap_traffic%3AHalfConnection-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="c_ap_traffic=(c_ap_traffic:HalfConnection)-instance-method">
+      <div class="signature">
+        
+        def <strong>c_ap_traffic=</strong>(c_ap_traffic : <a href="../HalfConnection.html">HalfConnection</a>)
+
+        <a class="method-permalink" href="#c_ap_traffic%3D%28c_ap_traffic%3AHalfConnection%29-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="c_hs_traffic:HalfConnection-instance-method">
+      <div class="signature">
+        
+        def <strong>c_hs_traffic</strong> : <a href="../HalfConnection.html">HalfConnection</a>
+
+        <a class="method-permalink" href="#c_hs_traffic%3AHalfConnection-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="c_hs_traffic=(c_hs_traffic:HalfConnection)-instance-method">
+      <div class="signature">
+        
+        def <strong>c_hs_traffic=</strong>(c_hs_traffic : <a href="../HalfConnection.html">HalfConnection</a>)
+
+        <a class="method-permalink" href="#c_hs_traffic%3D%28c_hs_traffic%3AHalfConnection%29-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="filter_tls_internals(record_type,msg_decrypted):Bool-instance-method">
+      <div class="signature">
+        
+        def <strong>filter_tls_internals</strong>(record_type, msg_decrypted) : Bool
+
+        <a class="method-permalink" href="#filter_tls_internals%28record_type%2Cmsg_decrypted%29%3ABool-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>In application state
+we must detect 'RecordTypeAlert' and terminate when not warning
+we must detect 'RecordTypeHandshake::TypeHelloRequest' and terminate
+we must detect 'RecordTypeHandshake::TypeNewSessionTicket' and dismiss it</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="get_value_RecordTypeApplicationData-instance-method">
+      <div class="signature">
+        
+        def <strong>get_value_RecordTypeApplicationData</strong>
+
+        <a class="method-permalink" href="#get_value_RecordTypeApplicationData-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="legacy_version:UInt16-instance-method">
+      <div class="signature">
+        
+        def <strong>legacy_version</strong> : UInt16
+
+        <a class="method-permalink" href="#legacy_version%3AUInt16-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="message_version:UInt16-instance-method">
+      <div class="signature">
+        
+        def <strong>message_version</strong> : UInt16
+
+        <a class="method-permalink" href="#message_version%3AUInt16-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="private_read_init_encrypted(s_hs_traffic:HalfConnection)-instance-method">
+      <div class="signature">
+        
+        def <strong>private_read_init_encrypted</strong>(s_hs_traffic : <a href="../HalfConnection.html">HalfConnection</a>)
+
+        <a class="method-permalink" href="#private_read_init_encrypted%28s_hs_traffic%3AHalfConnection%29-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <hr />
+<p>Read a full encrypted package</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="private_read_init_plain-instance-method">
+      <div class="signature">
+        
+        def <strong>private_read_init_plain</strong>
+
+        <a class="method-permalink" href="#private_read_init_plain-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Read a full packet</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="private_write_ChangeCipherSpec-instance-method">
+      <div class="signature">
+        
+        def <strong>private_write_ChangeCipherSpec</strong>
+
+        <a class="method-permalink" href="#private_write_ChangeCipherSpec-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="private_write_init_plain(type,the_message)-instance-method">
+      <div class="signature">
+        
+        def <strong>private_write_init_plain</strong>(type, the_message)
+
+        <a class="method-permalink" href="#private_write_init_plain%28type%2Cthe_message%29-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="s_ap_traffic:HalfConnection-instance-method">
+      <div class="signature">
+        
+        def <strong>s_ap_traffic</strong> : <a href="../HalfConnection.html">HalfConnection</a>
+
+        <a class="method-permalink" href="#s_ap_traffic%3AHalfConnection-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="s_ap_traffic=(s_ap_traffic:HalfConnection)-instance-method">
+      <div class="signature">
+        
+        def <strong>s_ap_traffic=</strong>(s_ap_traffic : <a href="../HalfConnection.html">HalfConnection</a>)
+
+        <a class="method-permalink" href="#s_ap_traffic%3D%28s_ap_traffic%3AHalfConnection%29-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="s_hs_traffic:HalfConnection-instance-method">
+      <div class="signature">
+        
+        def <strong>s_hs_traffic</strong> : <a href="../HalfConnection.html">HalfConnection</a>
+
+        <a class="method-permalink" href="#s_hs_traffic%3AHalfConnection-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="s_hs_traffic=(s_hs_traffic:HalfConnection)-instance-method">
+      <div class="signature">
+        
+        def <strong>s_hs_traffic=</strong>(s_hs_traffic : <a href="../HalfConnection.html">HalfConnection</a>)
+
+        <a class="method-permalink" href="#s_hs_traffic%3D%28s_hs_traffic%3AHalfConnection%29-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="socket:TCPSocket-instance-method">
+      <div class="signature">
+        
+        def <strong>socket</strong> : TCPSocket
+
+        <a class="method-permalink" href="#socket%3ATCPSocket-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="socket=(socket:TCPSocket)-instance-method">
+      <div class="signature">
+        
+        def <strong>socket=</strong>(socket : TCPSocket)
+
+        <a class="method-permalink" href="#socket%3D%28socket%3ATCPSocket%29-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="the_ECDHD_container:ECDHContainer-instance-method">
+      <div class="signature">
+        
+        def <strong>the_ECDHD_container</strong> : <a href="../ECDHContainer.html">ECDHContainer</a>
+
+        <a class="method-permalink" href="#the_ECDHD_container%3AECDHContainer-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="the_ECDHD_container=(the_ECDHD_container:ECDHContainer)-instance-method">
+      <div class="signature">
+        
+        def <strong>the_ECDHD_container=</strong>(the_ECDHD_container : <a href="../ECDHContainer.html">ECDHContainer</a>)
+
+        <a class="method-permalink" href="#the_ECDHD_container%3D%28the_ECDHD_container%3AECDHContainer%29-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+      </div>
+    </div>
+  
+
+
+
+</div>
+
+</body>
+</html>

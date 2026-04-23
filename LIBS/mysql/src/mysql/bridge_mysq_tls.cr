@@ -40,7 +40,7 @@ module MySql::BRIDGE
         # THIS IS NOT CORRECT ????
         errornumber = header_4_mysql[1].to_u32! + 256 * header_4_mysql[2].to_u32!
         errorname = Bytes.new(5)
-        @socket.read(errorname)
+        @socket.read_fully(errorname)
         errortext = @socket.gets
         raise "Error(1) #{errornumber} (#{errorname}): #{errortext}"
       end
@@ -48,7 +48,7 @@ module MySql::BRIDGE
       @seq_out = header_4_mysql[3]
       @seq_out = @seq_out &+ 1.to_u8
       message_in = Bytes.new(message_mysql_size)
-      @socket.read(message_in)
+      @socket.read_fully(message_in)
       {% if flag?(:trc) %}
         puts "<---#{4 + message_in.size}-----[sql] BridgePlain ,#{header_4_mysql}\n#{message_in.hexdump}"
       {% end %}
@@ -130,27 +130,15 @@ module MySql::BRIDGE
 
     def read_packet : {Bool, StaticArray(UInt8, 4), Slice(UInt8)}
       header_5_tls = uninitialized UInt8[5]
-      # puts "BRIDGETls::read_packet"
       @socket.read_fully(header_5_tls.to_slice)
       tls_record_type = header_5_tls[0].to_u8
       version = ((header_5_tls[1].to_u16 << 8) + header_5_tls[2].to_u8).to_u16
-      # local_payload_size = (header_5_tls[3].to_i << 8) + header_5_tls[4].to_i
       local_payload_size = (header_5_tls[3].to_i16 << 8) + header_5_tls[4].to_i16
       if header_5_tls[4] == 0xFF
         raise "SQLResponceReader::next(). eof in packet=#{header_5_tls}"
       end
       local_payload = Bytes.new(local_payload_size)
-      # puts "BRIDGETls::read_packet. Try local_payload_size=#{local_payload_size}"
-      # @socket.read(local_payload)
-      # got_size = @socket.read(local_payload)
-      # got_size = @socket.read(local_payload)
-      got_size = @socket.read_fully(local_payload)
-      # puts "BRIDGETls::read_packet_result_set. read.size=#{got_size}"
-      while got_size < local_payload_size
-        # @socket.read(Slice.new(local_payload_size - got_size, local_payload[got_size..-1]))
-        sz = @socket.read(local_payload[got_size..-1])
-        got_size += sz
-      end
+      @socket.read_fully(local_payload)
 
       {% if flag?(:trc) %}
         puts "<---#{0 + 5 + local_payload.size}-----[read_packet] #{header_5_tls}"
@@ -188,15 +176,7 @@ module MySql::BRIDGE
       end
       local_payload = Bytes.new(local_payload_size)
 
-      # got_size = @socket.read(local_payload)
-      got_size = @socket.read_fully(local_payload)
-
-      # puts "BRIDGETls::read_packet_result_set. read.size(99)=#{got_size}"
-      while got_size < local_payload_size
-        sz = @socket.read(local_payload[got_size..-1])
-        # puts "sz=#{sz}"
-        got_size += sz
-      end
+      @socket.read_fully(local_payload)
 
       {% if flag?(:trc) %}
         puts "<---#{0 + 5 + local_payload.size}-----[read_packet_result_set] #{header_5_tls}"

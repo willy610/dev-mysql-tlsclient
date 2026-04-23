@@ -60,7 +60,7 @@ class MySql::SQLResponceReader
     if @in_empty == true
       # we might have an incomplete message from previous packet
       # puts "@from_previous_packet.size=#{@from_previous_packet.size}"
-      if @from_previous_packet.size
+      if @from_previous_packet.size > 0
         @array_of_messages = @from_previous_packet + @anBRIDGE.read_message_set
         @from_previous_packet = Bytes.new(0x00, 0)
       else

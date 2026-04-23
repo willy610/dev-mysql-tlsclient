@@ -14,7 +14,7 @@ module TLSClient
 
     getter message : Bytes
 
-    def initialize(@the_ECDHD_container : ECDHContainer, @legacy_version : UInt16 )
+    def initialize(@the_ECDHD_container : ECDHContainer, @legacy_version : UInt16)
       @message = uninitialized Bytes
       @cipher_suites = [{name: "TLS_CHACHA20_POLY1305_SHA256", id: 0x1303.to_u16}].map { |ciph|
         [((ciph[:id] & 0xff00) >> 8).to_u8, (ciph[:id] & 0x00ff).to_u8]
@@ -36,9 +36,7 @@ module TLSClient
       ].map { |curv|
         [((curv[:id] & 0xff00) >> 8).to_u8, (curv[:id] & 0x00ff).to_u8]
       }.flatten
-      # puts "@sign_algo=#{@sign_algo}"
       rand_big_int = BigInt.new(Random.rand * BigFloat.new(@the_ECDHD_container.the_ECDH.curve.field.n))
-      # rand_big_int = BigInt.new("55127834379294770026244673887767786285380127299628066169304562401906461245440")
       @the_ECDHD_container.set_private_key(rand_big_int)
       client_priv_XY = @the_ECDHD_container.calc_public_key_xy
 
@@ -113,15 +111,6 @@ module TLSClient
         )
         ),
       ].flatten
-      # ext_supported_curves = [
-      #   Utils.int16_to_big(TLSDefinitions::ExtensionType::ExtensionSupportedCurves.value),
-      #   Utils.length_of("2", # @supporetd_curves
-      #     Utils.length_of("2",
-      #     # JUST THE FIRST?
-      #     @supported_curves.map { |kurv| Utils.int16_to_big(kurv[:id]) }.flatten
-      #   )
-      #   ),
-      # ].flatten
 
       # //  RFC 5246, Section 7.4.1.4.1
       ext_signatur_algorithm = [
@@ -136,7 +125,8 @@ module TLSClient
         Utils.int16_to_big(TLSDefinitions::ExtensionType::ExtensionSupportedVersions.value),
         Utils.length_of("2",
           Utils.length_of("1",
-            Utils.int16_to_big(0x304),
+            # Utils.int16_to_big(0x304),
+            Utils.int16_to_big(@legacy_version),
           )),
       ].flatten
       #
@@ -160,10 +150,9 @@ module TLSClient
         [
           @typeClientHelloMessage, # Handshake message type
           Utils.length_of("3",
-            # Utils.int16_to_big(@client_hello_protocol_version), # client hello protocol version
             Utils.int16_to_big(@legacy_version), # client hello protocol version
-            @random,                                            # random value
-            Utils.length_of("1", @sessionid),                   # session
+            @random,                             # random value
+            Utils.length_of("1", @sessionid),    # session
             Utils.length_of("2", @cipher_suites),
             # number of compression methods to follow. zero is no compression
             Utils.length_of("1", 0.to_u8),
@@ -184,6 +173,22 @@ module TLSClient
 
       # Remove header
       @message = Bytes.new(tmp_ara.size - 4) { |i| tmp_ara[4 + i] }
+      # dump_client_hello_msg(@message)
+      # @message
     end
+
+    # def dump_client_hello_msg(msg : Bytes)
+    #   # legacy_version : UInt16
+    #   # random : Bytes(32)
+    #   # type_legacy_session_id : {Len_1_byte: UInt8 , Legacy_session_id: Bytes(32)}
+    #   # type_cipher_suites : {Len_2_bytes: Uint16, Cipher_suites: Array(UInt8)}
+    #   # type_legacy_compression_methods : {Len_1_byte: UInt8, Empty: UInt8}
+    #   # extensions : [] of Extension
+    #   as_json = [
+    #     ["legacy_version", (msg[0]<< 16 + msg[1])].join(": "),
+    #     ["tag2", 11119].join(": "),
+    #   ]
+    #   puts "{#{as_json.join(",\n")}}"
+    # end
   end
 end

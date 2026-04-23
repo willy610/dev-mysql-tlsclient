@@ -1,0 +1,6 @@
+---
+version: 1.0
+shards:
+  shared:
+    path: /Users/willys4/Documents/MYCRYSTAL/AAA/LIBS/shared
+    version: 0.1.0

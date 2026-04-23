@@ -1,0 +1,12 @@
+---
+version: 1.0
+shards:
+  shared:
+    path: /Users/willys4/Documents/MYCRYSTAL/AAA/LIBS/shared
+    version: 0.1.0
+  tlsclient:
+    path: /Users/willys4/Documents/MYCRYSTAL/AAA/LIBS/tlsclient
+    version: 0.1.0
+  librfc8439:
+    path: /Users/willys4/Documents/MYCRYSTAL/AAA/LIBS/librfc8439
+    version: 0.1.0

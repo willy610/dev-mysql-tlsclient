@@ -1,7 +1,6 @@
 require "big"
 require "socket"
 
-
 module TLSClient
   class Client
     property socket : TCPSocket
@@ -13,20 +12,30 @@ module TLSClient
     getter legacy_version : UInt16 = 0x0304
     getter message_version : UInt16 = 0x0303
 
-    def initialize(@socket : TCPSocket)
+    def initialize(@socket : TCPSocket, client_send_empty_certificate : Bool)
       # The following attributes is used after initialize
       @c_hs_traffic = uninitialized HalfConnection
       @s_hs_traffic = uninitialized HalfConnection
       @c_ap_traffic = uninitialized HalfConnection
       @s_ap_traffic = uninitialized HalfConnection
       @the_ECDHD_container = ECDHContainer.new
-      sup = SetUp.new(self)
+      #
+      sup = SetUpTLSSession.new(self, @legacy_version, @message_version,
+        client_send_empty_certificate: client_send_empty_certificate)
     end
 
+    # **********************************************************************
+
+    #
+    # In application state
+    #  we must detect 'RecordTypeAlert' and terminate when not warning
+    #  we must detect 'RecordTypeHandshake::TypeHelloRequest' and terminate
+    #  we must detect 'RecordTypeHandshake::TypeNewSessionTicket' and dismiss it
+    #
     def filter_tls_internals(record_type, msg_decrypted) : Bool
-      {% if flag?(:trctls) %}
-        puts "filter_tls_internals() #{record_type},#{msg_decrypted.size}"
-      {% end %}
+      # {% if flag?(:trctls) %}
+      #   puts "filter_tls_internals() #{record_type},#{msg_decrypted.size}"
+      # {% end %}
 
       case record_type
       when TLSDefinitions::TLSRecordType::RecordTypeApplicationData.value
@@ -37,19 +46,13 @@ module TLSClient
         {% end %}
 
         case msg_decrypted[0]
-        # when TlSHandshakeType::TypeEncryptedExtensions.value
-        #   return true
-        # when TlSHandshakeType::TypeCertificateRequest.value
-        #   return true
-        # when TlSHandshakeType::TypeCertificate.value
-        #   return true
-        # when TlSHandshakeType::TypeCertificateVerify.value
-        #   return true
-        # when TlSHandshakeType::TypeFinished.value
-        #   return true
+        when TLSDefinitions::TlSHandshakeType::TypeHelloRequest.value
+          puts "filter_tls_internals() DO NOT process 'TypeHelloRequest'"
+          raise "filter_tls_internals() DO NOT process 'TypeHelloRequest'"
+          return false
         when TLSDefinitions::TlSHandshakeType::TypeNewSessionTicket.value
           # This message might arrive after session is establihed. After client has sent 'finish'
-          # Take care of SessionTicket. No
+          # Take care of SessionTicket. (Not implemented)
           {% if flag?(:trctls) %}
             puts "filter_tls_internals() process 'TypeNewSessionTicket'"
           {% end %}
@@ -57,29 +60,33 @@ module TLSClient
           return false
         else
           raise "filter_tls_internals TLSRecordType::RecordTypeHandshake unknown 'TlSHandshakeType' = #{msg_decrypted[0]}"
-          return true # For application
+          return false # For application
         end
       when TLSDefinitions::TLSRecordType::RecordTypeAlert.value
         # rfc 6. Alert Protocol
-        the_text_and_number = Client.text_and_number.select! { |text_and_number| text_and_number[1] == msg_decrypted[1] }
-        puts "the_text_and_number=#{the_text_and_number}"
+        the_alert_text_and_number = Client.alert_text_and_number.select! { |alert_text_and_number| alert_text_and_number[1] == msg_decrypted[1] }
+        puts "the_alert_text_and_number=#{the_alert_text_and_number}"
         if msg_decrypted[0] == 1 # warning
           puts "warning encountered"
           return true
         else
-          raise "filter_tls_internals. Alert fatal #{the_text_and_number}"
+          raise "filter_tls_internals() Alert fatal #{the_alert_text_and_number}"
           return false
         end
       else
-        raise "Unknown 'TLSRecordType' #{record_type}"
+        raise "filter_tls_internals() Unknown 'TLSRecordType' #{record_type}"
       end
     end
+
+    # **********************************************************************
 
     def get_value_RecordTypeApplicationData
       TLSDefinitions::TLSRecordType::RecordTypeApplicationData.value
     end
 
-    def private_write_init(type, the_message)
+    # **********************************************************************
+
+    def private_write_init_plain(type, the_message)
       header_5_tls_init : Bytes = Bytes.new(5, 0x00)
       hdr_4 : Bytes = Bytes.new(4, 0x00)
 
@@ -96,7 +103,7 @@ module TLSClient
 
       header_5_tls_init[3] = (payload_size >> 8).to_u8
       header_5_tls_init[4] = (payload_size & 0x00FF).to_u8
-      {% if flag?(:trctls) %}
+      {% if flag?(:trchdrs) %}
         puts "---->(ClientHello)=#{header_5_tls_init}"
       {% end %}
 
@@ -104,6 +111,8 @@ module TLSClient
       @socket.flush
       {hdr_4, the_message}
     end
+
+    # **********************************************************************
 
     def private_write_ChangeCipherSpec
       the_message = Bytes.new(1, 0x00)
@@ -114,7 +123,7 @@ module TLSClient
       header_5_tls_ccs[2] = (@message_version & 0x00FF).to_u8
       header_5_tls_ccs[3] = (payload_size >> 8).to_u8
       header_5_tls_ccs[4] = (payload_size & 0x00FF).to_u8
-      {% if flag?(:trctls) %}
+      {% if flag?(:trchdrs) %}
         puts "---->(ChangeCipherSpec)=#{header_5_tls_ccs}"
       {% end %}
 
@@ -123,11 +132,14 @@ module TLSClient
       {header_5_tls_ccs, the_message}
     end
 
-    def private_read_init
+    # **********************************************************************
+
+    # Read a full packet
+    def private_read_init_plain
       header_5_tls_init = uninitialized UInt8[5]
       @socket.read_fully(header_5_tls_init.to_slice)
-      {% if flag?(:trctls) %}
-        puts "<----=#{header_5_tls_init}"
+      {% if flag?(:trchdrs) %}
+        puts "<----(private_read_init_plain)=#{header_5_tls_init}"
       {% end %}
 
       record_type = header_5_tls_init[0]
@@ -139,21 +151,23 @@ module TLSClient
       {record_type, header_5_tls_init, local_payload}
     end
 
+    # **********************************************************************
+    # Read a full encrypted package
     def private_read_init_encrypted(s_hs_traffic : HalfConnection)
       header_5_tls = uninitialized UInt8[5]
       @socket.read_fully(header_5_tls.to_slice)
+      {% if flag?(:trctls) %}
+        puts "private_read_init_encrypted() header_5_tls=#{header_5_tls}"
+      {% end %}
       tls_record_type = header_5_tls[0].to_u8
       got_version = ((header_5_tls[1].to_u16 << 8) + header_5_tls[2].to_u8).to_u16
       local_payload_size = (header_5_tls[3].to_i << 8) + header_5_tls[4].to_i
       if header_5_tls[4] == 0xFF
-        raise "eof in packet=#{header_5_tls}" # ???????
+        puts "eof in packet=?#{header_5_tls}" # ???????
       end
+
       local_payload = Bytes.new(local_payload_size)
-      # @socket.read(local_payload)
       @socket.read_fully(local_payload)
-      {% if flag?(:trctls) %}
-        puts "<---#{5 + 4 + 1 + local_payload.size}-----[normalcrypt]#{header_5_tls}"
-      {% end %}
 
       msg_encrypted = uninitialized Bytes
       encrypted_message = local_payload[0..local_payload_size - 16 - 1]
@@ -167,11 +181,16 @@ module TLSClient
       handshaketype = msg_decrypted.last
       header_4 = msg_decrypted[0..3]
       message = msg_decrypted[4, (msg_decrypted.size - 4 - 1)]
+      {% if flag?(:trchdrs) %}
+        puts "<---#{5 + 4 + 1 + local_payload.size}-----[private_read_init_encrypted]#{header_4.to_slice}"
+      {% end %}
 
       {header_4.to_slice, handshaketype, message}
     end
 
-    def self.text_and_number
+    # **********************************************************************
+
+    def self.alert_text_and_number
       [
         ["close_notify", 0],
         ["unexpected_message", 10],
@@ -204,227 +223,337 @@ module TLSClient
       ]
     end
 
+    # **********************************************************************
+
     def self.resolve_alert_reason(msg)
-      the_text_and_number = self.text_and_number.select! { |text_and_number| text_and_number[1] == msg[1] }
-      puts the_text_and_number.first
-      the_text_and_number.first
+      the_alert_text_and_number = self.alert_text_and_number.select! { |alert_text_and_number| alert_text_and_number[1] == msg[1] }
+      puts the_alert_text_and_number.first
+      the_alert_text_and_number.first
     end
   end
 
   #
+  # Here we will read messages of size 'req_amount' by unbuffering decrypted buffers
+  #
+  # |<in_buff                           >|
+  # |                                    |
+  # |<in_buff_off>
+  # |             req_amount             |
+  # |             *---------------->     |
+  # |             req_amount             |<in_buff                 >|
+  # |             *------------------------------------------->     |          |
+  # |             req_amount             |<in_buff                 >|<in_buff >|
+  # |             *-------------------------------------------------|------>   |
+  # |                                    |                          |          |
 
-  private struct SetUp
+  # @in_buff holds a decrypted buffer with one or messages or fractions of a message
+  # @in_buff_off tells what offset to start consuming meassage part out of the '@in_buff'
+
+  # -The @in_buff_off might be none zero. That might happens when not all messages
+  # are yet consumed but whole or partly in the buffer
+  # -The @in_buff_off is set to zero when a new in_buff is read
+  #
+  # **********************************************************************
+  private struct GetEncrytpedMessage
+    # property history : Array(String)
+    property in_buff : Bytes
+    property in_buff_off : Int32
+
     def initialize(@the_client : Client)
+      # @history = [""]
+      @in_buff = uninitialized Bytes
+      @in_buff_off = 0
+    end
+
+    # Usage for retriving a message
+    # hdr4 = get_bytes(4)
+    # messagesize is calculated on hdr4[1,3]
+    # message = get_bytes(messagesize)
+    #
+    # **********************************************************************
+    def get_bytes(req_amount)
+      to_ret = Bytes.new(0x00, 0)
+      # @history << "\n1: req_amount=#{"%05d" % req_amount}, @in_buff_off=#{"0x%04x" % @in_buff_off} @in_buff.size=(#{"%05d" % @in_buff.size})"
+
+      while to_ret.size < req_amount
+        # How much to copy?
+        cnt_to_copy = Math.min(req_amount - to_ret.size, @in_buff.size - @in_buff_off)
+        # Do the copy from buffer to result
+        # hex_cnt_to_copy = "0x%04x" % cnt_to_copy
+        # hex_read_off = "0x%04x" % @in_buff_off
+        # hex_ret_size = "0x%04x" % to_ret.size
+        # @history << "2: Copied cnt_to_copy=#{"%05d" % cnt_to_copy}, from @in_buff_off=#{"0x%04x" % @in_buff_off} (#{"%05d" % @in_buff_off})"
+
+        to_ret += @in_buff[@in_buff_off, cnt_to_copy]
+        # Advance offset to copy from
+        @in_buff_off += cnt_to_copy # consumed
+        # Are we done?
+        if to_ret.size < req_amount
+          first_header_4, handshaketype, message = @the_client.private_read_init_encrypted(@the_client.s_hs_traffic)
+          @in_buff = first_header_4 + message
+          @in_buff_off = 0
+          # history_str = "3. (read in_buff) @in_buff.size=#{"0x%04x" % @in_buff.size} (#{"%05d" % @in_buff.size})"
+          # @history << history_str
+        end
+      end
+      # @history << "4: @in_buff.size=#{"0x%04x" % @in_buff.size} (#{"%05d" % @in_buff.size}) @in_buff_off=#{"0x%04x" % @in_buff_off} (#{"%05d" % @in_buff_off})"
+      to_ret
+    end
+
+    # **********************************************************************
+    def get_message
+      hdr4 = get_bytes(4)
+      mess_size = (hdr4[1].to_u32 << 16) + (hdr4[2].to_u32 << 8) + (hdr4[3].to_u32)
+      if mess_size > 65536 # 2^16-1
+        # Very wrong
+        # @history.each { |row| puts row }
+        raise "GetEncrytpedMessage::get_message() mess_size > 2^16-1, is #{mess_size}"
+      end
+      # get message
+      message = get_bytes(mess_size)
+      # TOD Take care of alert messages here
+      {hdr4[0], mess_size, hdr4, message}
+    end
+  end
+
+  # **********************************************************************
+  private struct SetUpTLSSession
+    property legacy_version : UInt16
+    property message_version : UInt16
+
+    def initialize(@the_client : Client, @legacy_version, @message_version, @client_send_empty_certificate : Bool)
       @the_transcriptor = Transcriptor.new
       @handshakeSecret = uninitialized DERIVED_SECRET
       @client_hello_msg_sent = uninitialized Bytes
       @server_hello_msg_received = uninitialized Bytes
       @client_verificate_package_sent = uninitialized Bytes
       @finished_packet_read = uninitialized Bytes
-      @send_certificate = true
+      @finished_hdr_4 = uninitialized Bytes
+      @finished_message_read = uninitialized Bytes
+      # As long as the clienthello and serverhelle is not evaluated according to send_empty_certificate
+      # than stick too:
+      # @client_send_empty_certificate = true  # MUST BE TRUE FOR MYSQL
+      # @client_send_empty_certificate = false # MUST BE TRUE FOR WEB
+      #
       @do_send_ChangeCipherSpec = false
-      state = "START"
-      typeClientHelloMessage : UInt8 = 1
+
       the_certificator = Certificate.new
+      the_message_reader = GetEncrytpedMessage.new(@the_client)
       # RFC 8846
-      # look into transcriptor.cr for more details arounfs State Machine
+      # look into transcriptor.cr for more details around State Machine
       # A.1. Client State Machine
+      state = "START"
       while state != "END"
         {% if flag?(:trctls) %}
-          puts "\nSetUp state=#{state}"
+          puts "\nSetUpTLSSession state=#{state}"
         {% end %}
         case state
+        # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
         when "START"
           # NO READ
           # WRITE
-          client_hello_msg_obj = ClientHelloMessage.new(@the_client.the_ECDHD_container, @the_client.legacy_version)
+          client_hello_msg_obj = ClientHelloMessage.new(the_ECDHD_container: @the_client.the_ECDHD_container,
+            legacy_version: @the_client.legacy_version)
           client_hello_msg_obj.build_client_hello_msg
-          hdr_4, message = @the_client.private_write_init(typeClientHelloMessage, client_hello_msg_obj.message)
-
-          @the_transcriptor.add_bytes(to_add: hdr_4 + message, note: "ClientHello")
+          hdr_4, message = @the_client.private_write_init_plain(TLSDefinitions::TlSHandshakeType::TypeClientHello.value,
+            client_hello_msg_obj.message)
+          @the_transcriptor.add_bytes(to_add: hdr_4 + message, note: "write ClientHello")
           @client_hello_msg_sent = hdr_4 + message
-
           state = "WAIT_SH"
+          # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
         when "WAIT_SH"
           # READ
-          event, hdr_5, paylod = @the_client.private_read_init
-          # ENSURE PROPER KIND
+          event, hdr_5, paylod = @the_client.private_read_init_plain
           case event
-          # what about 'HelloRetryRequest'? Not covered
           when TLSDefinitions::TLSRecordType::RecordTypeHandshake.value
-            @the_transcriptor.add_bytes(to_add: paylod, note: "ServerHello")
+            @the_transcriptor.add_bytes(to_add: paylod, note: "read ServerHello")
             @server_hello_msg_received = paylod
             an_unmarshaller = Unmarshaller.new(paylod)
             server_hello_msg_obj = ServerHelloMessage.new(an_unmarshaller, @the_client.the_ECDHD_container)
-            sharedkey_ECDH : Bytes = server_hello_msg_obj.sharedkey_ECDH
-            establishHandshakeKeys_from_hello_messages(sharedkey_ECDH)
+            establishHandshakeKeys_from_hello_messages(server_hello_msg_obj.sharedkey_ECDH)
             # NO WRITE
-            state = "WAIT_EE_ChangeCipherSpec"
+            state = "WAIT_ChangeCipherSpec"
           when TLSDefinitions::TLSRecordType::RecordTypeAlert.value
-            text_and_number = Client.resolve_alert_reason(paylod)
-            state = "END"
-            raise "Client:: got event 'Alert' in state 'WAIT_SH' paylod=#{paylod}, '#{text_and_number[0]}'"
+            raise "SetUpTLSSession:: State=#{state}, got 'Alert' paylod=#{paylod}, '#{Client.resolve_alert_reason(paylod)[0]}"
           else
-            state = "END"
-            raise "Client:: got event 'event' in state 'WAIT_SH'"
+            raise "SetUpTLSSession:: State=#{state}, event=#{event} unknown"
           end
-          # NO WRITE
-        when "WAIT_EE_ChangeCipherSpec"
-          event, hdr_5, paylod = @the_client.private_read_init
+          # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+        when "WAIT_ChangeCipherSpec"
+          # READ
+          event, hdr_5, paylod = @the_client.private_read_init_plain
           case event
           when TLSDefinitions::TLSRecordType::RecordTypeChangeCipherSpec.value
-            # This in-message is NOT in the final verify sum
-            # You don't need to answer
-            {% if flag?(:trctls) %}
-              puts "ChangeCipherSpec"
-              puts hdr_5
-              puts paylod
-            {% end %}
-            # LOOK INTO rfc 8446 point 5. Record protocol
-            # ????? send RecordTypeChangeCipherSpec
-            # hdr with TLSDefinitions::TLSRecordType::RecordTypeChangeCipherSpec
-            # content one byte with value 0x01
-            # DO NOT send at
-            @do_send_ChangeCipherSpec = false
             state = "WAIT_EE"
-          when TLSDefinitions::TLSRecordType::RecordTypeHandshake.value
-            {% if flag?(:trctls) %}
-              puts "TypeHandshake"
-            {% end %}
-
-            state = "END"
-          when TLSDefinitions::TLSRecordType::RecordTypeAlert.value
-            text_and_number = Client.resolve_alert_reason(paylod)
-            state = "END"
-            raise "Client:: got event 'Alert' in state 'WAIT_SH' paylod=#{paylod}, '#{text_and_number[0]}'"
           else
-            state = "END"
-            raise "Client:: got event 'event' in state 'WAIT_SH'"
+            raise "SetUpTLSSession:: State=#{state}, event=#{event} unknown"
           end
-          # state = "END"
+          # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
         when "WAIT_EE"
-          # The rest of traffic is encrypted
-          # https://datatracker.ietf.org/doc/html/rfc8446#page-145 APPENDIX A for 'states'
-          # Encrypt/decrypt during rest of tls handshake
-          @the_transcriptor.add_not(note: "START in 'WAIT_EE'")
-          header_4, handshaketype, message = @the_client.private_read_init_encrypted(@the_client.s_hs_traffic)
-          messag_type = TLSDefinitions::TlSHandshakeType.new(header_4[0])
-          #
-          # Here we must determine if we are using 'PSK' then we go for 'WAIT_FINISHED'
-          # else (we are using certificate)
-
+          # READ
+          # At least one acccording to RFC
+          event, size, hdr_4, message = the_message_reader.get_message
+          message_type = TLSDefinitions::TlSHandshakeType.new(event)
           {% if flag?(:trctls) %}
-            puts "messag_type=#{messag_type}"
+            puts "(1) ", event, size, message_type, message[0, Math.min(5, size)]
+            puts message_type
           {% end %}
+          if message_type == TLSDefinitions::TlSHandshakeType::TypeEncryptedExtensions
+            # Take care of extension TOD
+            @the_transcriptor.add_bytes(to_add: hdr_4 + message, note: "read EncryptedExtensions")
 
-          case messag_type
-          when TLSDefinitions::TlSHandshakeType::TypeEncryptedExtensions
-            @the_transcriptor.add_bytes(to_add: header_4 + message, note: "read EncryptedExtensions")
-            state = "WAIT_CERT_CR"
+            event, size, hdr_4, message = the_message_reader.get_message
+            message_type = TLSDefinitions::TlSHandshakeType.new(event)
+            {% if flag?(:trctls) %}
+              puts "(2) ", event, size, message_type, message[0, Math.min(5, size)]
+              puts message_type
+            {% end %}
+            case message_type
+            when TLSDefinitions::TlSHandshakeType::TypeEncryptedExtensions
+              # Take care of extension TOD
+              @the_transcriptor.add_bytes(to_add: hdr_4 + message, note: "read TypeEncryptedExtensions")
+              # Stay for more extension(s). No state change
+            when TLSDefinitions::TlSHandshakeType::TypeCertificateRequest
+              # Take care of TypeCertificateRequest
+              @the_transcriptor.add_bytes(to_add: hdr_4 + message, note: "read TypeCertificateRequest")
+              state = "WAIT_Certificate_CertificateVerify_Finished"
+            when TLSDefinitions::TlSHandshakeType::TypeCertificate
+              # Take care of TypeCertificate
+              @the_transcriptor.add_bytes(to_add: hdr_4 + message, note: "read TypeCertificate")
+              state = "WAIT_CertificateVerify_Finished"
+            when TLSDefinitions::TlSHandshakeType::TypeCertificateVerify
+              # Take care of CertificateVerify
+              @the_transcriptor.add_bytes(to_add: hdr_4 + message, note: "read TypeCertificateVerify")
+              state = "WAIT_Finished"
+            when TLSDefinitions::TlSHandshakeType::TypeFinished
+              # Take care of Finished
+              @finished_hdr_4, @finished_message_read = {hdr_4, message}
+              state = "GOT_Finished"
+            else
+              raise "SetUpTLSSession:: State=#{state}, message_type=#{message_type} but expected '1,2,3'"
+            end
           else
-            raise "Expected 'EncryptedExtensions' but found '#{handshaketype}'"
+            raise "SetUpTLSSession:: State=#{state}, message_type=#{message_type} but expected 'TypeEncryptedExtensions'"
           end
-        when "WAIT_CERT_CR"
-          header_4, handshaketype, message = @the_client.private_read_init_encrypted(@the_client.s_hs_traffic)
-          messag_type = TLSDefinitions::TlSHandshakeType.new(header_4[0])
+        when "WAIT_Certificate_CertificateVerify_Finished"
+          # READ
+          event, size, hdr_4, message = the_message_reader.get_message
+          message_type = TLSDefinitions::TlSHandshakeType.new(event)
           {% if flag?(:trctls) %}
-            puts "messag_type=#{messag_type}"
+            puts "(3) ", event, size, message_type, message[0, Math.min(5, size)]
+            puts message_type
           {% end %}
-
-          case messag_type
-          when TLSDefinitions::TlSHandshakeType::TypeCertificateRequest
-            the_certificator.from_server_certificaterequest = header_4 + message
-            @the_transcriptor.add_bytes(to_add: header_4 + message, note: "read CertificateRequest")
-            state = "WAIT_CERT"
+          case message_type
           when TLSDefinitions::TlSHandshakeType::TypeCertificate
-            the_certificator.from_server_certificaterequest = header_4 + message
-            @the_transcriptor.add_bytes(to_add: header_4 + message, note: "read TypeCertificate")
-            state = "WAIT_CV"
-          else
-            raise "Expected 'EncryptedExtensions' but found '#{handshaketype}'"
-          end
-        when "WAIT_CERT"
-          header_4, handshaketype, message = @the_client.private_read_init_encrypted(@the_client.s_hs_traffic)
-          messag_type = TLSDefinitions::TlSHandshakeType.new(header_4[0])
-          {% if flag?(:trctls) %}
-            puts "messag_type=#{messag_type}"
-          {% end %}
-
-          case messag_type
-          when TLSDefinitions::TlSHandshakeType::TypeCertificate
-            the_certificator.from_server_certificate = header_4 + message
-            @the_transcriptor.add_bytes(to_add: header_4 + message, note: "read Certificatet")
-            state = "WAIT_CV"
-          else
-            raise "Expected 'EncryptedExtensions' but found '#{messag_type}'"
-          end
-        when "WAIT_CV"
-          header_4, handshaketype, message = @the_client.private_read_init_encrypted(@the_client.s_hs_traffic)
-          messag_type = TLSDefinitions::TlSHandshakeType.new(header_4[0])
-          {% if flag?(:trctls) %}
-            puts "messag_type=#{messag_type}"
-          {% end %}
-
-          case messag_type
+            @the_transcriptor.add_bytes(to_add: hdr_4 + message, note: "read TypeCertificate")
+            state = "WAIT_CertificateVerify_Finished"
           when TLSDefinitions::TlSHandshakeType::TypeCertificateVerify
-            the_certificator.from_server_certificateverify = header_4 + message
-            @the_transcriptor.add_bytes(to_add: header_4 + message, note: "read CertificateVerify")
-            state = "WAIT_FINISHED"
-          else
-            raise "Expected 'EncryptedExtensions' but found '#{messag_type}'"
-          end
-        when "WAIT_FINISHED"
-          header_4, handshaketype, message = @the_client.private_read_init_encrypted(@the_client.s_hs_traffic)
-          messag_type = TLSDefinitions::TlSHandshakeType.new(header_4[0])
-          {% if flag?(:trctls) %}
-            puts "messag_type=#{messag_type}"
-          {% end %}
-
-          case messag_type
+            @the_transcriptor.add_bytes(to_add: hdr_4 + message, note: "read TypeCertificateVerify")
+            state = "WAIT_Finished"
           when TLSDefinitions::TlSHandshakeType::TypeFinished
-            @finished_packet_read = header_4 + message
+            @finished_hdr_4, @finished_message_read = {hdr_4, message}
+            state = "GOT_Finished"
           else
-            raise "Expected 'EncryptedExtensions' but found '#{messag_type}'"
+            raise "SetUpTLSSession:: State=#{state}, message_type=#{message_type} but expected 'Certificate_CertificateVerify_Finished'"
           end
-          if @do_send_ChangeCipherSpec
-            header, the_message = @the_client.private_write_ChangeCipherSpec
-            puts "do private_write_ChangeCipherSpec"
-            @the_transcriptor.add_bytes(to_add: @finished_packet_read, note: "read Finished")
+          # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+        when "WAIT_CertificateVerify_Finished"
+          # READ
+          event, size, hdr_4, message = the_message_reader.get_message
+          message_type = TLSDefinitions::TlSHandshakeType.new(event)
+          {% if flag?(:trctls) %}
+            puts "(4) ", event, size, message_type, message[0, Math.min(5, size)]
+            puts message_type
+          {% end %}
+          case message_type
+          when TLSDefinitions::TlSHandshakeType::TypeCertificateVerify
+            @the_transcriptor.add_bytes(to_add: hdr_4 + message, note: "read TypeCertificateVerify")
+            state = "WAIT_Finished"
+          when TLSDefinitions::TlSHandshakeType::TypeFinished
+            @finished_hdr_4, @finished_message_read = {hdr_4, message}
+            state = "GOT_Finished"
+          else
+            raise "SetUpTLSSession:: State=#{state}, message_type=#{message_type} but expected 'CertificateVerify_Finished'"
           end
-          res = verifyFinishFromServer(message)
+          # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+        when "WAIT_Finished"
+          # READ
+          event, size, hdr_4, message = the_message_reader.get_message
+          message_type = TLSDefinitions::TlSHandshakeType.new(event)
+          {% if flag?(:trctls) %}
+            puts "(5) ", event, size, message_type, message[0, Math.min(5, size)]
+            puts message_type
+          {% end %}
+          case message_type
+          when TLSDefinitions::TlSHandshakeType::TypeFinished
+            @finished_hdr_4, @finished_message_read = {hdr_4, message}
+            # the_message_reader.history.each { |row| puts row }
+            state = "GOT_Finished"
+          else
+            raise "SetUpTLSSession:: State=#{state}, message_type=#{message_type} but expected 'Finished'"
+          end
+          # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+        when "GOT_Finished"
+          # @the_transcriptor.show_history
+          # We have got a finnished message already
+          res = verifyFinishFromServer(@finished_message_read)
           if !res
-            raise "Verification of 'Finished message' failed"
+            raise "SetUpTLSSession:: Verification of 'Finished message' failed in state=#{state}"
           end
           {% if flag?(:trctls) %}
             puts "Verification of 'Finished message' OK"
           {% end %}
-
-          @the_transcriptor.add_bytes(to_add: @finished_packet_read, note: "read Finished")
+          @the_transcriptor.add_bytes(to_add: @finished_hdr_4 + @finished_message_read, note: "read Finished")
 
           generate_applic_keys
-          if @send_certificate # sendemptyverificate
-            @client_verificate_package_sent = send_verificate_message()
-            @the_transcriptor.add_bytes(to_add: @client_verificate_package_sent, note: "write empty ClientCertificatePacket")
-            @the_transcriptor.add_not(note: "END in 'WAIT_FINISHED'")
+
+          # TOD
+          # WHAT ABOUT SEND CertificateVerify?? like Certificate ?
+
+          # {% if flag?(:trctls) %}
+          #   @the_transcriptor.show_history
+          # {% end %}
+
+          if @do_send_ChangeCipherSpec
+            header, the_message = @the_client.private_write_ChangeCipherSpec
+            {% if flag?(:trctls) %}
+              puts "do private_write_ChangeCipherSpec"
+            {% end %}
+            @the_transcriptor.add_bytes(to_add: header + the_message, note: "write ChangeCipherSpec")
           end
+          state = "SEND_CERT_CETVERIFY_FINISH"
+          # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+        when "SEND_CERT_CETVERIFY_FINISH"
+          # WRITE THINGS
+          if @client_send_empty_certificate # sendemptyverificate
+            @client_verificate_package_sent = send_certificate_message()
+            @the_transcriptor.add_bytes(to_add: @client_verificate_package_sent, note: "write empty ClientCertificatePacket")
+            @the_transcriptor.add_not(note: "END in 'SEND_CERT_CETVERIFY_FINISH'")
+          end
+          state = "SEND_CETVERIFY_FINISH"
+          # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+        when "SEND_CETVERIFY_FINISH"
+          # WHAT ABOUT SEND CertificateVerify?? like Certificate ?
+          # WRITE THINGS
+          state = "SEND_FINISH"
+          # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+        when "SEND_FINISH"
+          # WRITE THINGS
+          build_finish_message_and_send()
           {% if flag?(:trctls) %}
             @the_transcriptor.show_history
           {% end %}
-
-          state = "SEND_FINISH"
-        when "SEND_FINISH"
-          build_finish_message_and_send()
-          {% if flag?(:trctls) %}
-            puts "tls set up finished"
-          {% end %}
-          state = "SEND_2"
-        when "SEND_2"
           state = "END"
+          # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+        when "END"
+          # Done!
         else
-          raise "SetUp state=#{state} not known"
+          raise "SetUpTLSSession() unknown state=#{state}"
         end
       end
     end
+
+    # **********************************************************************
 
     def establishHandshakeKeys_from_hello_messages(sharedkey_ECDH)
       #
@@ -445,10 +574,14 @@ module TLSClient
       @the_client.s_hs_traffic = generate_content_4_crypt(@handshakeSecret, "s hs traffic".bytes, summit, Shared::Sha256.checksum_size)
     end
 
+    # **********************************************************************
+
     def derivesecret(secret, label, hasher_obj) : DERIVED_SECRET
       summer = hasher_obj.bigsum
       HKDF.hkdfExpandLabel(secret, label, summer, hasher_obj.checksum_size)
     end
+
+    # **********************************************************************
 
     def generate_content_4_crypt(secret, the_label, a_bigsum, a_bigsum_resultsize)
       the_label_secret = HKDF.hkdfExpandLabel(secret, the_label, a_bigsum, a_bigsum_resultsize)
@@ -457,6 +590,8 @@ module TLSClient
         HKDF.hkdfExpandLabel(the_label_secret, "iv".bytes, [] of UInt8, 12)
       )
     end
+
+    # **********************************************************************
 
     def verifyFinishFromServer(payload : Bytes) : Bool
       basekey = @the_client.s_hs_traffic.trafficSecret
@@ -477,10 +612,9 @@ module TLSClient
       end
     end
 
-    def generate_finished_key(basekey, the_transcript)
-      # basekey is "s hs traffic" when validating server and "c hs traffic" when generating verify to server
-      # the_transcript holds all messeages
+    # **********************************************************************
 
+    def generate_finished_key(basekey, the_transcript)
       # finishedHash generates the Finished verify_data or PskBinderEntry according
       #  to RFC 8446, Section 4.4.4. See sections 4.4 and 4.2.11.2 for the baseKey
       #  selection.
@@ -497,6 +631,8 @@ module TLSClient
       return summit
     end
 
+    # **********************************************************************
+
     def generate_applic_keys
       zeros = Bytes.new(Shared::Sha256.checksum_size, 0x00.to_u8)
       derived_secret_X : DERIVED_SECRET = derivesecret(@handshakeSecret, "derived".bytes, Shared::Sha256.new)
@@ -505,13 +641,11 @@ module TLSClient
       @the_transcriptor.add_not(note: "calc sum in 'gen_c_XX_traffic()' 'c ap traffic and 's ap traffic'")
       summit_X = @the_transcriptor.get_sum
 
-      {% if flag?(:trctls) %}
-        @the_transcriptor.show_history
-      {% end %}
-
       @the_client.c_ap_traffic = generate_content_4_crypt(masterSecret_X, "c ap traffic".bytes, summit_X, @the_transcriptor.checksum_size)
       @the_client.s_ap_traffic = generate_content_4_crypt(masterSecret_X, "s ap traffic".bytes, summit_X, @the_transcriptor.checksum_size)
     end
+
+    # **********************************************************************
 
     def build_finish_message_and_send : Bytes
       basekey = @the_client.c_hs_traffic.trafficSecret
@@ -521,13 +655,15 @@ module TLSClient
       return msg
     end
 
-    def send_verificate_message : Bytes
-      emtpy_verificate_message = Shared.to_bytes([0, 0, 0, 0])
-      hdr_4 : Bytes = gen_hdr_4(TLSDefinitions::TlSHandshakeType::TypeCertificate, emtpy_verificate_message)
-      hdr_5 : Bytes = gen_hdr_5(emtpy_verificate_message.size, TLSDefinitions::TLSRecordType::RecordTypeApplicationData.value, @the_client.message_version)
+    # **********************************************************************
+
+    def send_certificate_message : Bytes
+      emtpy_certificate_message = Shared.to_bytes([0, 0, 0, 0])
+      hdr_4 : Bytes = gen_hdr_4(TLSDefinitions::TlSHandshakeType::TypeCertificate, emtpy_certificate_message)
+      hdr_5 : Bytes = gen_hdr_5(emtpy_certificate_message.size, TLSDefinitions::TLSRecordType::RecordTypeApplicationData.value, @the_client.message_version)
       header_5_tls, encrypted_msg, tag = gen_encrytpted_message(hdr_5,
         hdr_4,
-        emtpy_verificate_message,
+        emtpy_certificate_message,
         TLSDefinitions::TLSRecordType::RecordTypeHandshake.value,
         @the_client.c_hs_traffic
       )
@@ -539,8 +675,10 @@ module TLSClient
       @the_client.socket.write(encrypted_msg)
       @the_client.socket.write(tag)
       @the_client.socket.flush
-      hdr_4 + emtpy_verificate_message # package
+      hdr_4 + emtpy_certificate_message # package
     end
+
+    # **********************************************************************
 
     def send_finish_message(message : Bytes) : Bytes
       hdr_4 : Bytes = gen_hdr_4(TLSDefinitions::TlSHandshakeType::TypeFinished, message)
@@ -562,6 +700,8 @@ module TLSClient
       # package
       hdr_4 + message
     end
+
+    # **********************************************************************
 
     def gen_encrytpted_message(header_5_tls, header_4_tls, message, tlsrecordtype, a_HalfConnection) : {Bytes, Bytes, Bytes}
       {% if flag?(:trctls) %}
@@ -589,6 +729,8 @@ module TLSClient
       {header_5_tls, msg_decrypted, tag}
     end
 
+    # **********************************************************************
+
     def gen_hdr_4(handshake_type : TLSDefinitions::TlSHandshakeType, message : Bytes)
       header_4_tls = Bytes.new(4, 0x00)
       header_4_tls[0] = handshake_type.value
@@ -598,6 +740,8 @@ module TLSClient
       header_4_tls[3] = (message_size & 0x0000FF).to_u8
       header_4_tls
     end
+
+    # **********************************************************************
 
     def gen_hdr_5(message_size, tlsrecordtype, message_version)
       header_5_tls = Bytes.new(5, 0x00)

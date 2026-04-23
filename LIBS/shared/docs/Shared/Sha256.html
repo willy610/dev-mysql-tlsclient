@@ -1,0 +1,621 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="generator" content="Crystal Docs 1.18.2">
+<meta name="crystal_docs.project_version" content="main-dev">
+<meta name="crystal_docs.project_name" content="shared">
+
+
+
+<link href="../css/style.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="../js/doc.js"></script>
+
+  <meta name="repository-name" content="shared">
+  <title>Shared::Sha256 - shared main-dev</title>
+  <script type="text/javascript">
+    CrystalDocs.base_path = "../";
+  </script>
+</head>
+<body>
+
+<svg class="hidden">
+  <symbol id="octicon-link" viewBox="0 0 16 16">
+    <path fill="currentColor" fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path>
+  </symbol>
+</svg>
+<input type="checkbox" id="sidebar-btn">
+<label for="sidebar-btn" id="sidebar-btn-label">
+  <svg class="open" xmlns="http://www.w3.org/2000/svg" height="2em" width="2em" viewBox="0 0 512 512"><title>Open Sidebar</title><path fill="currentColor" d="M80 96v64h352V96H80zm0 112v64h352v-64H80zm0 112v64h352v-64H80z"></path></svg>
+  <svg class="close" xmlns="http://www.w3.org/2000/svg" width="2em" height="2em" viewBox="0 0 512 512"><title>Close Sidebar</title><path fill="currentColor" d="m118.6 73.4-45.2 45.2L210.7 256 73.4 393.4l45.2 45.2L256 301.3l137.4 137.3 45.2-45.2L301.3 256l137.3-137.4-45.2-45.2L256 210.7Z"></path></svg>
+</label>
+<div class="sidebar">
+  <div class="sidebar-header">
+    <div class="search-box">
+      <input type="search" class="search-input" placeholder="Search..." spellcheck="false" aria-label="Search">
+    </div>
+
+    <div class="project-summary">
+      <h1 class="project-name">
+        <a href="../index.html">
+          shared
+        </a>
+      </h1>
+
+      <span class="project-version">
+        main-dev
+      </span>
+    </div>
+  </div>
+
+  <div class="search-results hidden">
+    <ul class="search-list"></ul>
+  </div>
+
+  <div class="types-list">
+    <ul>
+  
+  <li class="parent open current" data-id="shared/Shared" data-name="shared">
+      <a href="../Shared.html">Shared</a>
+      
+        <ul>
+  
+  <li class=" " data-id="shared/Shared/MyDigest" data-name="shared::mydigest">
+      <a href="../Shared/MyDigest.html">MyDigest</a>
+      
+    </li>
+  
+  <li class="parent " data-id="shared/Shared/Sha1" data-name="shared::sha1">
+      <a href="../Shared/Sha1.html">Sha1</a>
+      
+        <ul>
+  
+  <li class=" " data-id="shared/Shared/Sha1/TYPE_a_f" data-name="shared::sha1::type_a_f">
+      <a href="../Shared/Sha1/TYPE_a_f.html">TYPE_a_f</a>
+      
+    </li>
+  
+  <li class=" " data-id="shared/Shared/Sha1/TYPEHS" data-name="shared::sha1::typehs">
+      <a href="../Shared/Sha1/TYPEHS.html">TYPEHS</a>
+      
+    </li>
+  
+</ul>
+
+      
+    </li>
+  
+  <li class=" current" data-id="shared/Shared/Sha256" data-name="shared::sha256">
+      <a href="../Shared/Sha256.html">Sha256</a>
+      
+    </li>
+  
+  <li class=" " data-id="shared/Shared/State" data-name="shared::state">
+      <a href="../Shared/State.html">State</a>
+      
+    </li>
+  
+</ul>
+
+      
+    </li>
+  
+  <li class=" " data-id="shared/Unmarshaller" data-name="unmarshaller">
+      <a href="../Unmarshaller.html">Unmarshaller</a>
+      
+    </li>
+  
+  <li class=" " data-id="shared/Xcrypt" data-name="xcrypt">
+      <a href="../Xcrypt.html">Xcrypt</a>
+      
+    </li>
+  
+</ul>
+
+  </div>
+</div>
+
+
+<div class="main-content">
+<h1 class="type-name">
+
+  <span class="kind">
+    class
+  </span> Shared::<wbr>Sha256
+
+</h1>
+
+
+  <ul class="superclass-hierarchy"><li class="superclass"><a href="../Shared/Sha256.html">Shared::Sha256</a></li><li class="superclass"><a href="../Shared/MyDigest.html">Shared::MyDigest</a></li><li class="superclass">Reference</li><li class="superclass">Object</li></ul>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <h2>
+    <a id="defined-in" class="anchor" href="#defined-in">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Defined in:
+  </h2>
+  
+    
+      shared/sha256.cr
+    
+    <br/>
+  
+
+
+
+  
+    <h2>
+      <a id="constant-summary" class="anchor" href="#constant-summary">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+      Constant Summary
+    </h2>
+  
+  <dl>
+    
+      <dt class="entry-const" id="BIGmagic256">
+        <strong>BIGmagic256</strong> = <code><span class="s">&quot;sha\u0003&quot;</span></code>
+      </dt>
+      
+    
+      <dt class="entry-const" id="Init0">
+        <strong>Init0</strong> = <code><span class="n">1779033703</span>.to_u32</code>
+      </dt>
+      
+      <dd class="entry-const-doc">
+        <p>SizeChecksum256 = 32
+BlockSize256    = 64
+ChunkSize256    = 64</p>
+      </dd>
+      
+    
+      <dt class="entry-const" id="Init1">
+        <strong>Init1</strong> = <code><span class="n">3144134277_i64</span>.to_u32</code>
+      </dt>
+      
+    
+      <dt class="entry-const" id="Init2">
+        <strong>Init2</strong> = <code><span class="n">1013904242</span>.to_u32</code>
+      </dt>
+      
+    
+      <dt class="entry-const" id="Init3">
+        <strong>Init3</strong> = <code><span class="n">2773480762_i64</span>.to_u32</code>
+      </dt>
+      
+    
+      <dt class="entry-const" id="Init4">
+        <strong>Init4</strong> = <code><span class="n">1359893119</span>.to_u32</code>
+      </dt>
+      
+    
+      <dt class="entry-const" id="Init5">
+        <strong>Init5</strong> = <code><span class="n">2600822924_i64</span>.to_u32</code>
+      </dt>
+      
+    
+      <dt class="entry-const" id="Init6">
+        <strong>Init6</strong> = <code><span class="n">528734635</span>.to_u32</code>
+      </dt>
+      
+    
+      <dt class="entry-const" id="Init7">
+        <strong>Init7</strong> = <code><span class="n">1541459225</span>.to_u32</code>
+      </dt>
+      
+    
+      <dt class="entry-const" id="K">
+        <strong>K</strong> = <code>[<span class="n">1116352408</span>, <span class="n">1899447441</span>, <span class="n">3049323471_i64</span>, <span class="n">3921009573_i64</span>, <span class="n">961987163</span>, <span class="n">1508970993</span>, <span class="n">2453635748_i64</span>, <span class="n">2870763221_i64</span>, <span class="n">3624381080_i64</span>, <span class="n">310598401</span>, <span class="n">607225278</span>, <span class="n">1426881987</span>, <span class="n">1925078388</span>, <span class="n">2162078206_i64</span>, <span class="n">2614888103_i64</span>, <span class="n">3248222580_i64</span>, <span class="n">3835390401_i64</span>, <span class="n">4022224774_i64</span>, <span class="n">264347078</span>, <span class="n">604807628</span>, <span class="n">770255983</span>, <span class="n">1249150122</span>, <span class="n">1555081692</span>, <span class="n">1996064986</span>, <span class="n">2554220882_i64</span>, <span class="n">2821834349_i64</span>, <span class="n">2952996808_i64</span>, <span class="n">3210313671_i64</span>, <span class="n">3336571891_i64</span>, <span class="n">3584528711_i64</span>, <span class="n">113926993</span>, <span class="n">338241895</span>, <span class="n">666307205</span>, <span class="n">773529912</span>, <span class="n">1294757372</span>, <span class="n">1396182291</span>, <span class="n">1695183700</span>, <span class="n">1986661051</span>, <span class="n">2177026350_i64</span>, <span class="n">2456956037_i64</span>, <span class="n">2730485921_i64</span>, <span class="n">2820302411_i64</span>, <span class="n">3259730800_i64</span>, <span class="n">3345764771_i64</span>, <span class="n">3516065817_i64</span>, <span class="n">3600352804_i64</span>, <span class="n">4094571909_i64</span>, <span class="n">275423344</span>, <span class="n">430227734</span>, <span class="n">506948616</span>, <span class="n">659060556</span>, <span class="n">883997877</span>, <span class="n">958139571</span>, <span class="n">1322822218</span>, <span class="n">1537002063</span>, <span class="n">1747873779</span>, <span class="n">1955562222</span>, <span class="n">2024104815</span>, <span class="n">2227730452_i64</span>, <span class="n">2361852424_i64</span>, <span class="n">2428436474_i64</span>, <span class="n">2756734187_i64</span>, <span class="n">3204031479_i64</span>, <span class="n">3329325298_i64</span>]</code>
+      </dt>
+      
+    
+  </dl>
+
+
+
+  
+  <h2>
+    <a id="constructors" class="anchor" href="#constructors">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Constructors
+  </h2>
+  <ul class="list-summary">
+    
+      <li class="entry-summary">
+        <a href="#new-class-method" class="signature"><strong>.new</strong></a>
+        
+      </li>
+    
+  </ul>
+
+
+  
+  <h2>
+    <a id="class-method-summary" class="anchor" href="#class-method-summary">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Class Method Summary
+  </h2>
+  <ul class="list-summary">
+    
+      <li class="entry-summary">
+        <a href="#checksum_size-class-method" class="signature"><strong>.checksum_size</strong></a>
+        
+      </li>
+    
+  </ul>
+
+
+  
+
+  
+  <h2>
+    <a id="instance-method-summary" class="anchor" href="#instance-method-summary">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Instance Method Summary
+  </h2>
+  <ul class="list-summary">
+    
+      <li class="entry-summary">
+        <a href="#bigmarshal_binary%3ABytes-instance-method" class="signature"><strong>#bigmarshal_binary</strong> : Bytes</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#blockit%28msg%3ABytes%2Cconsumed_p%3AInt32%2Cend_index%3AInt32%29%3ANil-instance-method" class="signature"><strong>#blockit</strong>(msg : Bytes, consumed_p : Int32, end_index : Int32) : Nil</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#to_s%28io%3AIO%29-instance-method" class="signature"><strong>#to_s</strong>(io : IO)</a>
+        
+          <div class="summary"><p>Appends a short String representation of this object which includes its class name and its object address.</p></div>
+        
+      </li>
+    
+  </ul>
+
+
+
+  <div class="methods-inherited">
+    
+      
+
+  <h3>Instance methods inherited from class <code><a href="../Shared/MyDigest.html">Shared::MyDigest</a></code></h3>
+  
+  
+    <a href="../Shared/MyDigest.html#bigchecksum%3ABytes-instance-method" class="tooltip">
+      <span>bigchecksum : Bytes</span>
+    bigchecksum</a>, 
+    
+  
+    <a href="../Shared/MyDigest.html#bigsum%3ABytes-instance-method" class="tooltip">
+      <span>bigsum : Bytes</span>
+    bigsum</a>, 
+    
+  
+    <a href="../Shared/MyDigest.html#bigwrite%28p_as_slice%3ABytes%29%3ANil-instance-method" class="tooltip">
+      <span>bigwrite(p_as_slice : Bytes) : Nil</span>
+    bigwrite</a>, 
+    
+  
+    <a href="../Shared/MyDigest.html#block_size%3AInt32-instance-method" class="tooltip">
+      <span>block_size : Int32</span>
+    block_size</a>, 
+    
+  
+    <a href="../Shared/MyDigest.html#block_size%3D%28block_size%3AInt32%29-instance-method" class="tooltip">
+      <span>block_size=(block_size : Int32)</span>
+    block_size=</a>, 
+    
+  
+    <a href="../Shared/MyDigest.html#blockit%28msg%3ABytes%2Cconsumed_p%3AInt32%2Cend_index%3AInt32%29%3ANil-instance-method" class="tooltip">
+      <span>blockit(msg : Bytes, consumed_p : Int32, end_index : Int32) : Nil</span>
+    blockit</a>, 
+    
+  
+    <a href="../Shared/MyDigest.html#checksum_size%3AInt32-instance-method" class="tooltip">
+      <span>checksum_size : Int32</span>
+    checksum_size</a>, 
+    
+  
+    <a href="../Shared/MyDigest.html#checksum_size%3D%28checksum_size%3AInt32%29-instance-method" class="tooltip">
+      <span>checksum_size=(checksum_size : Int32)</span>
+    checksum_size=</a>, 
+    
+  
+    <a href="../Shared/MyDigest.html#chunk_size%3AInt32-instance-method" class="tooltip">
+      <span>chunk_size : Int32</span>
+    chunk_size</a>, 
+    
+  
+    <a href="../Shared/MyDigest.html#chunk_size%3D%28chunk_size%3AInt32%29-instance-method" class="tooltip">
+      <span>chunk_size=(chunk_size : Int32)</span>
+    chunk_size=</a>, 
+    
+  
+    <a href="../Shared/MyDigest.html#digs_from_checksum%3ABytes-instance-method" class="tooltip">
+      <span>digs_from_checksum : Bytes</span>
+    digs_from_checksum</a>, 
+    
+  
+    <a href="../Shared/MyDigest.html#h%3AArray%28UInt32%29-instance-method" class="tooltip">
+      <span>h : Array(UInt32)</span>
+    h</a>, 
+    
+  
+    <a href="../Shared/MyDigest.html#ident%3AInt32-instance-method" class="tooltip">
+      <span>ident : Int32</span>
+    ident</a>, 
+    
+  
+    <a href="../Shared/MyDigest.html#ident%3D%28ident%3AInt32%29-instance-method" class="tooltip">
+      <span>ident=(ident : Int32)</span>
+    ident=</a>, 
+    
+  
+    <a href="../Shared/MyDigest.html#padlen_2_write%3ABytes-instance-method" class="tooltip">
+      <span>padlen_2_write : Bytes</span>
+    padlen_2_write</a>, 
+    
+  
+    <a href="../Shared/MyDigest.html#save_h%3AArray%28UInt32%29-instance-method" class="tooltip">
+      <span>save_h : Array(UInt32)</span>
+    save_h</a>, 
+    
+  
+    <a href="../Shared/MyDigest.html#save_h%3D%28save_h%3AArray%28UInt32%29%29-instance-method" class="tooltip">
+      <span>save_h=(save_h : Array(UInt32))</span>
+    save_h=</a>, 
+    
+  
+    <a href="../Shared/MyDigest.html#save_len_written%3AUInt64-instance-method" class="tooltip">
+      <span>save_len_written : UInt64</span>
+    save_len_written</a>, 
+    
+  
+    <a href="../Shared/MyDigest.html#save_len_written%3D%28save_len_written%3AUInt64%29-instance-method" class="tooltip">
+      <span>save_len_written=(save_len_written : UInt64)</span>
+    save_len_written=</a>, 
+    
+  
+    <a href="../Shared/MyDigest.html#save_saved_msg_in_write%3ABytes-instance-method" class="tooltip">
+      <span>save_saved_msg_in_write : Bytes</span>
+    save_saved_msg_in_write</a>, 
+    
+  
+    <a href="../Shared/MyDigest.html#save_saved_msg_in_write%3D%28save_saved_msg_in_write%3ABytes%29-instance-method" class="tooltip">
+      <span>save_saved_msg_in_write=(save_saved_msg_in_write : Bytes)</span>
+    save_saved_msg_in_write=</a>, 
+    
+  
+    <a href="../Shared/MyDigest.html#saved_msg_in_write%3ABytes-instance-method" class="tooltip">
+      <span>saved_msg_in_write : Bytes</span>
+    saved_msg_in_write</a>, 
+    
+  
+    <a href="../Shared/MyDigest.html#saved_msg_in_write%3D%28saved_msg_in_write%3ABytes%29-instance-method" class="tooltip">
+      <span>saved_msg_in_write=(saved_msg_in_write : Bytes)</span>
+    saved_msg_in_write=</a>, 
+    
+  
+    <a href="../Shared/MyDigest.html#state%3AState-instance-method" class="tooltip">
+      <span>state : State</span>
+    state</a>, 
+    
+  
+    <a href="../Shared/MyDigest.html#w_in_blockit%3ASlice%28UInt64%29-instance-method" class="tooltip">
+      <span>w_in_blockit : Slice(UInt64)</span>
+    w_in_blockit</a>
+    
+  
+
+
+      
+
+  <h3>Constructor methods inherited from class <code><a href="../Shared/MyDigest.html">Shared::MyDigest</a></code></h3>
+  
+  
+    <a href="../Shared/MyDigest.html#new-class-method" class="tooltip">
+      <span>new</span>
+    new</a>
+    
+  
+
+
+      
+
+
+      
+
+
+    
+      
+
+
+      
+
+
+      
+
+
+      
+
+
+    
+      
+
+
+      
+
+
+      
+
+
+      
+
+
+    
+  </div>
+
+  
+  <h2>
+    <a id="constructor-detail" class="anchor" href="#constructor-detail">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Constructor Detail
+  </h2>
+  
+    <div class="entry-detail" id="new-class-method">
+      <div class="signature">
+        
+        def self.<strong>new</strong>
+
+        <a class="method-permalink" href="#new-class-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+      </div>
+    </div>
+  
+
+
+  
+  <h2>
+    <a id="class-method-detail" class="anchor" href="#class-method-detail">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Class Method Detail
+  </h2>
+  
+    <div class="entry-detail" id="checksum_size-class-method">
+      <div class="signature">
+        
+        def self.<strong>checksum_size</strong>
+
+        <a class="method-permalink" href="#checksum_size-class-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+      </div>
+    </div>
+  
+
+
+  
+
+  
+  <h2>
+    <a id="instance-method-detail" class="anchor" href="#instance-method-detail">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Instance Method Detail
+  </h2>
+  
+    <div class="entry-detail" id="bigmarshal_binary:Bytes-instance-method">
+      <div class="signature">
+        
+        def <strong>bigmarshal_binary</strong> : Bytes
+
+        <a class="method-permalink" href="#bigmarshal_binary%3ABytes-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="blockit(msg:Bytes,consumed_p:Int32,end_index:Int32):Nil-instance-method">
+      <div class="signature">
+        
+        def <strong>blockit</strong>(msg : Bytes, consumed_p : Int32, end_index : Int32) : Nil
+
+        <a class="method-permalink" href="#blockit%28msg%3ABytes%2Cconsumed_p%3AInt32%2Cend_index%3AInt32%29%3ANil-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="to_s(io:IO)-instance-method">
+      <div class="signature">
+        
+        def <strong>to_s</strong>(io : IO)
+
+        <a class="method-permalink" href="#to_s%28io%3AIO%29-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+            <div class="doc-inherited">
+              Description copied from class Reference
+            </div>
+          
+          <p>Appends a short String representation of this object
+which includes its class name and its object address.</p>
+<pre><code class="language-crystal"><span class="k">class</span> <span class="t">Person</span>
+  <span class="k">def</span> <span class="m">initialize</span>(@name : <span class="t">String</span>, @age : <span class="t">Int32</span>)
+  <span class="k">end</span>
+<span class="k">end</span>
+
+<span class="t">Person</span>.new(<span class="s">&quot;John&quot;</span>, <span class="n">32</span>).to_s <span class="c"># =&gt; #&lt;Person:0x10a199f20&gt;</span></code></pre>
+        </div>
+      
+      <br/>
+      <div>
+        
+      </div>
+    </div>
+  
+
+
+
+</div>
+
+</body>
+</html>

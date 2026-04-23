@@ -1,0 +1,655 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="generator" content="Crystal Docs 1.18.2">
+<meta name="crystal_docs.project_version" content="main-dev">
+<meta name="crystal_docs.project_name" content="shared">
+
+
+
+<link href="css/style.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="js/doc.js"></script>
+
+  <meta name="repository-name" content="shared">
+  <title>Unmarshaller - shared main-dev</title>
+  <script type="text/javascript">
+    CrystalDocs.base_path = "";
+  </script>
+</head>
+<body>
+
+<svg class="hidden">
+  <symbol id="octicon-link" viewBox="0 0 16 16">
+    <path fill="currentColor" fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path>
+  </symbol>
+</svg>
+<input type="checkbox" id="sidebar-btn">
+<label for="sidebar-btn" id="sidebar-btn-label">
+  <svg class="open" xmlns="http://www.w3.org/2000/svg" height="2em" width="2em" viewBox="0 0 512 512"><title>Open Sidebar</title><path fill="currentColor" d="M80 96v64h352V96H80zm0 112v64h352v-64H80zm0 112v64h352v-64H80z"></path></svg>
+  <svg class="close" xmlns="http://www.w3.org/2000/svg" width="2em" height="2em" viewBox="0 0 512 512"><title>Close Sidebar</title><path fill="currentColor" d="m118.6 73.4-45.2 45.2L210.7 256 73.4 393.4l45.2 45.2L256 301.3l137.4 137.3 45.2-45.2L301.3 256l137.3-137.4-45.2-45.2L256 210.7Z"></path></svg>
+</label>
+<div class="sidebar">
+  <div class="sidebar-header">
+    <div class="search-box">
+      <input type="search" class="search-input" placeholder="Search..." spellcheck="false" aria-label="Search">
+    </div>
+
+    <div class="project-summary">
+      <h1 class="project-name">
+        <a href="index.html">
+          shared
+        </a>
+      </h1>
+
+      <span class="project-version">
+        main-dev
+      </span>
+    </div>
+  </div>
+
+  <div class="search-results hidden">
+    <ul class="search-list"></ul>
+  </div>
+
+  <div class="types-list">
+    <ul>
+  
+  <li class="parent " data-id="shared/Shared" data-name="shared">
+      <a href="Shared.html">Shared</a>
+      
+        <ul>
+  
+  <li class=" " data-id="shared/Shared/MyDigest" data-name="shared::mydigest">
+      <a href="Shared/MyDigest.html">MyDigest</a>
+      
+    </li>
+  
+  <li class="parent " data-id="shared/Shared/Sha1" data-name="shared::sha1">
+      <a href="Shared/Sha1.html">Sha1</a>
+      
+        <ul>
+  
+  <li class=" " data-id="shared/Shared/Sha1/TYPE_a_f" data-name="shared::sha1::type_a_f">
+      <a href="Shared/Sha1/TYPE_a_f.html">TYPE_a_f</a>
+      
+    </li>
+  
+  <li class=" " data-id="shared/Shared/Sha1/TYPEHS" data-name="shared::sha1::typehs">
+      <a href="Shared/Sha1/TYPEHS.html">TYPEHS</a>
+      
+    </li>
+  
+</ul>
+
+      
+    </li>
+  
+  <li class=" " data-id="shared/Shared/Sha256" data-name="shared::sha256">
+      <a href="Shared/Sha256.html">Sha256</a>
+      
+    </li>
+  
+  <li class=" " data-id="shared/Shared/State" data-name="shared::state">
+      <a href="Shared/State.html">State</a>
+      
+    </li>
+  
+</ul>
+
+      
+    </li>
+  
+  <li class=" current" data-id="shared/Unmarshaller" data-name="unmarshaller">
+      <a href="Unmarshaller.html">Unmarshaller</a>
+      
+    </li>
+  
+  <li class=" " data-id="shared/Xcrypt" data-name="xcrypt">
+      <a href="Xcrypt.html">Xcrypt</a>
+      
+    </li>
+  
+</ul>
+
+  </div>
+</div>
+
+
+<div class="main-content">
+<h1 class="type-name">
+
+  <span class="kind">
+    class
+  </span> Unmarshaller
+
+</h1>
+
+
+  <ul class="superclass-hierarchy"><li class="superclass"><a href="Unmarshaller.html">Unmarshaller</a></li><li class="superclass">IO</li><li class="superclass">Reference</li><li class="superclass">Object</li></ul>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <h2>
+    <a id="defined-in" class="anchor" href="#defined-in">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Defined in:
+  </h2>
+  
+    
+      shared/unmarshaller.cr
+    
+    <br/>
+  
+
+
+
+
+
+  
+  <h2>
+    <a id="constructors" class="anchor" href="#constructors">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Constructors
+  </h2>
+  <ul class="list-summary">
+    
+      <li class="entry-summary">
+        <a href="#new%28in_message%3ABytes%29-class-method" class="signature"><strong>.new</strong>(in_message : Bytes)</a>
+        
+      </li>
+    
+  </ul>
+
+
+  
+
+  
+
+  
+  <h2>
+    <a id="instance-method-summary" class="anchor" href="#instance-method-summary">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Instance Method Summary
+  </h2>
+  <ul class="list-summary">
+    
+      <li class="entry-summary">
+        <a href="#discard-instance-method" class="signature"><strong>#discard</strong></a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#error_message_unmarshall-instance-method" class="signature"><strong>#error_message_unmarshall</strong></a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#in_message%3ABytes-instance-method" class="signature"><strong>#in_message</strong> : Bytes</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#in_message%3D%28in_message%3ABytes%29-instance-method" class="signature"><strong>#in_message=</strong>(in_message : Bytes)</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#read%28slice%3ABytes%29-instance-method" class="signature"><strong>#read</strong>(slice : Bytes)</a>
+        
+          <div class="summary"><p>Reads at most <em>slice.size</em> bytes from this <code>IO</code> into <em>slice</em>.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#read_blob-instance-method" class="signature"><strong>#read_blob</strong></a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#read_byte%21-instance-method" class="signature"><strong>#read_byte!</strong></a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#read_byte_array%28length%29-instance-method" class="signature"><strong>#read_byte_array</strong>(length)</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#read_fixed_int%28n%29-instance-method" class="signature"><strong>#read_fixed_int</strong>(n)</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#read_int-instance-method" class="signature"><strong>#read_int</strong></a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#read_lenenc_int%28h%3Dread_byte%21%29-instance-method" class="signature"><strong>#read_lenenc_int</strong>(h = read_byte!)</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#read_lenenc_string-instance-method" class="signature"><strong>#read_lenenc_string</strong></a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#read_slice%28length%29-instance-method" class="signature"><strong>#read_slice</strong>(length)</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#read_string-instance-method" class="signature"><strong>#read_string</strong></a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#remaining%3AInt32-instance-method" class="signature"><strong>#remaining</strong> : Int32</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#remaining%3D%28remaining%3AInt32%29-instance-method" class="signature"><strong>#remaining=</strong>(remaining : Int32)</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#write%28slice%3ABytes%29%3ANil-instance-method" class="signature"><strong>#write</strong>(slice : Bytes) : Nil</a>
+        
+          <div class="summary"><p>Writes the contents of <em>slice</em> into this <code>IO</code>.</p></div>
+        
+      </li>
+    
+  </ul>
+
+
+
+  <div class="methods-inherited">
+    
+      
+
+
+      
+
+
+      
+
+
+      
+
+
+    
+      
+
+
+      
+
+
+      
+
+
+      
+
+
+    
+      
+
+
+      
+
+
+      
+
+
+      
+
+
+    
+  </div>
+
+  
+  <h2>
+    <a id="constructor-detail" class="anchor" href="#constructor-detail">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Constructor Detail
+  </h2>
+  
+    <div class="entry-detail" id="new(in_message:Bytes)-class-method">
+      <div class="signature">
+        
+        def self.<strong>new</strong>(in_message : Bytes)
+
+        <a class="method-permalink" href="#new%28in_message%3ABytes%29-class-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+      </div>
+    </div>
+  
+
+
+  
+
+  
+
+  
+  <h2>
+    <a id="instance-method-detail" class="anchor" href="#instance-method-detail">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Instance Method Detail
+  </h2>
+  
+    <div class="entry-detail" id="discard-instance-method">
+      <div class="signature">
+        
+        def <strong>discard</strong>
+
+        <a class="method-permalink" href="#discard-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="error_message_unmarshall-instance-method">
+      <div class="signature">
+        
+        def <strong>error_message_unmarshall</strong>
+
+        <a class="method-permalink" href="#error_message_unmarshall-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="in_message:Bytes-instance-method">
+      <div class="signature">
+        
+        def <strong>in_message</strong> : Bytes
+
+        <a class="method-permalink" href="#in_message%3ABytes-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="in_message=(in_message:Bytes)-instance-method">
+      <div class="signature">
+        
+        def <strong>in_message=</strong>(in_message : Bytes)
+
+        <a class="method-permalink" href="#in_message%3D%28in_message%3ABytes%29-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="read(slice:Bytes)-instance-method">
+      <div class="signature">
+        
+        def <strong>read</strong>(slice : Bytes)
+
+        <a class="method-permalink" href="#read%28slice%3ABytes%29-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+            <div class="doc-inherited">
+              Description copied from class IO
+            </div>
+          
+          <p>Reads at most <em>slice.size</em> bytes from this <code>IO</code> into <em>slice</em>.
+Returns the number of bytes read, which is 0 if and only if there is no
+more data to read (so checking for 0 is the way to detect end of file).</p>
+<pre><code class="language-crystal">io <span class="o">=</span> <span class="t">IO</span><span class="t">::</span><span class="t">Memory</span>.new <span class="s">&quot;hello&quot;</span>
+slice <span class="o">=</span> <span class="t">Bytes</span>.new(<span class="n">4</span>)
+io.read(slice) <span class="c"># =&gt; 4</span>
+slice          <span class="c"># =&gt; Bytes[104, 101, 108, 108]</span>
+io.read(slice) <span class="c"># =&gt; 1</span>
+slice          <span class="c"># =&gt; Bytes[111, 101, 108, 108]</span>
+io.read(slice) <span class="c"># =&gt; 0</span></code></pre>
+        </div>
+      
+      <br/>
+      <div>
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="read_blob-instance-method">
+      <div class="signature">
+        
+        def <strong>read_blob</strong>
+
+        <a class="method-permalink" href="#read_blob-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="read_byte!-instance-method">
+      <div class="signature">
+        
+        def <strong>read_byte!</strong>
+
+        <a class="method-permalink" href="#read_byte%21-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="read_byte_array(length)-instance-method">
+      <div class="signature">
+        
+        def <strong>read_byte_array</strong>(length)
+
+        <a class="method-permalink" href="#read_byte_array%28length%29-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="read_fixed_int(n)-instance-method">
+      <div class="signature">
+        
+        def <strong>read_fixed_int</strong>(n)
+
+        <a class="method-permalink" href="#read_fixed_int%28n%29-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="read_int-instance-method">
+      <div class="signature">
+        
+        def <strong>read_int</strong>
+
+        <a class="method-permalink" href="#read_int-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="read_lenenc_int(h=read_byte!)-instance-method">
+      <div class="signature">
+        
+        def <strong>read_lenenc_int</strong>(h = read_byte!)
+
+        <a class="method-permalink" href="#read_lenenc_int%28h%3Dread_byte%21%29-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="read_lenenc_string-instance-method">
+      <div class="signature">
+        
+        def <strong>read_lenenc_string</strong>
+
+        <a class="method-permalink" href="#read_lenenc_string-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="read_slice(length)-instance-method">
+      <div class="signature">
+        
+        def <strong>read_slice</strong>(length)
+
+        <a class="method-permalink" href="#read_slice%28length%29-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="read_string-instance-method">
+      <div class="signature">
+        
+        def <strong>read_string</strong>
+
+        <a class="method-permalink" href="#read_string-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="remaining:Int32-instance-method">
+      <div class="signature">
+        
+        def <strong>remaining</strong> : Int32
+
+        <a class="method-permalink" href="#remaining%3AInt32-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="remaining=(remaining:Int32)-instance-method">
+      <div class="signature">
+        
+        def <strong>remaining=</strong>(remaining : Int32)
+
+        <a class="method-permalink" href="#remaining%3D%28remaining%3AInt32%29-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="write(slice:Bytes):Nil-instance-method">
+      <div class="signature">
+        
+        def <strong>write</strong>(slice : Bytes) : Nil
+
+        <a class="method-permalink" href="#write%28slice%3ABytes%29%3ANil-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+            <div class="doc-inherited">
+              Description copied from class IO
+            </div>
+          
+          <p>Writes the contents of <em>slice</em> into this <code>IO</code>.</p>
+<pre><code class="language-crystal">io <span class="o">=</span> <span class="t">IO</span><span class="t">::</span><span class="t">Memory</span>.new
+slice <span class="o">=</span> <span class="t">Bytes</span>.new(<span class="n">4</span>) { <span class="o">|</span>i<span class="o">|</span> (<span class="s">&#39;a&#39;</span>.ord <span class="o">+</span> i).to_u8 }
+io.write(slice)
+io.to_s <span class="c"># =&gt; &quot;abcd&quot;</span></code></pre>
+        </div>
+      
+      <br/>
+      <div>
+        
+      </div>
+    </div>
+  
+
+
+
+</div>
+
+</body>
+</html>

@@ -1,0 +1,666 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="generator" content="Crystal Docs 1.18.2">
+<meta name="crystal_docs.project_version" content="main-dev">
+<meta name="crystal_docs.project_name" content="mysql">
+
+
+
+<link href="../css/style.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="../js/doc.js"></script>
+
+  <meta name="repository-name" content="mysql">
+  <title>PubKeyMySql::Asn1Type - mysql main-dev</title>
+  <script type="text/javascript">
+    CrystalDocs.base_path = "../";
+  </script>
+</head>
+<body>
+
+<svg class="hidden">
+  <symbol id="octicon-link" viewBox="0 0 16 16">
+    <path fill="currentColor" fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path>
+  </symbol>
+</svg>
+<input type="checkbox" id="sidebar-btn">
+<label for="sidebar-btn" id="sidebar-btn-label">
+  <svg class="open" xmlns="http://www.w3.org/2000/svg" height="2em" width="2em" viewBox="0 0 512 512"><title>Open Sidebar</title><path fill="currentColor" d="M80 96v64h352V96H80zm0 112v64h352v-64H80zm0 112v64h352v-64H80z"></path></svg>
+  <svg class="close" xmlns="http://www.w3.org/2000/svg" width="2em" height="2em" viewBox="0 0 512 512"><title>Close Sidebar</title><path fill="currentColor" d="m118.6 73.4-45.2 45.2L210.7 256 73.4 393.4l45.2 45.2L256 301.3l137.4 137.3 45.2-45.2L301.3 256l137.3-137.4-45.2-45.2L256 210.7Z"></path></svg>
+</label>
+<div class="sidebar">
+  <div class="sidebar-header">
+    <div class="search-box">
+      <input type="search" class="search-input" placeholder="Search..." spellcheck="false" aria-label="Search">
+    </div>
+
+    <div class="project-summary">
+      <h1 class="project-name">
+        <a href="../index.html">
+          mysql
+        </a>
+      </h1>
+
+      <span class="project-version">
+        main-dev
+      </span>
+    </div>
+  </div>
+
+  <div class="search-results hidden">
+    <ul class="search-list"></ul>
+  </div>
+
+  <div class="types-list">
+    <ul>
+  
+  <li class=" " data-id="mysql/Crypto" data-name="crypto">
+      <a href="../Crypto.html">Crypto</a>
+      
+    </li>
+  
+  <li class=" " data-id="mysql/Marshaller" data-name="marshaller">
+      <a href="../Marshaller.html">Marshaller</a>
+      
+    </li>
+  
+  <li class="parent " data-id="mysql/MySql" data-name="mysql">
+      <a href="../MySql.html">MySql</a>
+      
+        <ul>
+  
+  <li class=" " data-id="mysql/MySql/Any" data-name="mysql::any">
+      <a href="../MySql/Any.html">Any</a>
+      
+    </li>
+  
+  <li class="parent " data-id="mysql/MySql/BRIDGE" data-name="mysql::bridge">
+      <a href="../MySql/BRIDGE.html">BRIDGE</a>
+      
+        <ul>
+  
+  <li class=" " data-id="mysql/MySql/BRIDGE/BRIDGE" data-name="mysql::bridge::bridge">
+      <a href="../MySql/BRIDGE/BRIDGE.html">BRIDGE</a>
+      
+    </li>
+  
+  <li class=" " data-id="mysql/MySql/BRIDGE/BRIDGEPlain" data-name="mysql::bridge::bridgeplain">
+      <a href="../MySql/BRIDGE/BRIDGEPlain.html">BRIDGEPlain</a>
+      
+    </li>
+  
+  <li class=" " data-id="mysql/MySql/BRIDGE/BRIDGETls" data-name="mysql::bridge::bridgetls">
+      <a href="../MySql/BRIDGE/BRIDGETls.html">BRIDGETls</a>
+      
+    </li>
+  
+</ul>
+
+      
+    </li>
+  
+  <li class=" " data-id="mysql/MySql/Collations" data-name="mysql::collations">
+      <a href="../MySql/Collations.html">Collations</a>
+      
+    </li>
+  
+  <li class=" " data-id="mysql/MySql/ColumnSpec" data-name="mysql::columnspec">
+      <a href="../MySql/ColumnSpec.html">ColumnSpec</a>
+      
+    </li>
+  
+  <li class="parent " data-id="mysql/MySql/Connection" data-name="mysql::connection">
+      <a href="../MySql/Connection.html">Connection</a>
+      
+        <ul>
+  
+  <li class=" " data-id="mysql/MySql/Connection/Options" data-name="mysql::connection::options">
+      <a href="../MySql/Connection/Options.html">Options</a>
+      
+    </li>
+  
+</ul>
+
+      
+    </li>
+  
+  <li class="parent " data-id="mysql/MySql/Driver" data-name="mysql::driver">
+      <a href="../MySql/Driver.html">Driver</a>
+      
+        <ul>
+  
+  <li class=" " data-id="mysql/MySql/Driver/ConnectionBuilder" data-name="mysql::driver::connectionbuilder">
+      <a href="../MySql/Driver/ConnectionBuilder.html">ConnectionBuilder</a>
+      
+    </li>
+  
+</ul>
+
+      
+    </li>
+  
+  <li class=" " data-id="mysql/MySql/MessageComStamtPrepare" data-name="mysql::messagecomstamtprepare">
+      <a href="../MySql/MessageComStamtPrepare.html">MessageComStamtPrepare</a>
+      
+    </li>
+  
+  <li class=" " data-id="mysql/MySql/MessagePerformExecOrQuery" data-name="mysql::messageperformexecorquery">
+      <a href="../MySql/MessagePerformExecOrQuery.html">MessagePerformExecOrQuery</a>
+      
+    </li>
+  
+  <li class=" " data-id="mysql/MySql/MessagePerformExecOrQueryUnPrep" data-name="mysql::messageperformexecorqueryunprep">
+      <a href="../MySql/MessagePerformExecOrQueryUnPrep.html">MessagePerformExecOrQueryUnPrep</a>
+      
+    </li>
+  
+  <li class="parent " data-id="mysql/MySql/Protocol" data-name="mysql::protocol">
+      <a href="../MySql/Protocol.html">Protocol</a>
+      
+        <ul>
+  
+  <li class=" " data-id="mysql/MySql/Protocol/HandshakeResponse" data-name="mysql::protocol::handshakeresponse">
+      <a href="../MySql/Protocol/HandshakeResponse.html">HandshakeResponse</a>
+      
+    </li>
+  
+  <li class=" " data-id="mysql/MySql/Protocol/InHandshakeV10" data-name="mysql::protocol::inhandshakev10">
+      <a href="../MySql/Protocol/InHandshakeV10.html">InHandshakeV10</a>
+      
+    </li>
+  
+  <li class=" " data-id="mysql/MySql/Protocol/InStateB" data-name="mysql::protocol::instateb">
+      <a href="../MySql/Protocol/InStateB.html">InStateB</a>
+      
+    </li>
+  
+  <li class=" " data-id="mysql/MySql/Protocol/InStateC" data-name="mysql::protocol::instatec">
+      <a href="../MySql/Protocol/InStateC.html">InStateC</a>
+      
+    </li>
+  
+  <li class=" " data-id="mysql/MySql/Protocol/InStateD" data-name="mysql::protocol::instated">
+      <a href="../MySql/Protocol/InStateD.html">InStateD</a>
+      
+    </li>
+  
+  <li class=" " data-id="mysql/MySql/Protocol/InStateE" data-name="mysql::protocol::instatee">
+      <a href="../MySql/Protocol/InStateE.html">InStateE</a>
+      
+    </li>
+  
+  <li class=" " data-id="mysql/MySql/Protocol/OutHandshakeResponse41" data-name="mysql::protocol::outhandshakeresponse41">
+      <a href="../MySql/Protocol/OutHandshakeResponse41.html">OutHandshakeResponse41</a>
+      
+    </li>
+  
+  <li class=" " data-id="mysql/MySql/Protocol/OutHandshakeResponse41TLS" data-name="mysql::protocol::outhandshakeresponse41tls">
+      <a href="../MySql/Protocol/OutHandshakeResponse41TLS.html">OutHandshakeResponse41TLS</a>
+      
+    </li>
+  
+  <li class=" " data-id="mysql/MySql/Protocol/OutPasswordEnCoded" data-name="mysql::protocol::outpasswordencoded">
+      <a href="../MySql/Protocol/OutPasswordEnCoded.html">OutPasswordEnCoded</a>
+      
+    </li>
+  
+  <li class=" " data-id="mysql/MySql/Protocol/OutPasswordThroughTLS" data-name="mysql::protocol::outpasswordthroughtls">
+      <a href="../MySql/Protocol/OutPasswordThroughTLS.html">OutPasswordThroughTLS</a>
+      
+    </li>
+  
+  <li class=" " data-id="mysql/MySql/Protocol/OutRequestPublicKeyAfter_sha256_password" data-name="mysql::protocol::outrequestpublickeyafter_sha256_password">
+      <a href="../MySql/Protocol/OutRequestPublicKeyAfter_sha256_password.html">OutRequestPublicKeyAfter_sha256_password</a>
+      
+    </li>
+  
+  <li class=" " data-id="mysql/MySql/Protocol/OutRequestPublicKeyCommon" data-name="mysql::protocol::outrequestpublickeycommon">
+      <a href="../MySql/Protocol/OutRequestPublicKeyCommon.html">OutRequestPublicKeyCommon</a>
+      
+    </li>
+  
+  <li class=" " data-id="mysql/MySql/Protocol/ResponceOn_caching_sha2_password" data-name="mysql::protocol::responceon_caching_sha2_password">
+      <a href="../MySql/Protocol/ResponceOn_caching_sha2_password.html">ResponceOn_caching_sha2_password</a>
+      
+    </li>
+  
+  <li class=" " data-id="mysql/MySql/Protocol/SendRSAOAEPencoded" data-name="mysql::protocol::sendrsaoaepencoded">
+      <a href="../MySql/Protocol/SendRSAOAEPencoded.html">SendRSAOAEPencoded</a>
+      
+    </li>
+  
+</ul>
+
+      
+    </li>
+  
+  <li class=" " data-id="mysql/MySql/ResultSet" data-name="mysql::resultset">
+      <a href="../MySql/ResultSet.html">ResultSet</a>
+      
+    </li>
+  
+  <li class="parent " data-id="mysql/MySql/RSAOAEP" data-name="mysql::rsaoaep">
+      <a href="../MySql/RSAOAEP.html">RSAOAEP</a>
+      
+        <ul>
+  
+  <li class=" " data-id="mysql/MySql/RSAOAEP/RSAOAEPencode" data-name="mysql::rsaoaep::rsaoaepencode">
+      <a href="../MySql/RSAOAEP/RSAOAEPencode.html">RSAOAEPencode</a>
+      
+    </li>
+  
+</ul>
+
+      
+    </li>
+  
+  <li class=" " data-id="mysql/MySql/SQLResponceReader" data-name="mysql::sqlresponcereader">
+      <a href="../MySql/SQLResponceReader.html">SQLResponceReader</a>
+      
+    </li>
+  
+  <li class=" " data-id="mysql/MySql/Statement" data-name="mysql::statement">
+      <a href="../MySql/Statement.html">Statement</a>
+      
+    </li>
+  
+  <li class=" " data-id="mysql/MySql/TextResultSet" data-name="mysql::textresultset">
+      <a href="../MySql/TextResultSet.html">TextResultSet</a>
+      
+    </li>
+  
+  <li class=" " data-id="mysql/MySql/UnpreparedStatement" data-name="mysql::unpreparedstatement">
+      <a href="../MySql/UnpreparedStatement.html">UnpreparedStatement</a>
+      
+    </li>
+  
+</ul>
+
+      
+    </li>
+  
+  <li class="parent open current" data-id="mysql/PubKeyMySql" data-name="pubkeymysql">
+      <a href="../PubKeyMySql.html">PubKeyMySql</a>
+      
+        <ul>
+  
+  <li class=" current" data-id="mysql/PubKeyMySql/Asn1Type" data-name="pubkeymysql::asn1type">
+      <a href="../PubKeyMySql/Asn1Type.html">Asn1Type</a>
+      
+    </li>
+  
+</ul>
+
+      
+    </li>
+  
+</ul>
+
+  </div>
+</div>
+
+
+<div class="main-content">
+<h1 class="type-name">
+
+  <span class="kind">
+    enum
+  </span> PubKeyMySql::<wbr>Asn1Type
+
+</h1>
+
+
+
+
+
+  <h2>
+    <a id="overview" class="anchor" href="#overview">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Overview
+  </h2>
+
+  <p>This is a rough compile of attributes in the PubKey from mysql
+Attributes are just collected in order of appearance  and
+finally  established as useful attributes.</p>
+<p>Verify Public Key at 'https://sandbox.swedenconnect.se/cap/asn1'</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <h2>
+    <a id="defined-in" class="anchor" href="#defined-in">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Defined in:
+  </h2>
+  
+    
+      mysql/pubkeymysql.cr
+    
+    <br/>
+  
+
+
+
+  
+    <h2>
+      <a id="enum-members" class="anchor" href="#enum-members">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+      Enum Members
+    </h2>
+  
+  <dl>
+    
+      <dt class="entry-const" id="Asn1Undef">
+        <strong>Asn1Undef</strong> = <code><span class="n">0_u8</span></code>
+      </dt>
+      
+    
+      <dt class="entry-const" id="Asn1TypeInteger">
+        <strong>Asn1TypeInteger</strong> = <code><span class="n">2_u8</span></code>
+      </dt>
+      
+    
+      <dt class="entry-const" id="Asn1TypeBitString">
+        <strong>Asn1TypeBitString</strong> = <code><span class="n">3_u8</span></code>
+      </dt>
+      
+    
+      <dt class="entry-const" id="Asn1TypeNull">
+        <strong>Asn1TypeNull</strong> = <code><span class="n">5_u8</span></code>
+      </dt>
+      
+    
+      <dt class="entry-const" id="Asn1TypeObjectId">
+        <strong>Asn1TypeObjectId</strong> = <code><span class="n">6_u8</span></code>
+      </dt>
+      
+    
+      <dt class="entry-const" id="Asn1TypeSequence">
+        <strong>Asn1TypeSequence</strong> = <code><span class="n">48_u8</span></code>
+      </dt>
+      
+    
+  </dl>
+
+
+
+  
+
+  
+
+  
+
+  
+  <h2>
+    <a id="instance-method-summary" class="anchor" href="#instance-method-summary">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Instance Method Summary
+  </h2>
+  <ul class="list-summary">
+    
+      <li class="entry-summary">
+        <a href="#asn1_type_bit_string%3F-instance-method" class="signature"><strong>#asn1_type_bit_string?</strong></a>
+        
+          <div class="summary"><p>Returns <code>true</code> if this enum value equals <code><a href="../PubKeyMySql/Asn1Type.html#Asn1TypeBitString">Asn1TypeBitString</a></code></p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#asn1_type_integer%3F-instance-method" class="signature"><strong>#asn1_type_integer?</strong></a>
+        
+          <div class="summary"><p>Returns <code>true</code> if this enum value equals <code><a href="../PubKeyMySql/Asn1Type.html#Asn1TypeInteger">Asn1TypeInteger</a></code></p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#asn1_type_null%3F-instance-method" class="signature"><strong>#asn1_type_null?</strong></a>
+        
+          <div class="summary"><p>Returns <code>true</code> if this enum value equals <code><a href="../PubKeyMySql/Asn1Type.html#Asn1TypeNull">Asn1TypeNull</a></code></p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#asn1_type_object_id%3F-instance-method" class="signature"><strong>#asn1_type_object_id?</strong></a>
+        
+          <div class="summary"><p>Returns <code>true</code> if this enum value equals <code><a href="../PubKeyMySql/Asn1Type.html#Asn1TypeObjectId">Asn1TypeObjectId</a></code></p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#asn1_type_sequence%3F-instance-method" class="signature"><strong>#asn1_type_sequence?</strong></a>
+        
+          <div class="summary"><p>Returns <code>true</code> if this enum value equals <code><a href="../PubKeyMySql/Asn1Type.html#Asn1TypeSequence">Asn1TypeSequence</a></code></p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#asn1_undef%3F-instance-method" class="signature"><strong>#asn1_undef?</strong></a>
+        
+          <div class="summary"><p>Returns <code>true</code> if this enum value equals <code><a href="../PubKeyMySql/Asn1Type.html#Asn1Undef">Asn1Undef</a></code></p></div>
+        
+      </li>
+    
+  </ul>
+
+
+
+  <div class="methods-inherited">
+    
+      
+
+
+      
+
+
+      
+
+
+      
+
+
+    
+      
+
+
+      
+
+
+      
+
+
+      
+
+
+    
+      
+
+
+      
+
+
+      
+
+
+      
+
+
+    
+      
+
+
+      
+
+
+      
+
+
+      
+
+
+    
+  </div>
+
+  
+
+  
+
+  
+
+  
+  <h2>
+    <a id="instance-method-detail" class="anchor" href="#instance-method-detail">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Instance Method Detail
+  </h2>
+  
+    <div class="entry-detail" id="asn1_type_bit_string?-instance-method">
+      <div class="signature">
+        
+        def <strong>asn1_type_bit_string?</strong>
+
+        <a class="method-permalink" href="#asn1_type_bit_string%3F-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns <code>true</code> if this enum value equals <code><a href="../PubKeyMySql/Asn1Type.html#Asn1TypeBitString">Asn1TypeBitString</a></code></p>
+        </div>
+      
+      <br/>
+      <div>
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="asn1_type_integer?-instance-method">
+      <div class="signature">
+        
+        def <strong>asn1_type_integer?</strong>
+
+        <a class="method-permalink" href="#asn1_type_integer%3F-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns <code>true</code> if this enum value equals <code><a href="../PubKeyMySql/Asn1Type.html#Asn1TypeInteger">Asn1TypeInteger</a></code></p>
+        </div>
+      
+      <br/>
+      <div>
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="asn1_type_null?-instance-method">
+      <div class="signature">
+        
+        def <strong>asn1_type_null?</strong>
+
+        <a class="method-permalink" href="#asn1_type_null%3F-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns <code>true</code> if this enum value equals <code><a href="../PubKeyMySql/Asn1Type.html#Asn1TypeNull">Asn1TypeNull</a></code></p>
+        </div>
+      
+      <br/>
+      <div>
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="asn1_type_object_id?-instance-method">
+      <div class="signature">
+        
+        def <strong>asn1_type_object_id?</strong>
+
+        <a class="method-permalink" href="#asn1_type_object_id%3F-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns <code>true</code> if this enum value equals <code><a href="../PubKeyMySql/Asn1Type.html#Asn1TypeObjectId">Asn1TypeObjectId</a></code></p>
+        </div>
+      
+      <br/>
+      <div>
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="asn1_type_sequence?-instance-method">
+      <div class="signature">
+        
+        def <strong>asn1_type_sequence?</strong>
+
+        <a class="method-permalink" href="#asn1_type_sequence%3F-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns <code>true</code> if this enum value equals <code><a href="../PubKeyMySql/Asn1Type.html#Asn1TypeSequence">Asn1TypeSequence</a></code></p>
+        </div>
+      
+      <br/>
+      <div>
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="asn1_undef?-instance-method">
+      <div class="signature">
+        
+        def <strong>asn1_undef?</strong>
+
+        <a class="method-permalink" href="#asn1_undef%3F-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns <code>true</code> if this enum value equals <code><a href="../PubKeyMySql/Asn1Type.html#Asn1Undef">Asn1Undef</a></code></p>
+        </div>
+      
+      <br/>
+      <div>
+        
+      </div>
+    </div>
+  
+
+
+
+</div>
+
+</body>
+</html>

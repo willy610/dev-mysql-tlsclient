@@ -18,7 +18,7 @@ class MySql::Connection < DB::Connection
       @host : String, @port : Int32, @username : String?, @password : String?,
       @initial_catalog : String?,
       @charset : String,
-      @want_tls : Bool
+      @want_tls : Bool,
     )
     end
 
@@ -217,11 +217,11 @@ class MySql::Connection < DB::Connection
                 when 1
                   case auth_data_B[0]
                   when MySql::Protocol::ResponceOn_caching_sha2_password::CachingSha2PasswordFastAuthSuccess.value
-                    # puts "MySql::Protocol::ResponceOn_caching_sha2_password::CachingSha2PasswordFastAuthSuccess read ok result'"
+                    # puts "(0)MySql::Protocol::ResponceOn_caching_sha2_password::CachingSha2PasswordFastAuthSuccess read ok result'"
                     # cond_3
                     state = "D"
                   when MySql::Protocol::ResponceOn_caching_sha2_password::CachingSha2PasswordPerformFullAuthentication.value
-                    puts "(2)MySql::Protocol::ResponceOn_caching_sha2_password::CachingSha2PasswordPerformFullAuthentication"
+                    puts "(1)MySql::Protocol::ResponceOn_caching_sha2_password::CachingSha2PasswordPerformFullAuthentication"
                     # cond_4
                     # if @anBRIDGE.is_tls
                     #   send_password(@mysql_options.password)
@@ -271,7 +271,7 @@ class MySql::Connection < DB::Connection
                 case auth_data_C[0]
                 when MySql::Protocol::ResponceOn_caching_sha2_password::CachingSha2PasswordFastAuthSuccess.value
                   # cond_1
-                  #  puts "MySql::Protocol::ResponceOn_caching_sha2_password::CachingSha2PasswordFastAuthSuccess read ok result'"
+                  puts "(2)MySql::Protocol::ResponceOn_caching_sha2_password::CachingSha2PasswordFastAuthSuccess read ok result'"
                   state = "D"
                 when MySql::Protocol::ResponceOn_caching_sha2_password::CachingSha2PasswordPerformFullAuthentication.value
                   # cond_2
@@ -340,7 +340,8 @@ class MySql::Connection < DB::Connection
           {% if flag?(:trcsql) %}
             puts "TLS request package"
           {% end %}
-          tlsconn = TLSClient::Client.new(@socket)
+          tlsconn = TLSClient::Client.new(@socket, client_send_empty_certificate: true) # ALWAYS false for WEB. BUT true for MYSQL)
+
           @anBRIDGE = MySql::BRIDGE::BRIDGETls.new(@socket, tlsconn)
 
           @anBRIDGE.seq_out = @seq_RW

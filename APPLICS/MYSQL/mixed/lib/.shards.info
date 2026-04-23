@@ -1,0 +1,18 @@
+---
+version: 1.0
+shards:
+  db:
+    git: https://github.com/crystal-lang/crystal-db.git
+    version: 0.13.1
+  shared:
+    path: /Users/willys4/Documents/MYCRYSTAL/AAA/LIBS/shared
+    version: 0.1.0
+  tlsclient:
+    path: /Users/willys4/Documents/MYCRYSTAL/AAA/LIBS/tlsclient
+    version: 0.1.0
+  mysql:
+    path: /Users/willys4/Documents/MYCRYSTAL/AAA/LIBS/mysql
+    version: 0.17.0
+  librfc8439:
+    path: /Users/willys4/Documents/MYCRYSTAL/AAA/LIBS/librfc8439
+    version: 0.1.0

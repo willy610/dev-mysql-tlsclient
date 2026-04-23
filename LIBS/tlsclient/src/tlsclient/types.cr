@@ -33,27 +33,27 @@ module TLSDefinitions
   # # RFC 8446  4.2 Extensions
 
   enum ExtensionType : UInt16
-    # ExtensionServerName              uint16 = 0
-    ExtensionStatusRequest       =  5
+    ExtensionServerName               = 0
+    ExtensionStatusRequest = 5
     # ExtensionSupportedCurves     = 10
     ExtensionSupportedGroups     = 10
     ExtensionSupportedPoints     = 11
     ExtensionSignatureAlgorithms = 13
-    # ExtensionALPN                    uint16 = 16
+    ExtensionALPN                     = 16
     ExtensionSCT                  = 18
     ExtensionExtendedMasterSecret = 23
-    # ExtensionSessionTicket           uint16 = 35
-    # ExtensionPreSharedKey            uint16 = 41
-    # ExtensionEarlyData               uint16 = 42
+    ExtensionSessionTicket            = 35
+    ExtensionPreSharedKey = 41
+    ExtensionEarlyData                = 42
     ExtensionSupportedVersions = 43
-    # ExtensionCookie                  uint16 = 44
-    # ExtensionPSKModes                uint16 = 45
-    # ExtensionCertificateAuthorities  uint16 = 47
-    # ExtensionSignatureAlgorithmsCert uint16 = 50
+    ExtensionCookie                   = 44
+    ExtensionPSKModes                 = 45
+    ExtensionCertificateAuthorities   = 47
+    ExtensionSignatureAlgorithmsCert  = 50
     ExtensionKeyShare = 51
-    # ExtensionQUICTransportParameters uint16 = 57
+    ExtensionQUICTransportParameters  = 57
     ExtensionRenegotiationInfo = 0xff01
-    # ExtensionECHOuterExtensions      uint16 = 0xfd00
-    # ExtensionEncryptedClientHello    uint16 = 0xfe0d
+    ExtensionECHOuterExtensions       = 0xfd00
+    ExtensionEncryptedClientHello     = 0xfe0d
   end
 end

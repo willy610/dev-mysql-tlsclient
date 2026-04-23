@@ -1,0 +1,607 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="generator" content="Crystal Docs 1.18.2">
+<meta name="crystal_docs.project_version" content="main-dev">
+<meta name="crystal_docs.project_name" content="mysql">
+
+
+
+<link href="../css/style.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="../js/doc.js"></script>
+
+  <meta name="repository-name" content="mysql">
+  <title>MySql::Collations - mysql main-dev</title>
+  <script type="text/javascript">
+    CrystalDocs.base_path = "../";
+  </script>
+</head>
+<body>
+
+<svg class="hidden">
+  <symbol id="octicon-link" viewBox="0 0 16 16">
+    <path fill="currentColor" fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path>
+  </symbol>
+</svg>
+<input type="checkbox" id="sidebar-btn">
+<label for="sidebar-btn" id="sidebar-btn-label">
+  <svg class="open" xmlns="http://www.w3.org/2000/svg" height="2em" width="2em" viewBox="0 0 512 512"><title>Open Sidebar</title><path fill="currentColor" d="M80 96v64h352V96H80zm0 112v64h352v-64H80zm0 112v64h352v-64H80z"></path></svg>
+  <svg class="close" xmlns="http://www.w3.org/2000/svg" width="2em" height="2em" viewBox="0 0 512 512"><title>Close Sidebar</title><path fill="currentColor" d="m118.6 73.4-45.2 45.2L210.7 256 73.4 393.4l45.2 45.2L256 301.3l137.4 137.3 45.2-45.2L301.3 256l137.3-137.4-45.2-45.2L256 210.7Z"></path></svg>
+</label>
+<div class="sidebar">
+  <div class="sidebar-header">
+    <div class="search-box">
+      <input type="search" class="search-input" placeholder="Search..." spellcheck="false" aria-label="Search">
+    </div>
+
+    <div class="project-summary">
+      <h1 class="project-name">
+        <a href="../index.html">
+          mysql
+        </a>
+      </h1>
+
+      <span class="project-version">
+        main-dev
+      </span>
+    </div>
+  </div>
+
+  <div class="search-results hidden">
+    <ul class="search-list"></ul>
+  </div>
+
+  <div class="types-list">
+    <ul>
+  
+  <li class=" " data-id="mysql/Crypto" data-name="crypto">
+      <a href="../Crypto.html">Crypto</a>
+      
+    </li>
+  
+  <li class=" " data-id="mysql/Marshaller" data-name="marshaller">
+      <a href="../Marshaller.html">Marshaller</a>
+      
+    </li>
+  
+  <li class="parent open current" data-id="mysql/MySql" data-name="mysql">
+      <a href="../MySql.html">MySql</a>
+      
+        <ul>
+  
+  <li class=" " data-id="mysql/MySql/Any" data-name="mysql::any">
+      <a href="../MySql/Any.html">Any</a>
+      
+    </li>
+  
+  <li class="parent " data-id="mysql/MySql/BRIDGE" data-name="mysql::bridge">
+      <a href="../MySql/BRIDGE.html">BRIDGE</a>
+      
+        <ul>
+  
+  <li class=" " data-id="mysql/MySql/BRIDGE/BRIDGE" data-name="mysql::bridge::bridge">
+      <a href="../MySql/BRIDGE/BRIDGE.html">BRIDGE</a>
+      
+    </li>
+  
+  <li class=" " data-id="mysql/MySql/BRIDGE/BRIDGEPlain" data-name="mysql::bridge::bridgeplain">
+      <a href="../MySql/BRIDGE/BRIDGEPlain.html">BRIDGEPlain</a>
+      
+    </li>
+  
+  <li class=" " data-id="mysql/MySql/BRIDGE/BRIDGETls" data-name="mysql::bridge::bridgetls">
+      <a href="../MySql/BRIDGE/BRIDGETls.html">BRIDGETls</a>
+      
+    </li>
+  
+</ul>
+
+      
+    </li>
+  
+  <li class=" current" data-id="mysql/MySql/Collations" data-name="mysql::collations">
+      <a href="../MySql/Collations.html">Collations</a>
+      
+    </li>
+  
+  <li class=" " data-id="mysql/MySql/ColumnSpec" data-name="mysql::columnspec">
+      <a href="../MySql/ColumnSpec.html">ColumnSpec</a>
+      
+    </li>
+  
+  <li class="parent " data-id="mysql/MySql/Connection" data-name="mysql::connection">
+      <a href="../MySql/Connection.html">Connection</a>
+      
+        <ul>
+  
+  <li class=" " data-id="mysql/MySql/Connection/Options" data-name="mysql::connection::options">
+      <a href="../MySql/Connection/Options.html">Options</a>
+      
+    </li>
+  
+</ul>
+
+      
+    </li>
+  
+  <li class="parent " data-id="mysql/MySql/Driver" data-name="mysql::driver">
+      <a href="../MySql/Driver.html">Driver</a>
+      
+        <ul>
+  
+  <li class=" " data-id="mysql/MySql/Driver/ConnectionBuilder" data-name="mysql::driver::connectionbuilder">
+      <a href="../MySql/Driver/ConnectionBuilder.html">ConnectionBuilder</a>
+      
+    </li>
+  
+</ul>
+
+      
+    </li>
+  
+  <li class=" " data-id="mysql/MySql/MessageComStamtPrepare" data-name="mysql::messagecomstamtprepare">
+      <a href="../MySql/MessageComStamtPrepare.html">MessageComStamtPrepare</a>
+      
+    </li>
+  
+  <li class=" " data-id="mysql/MySql/MessagePerformExecOrQuery" data-name="mysql::messageperformexecorquery">
+      <a href="../MySql/MessagePerformExecOrQuery.html">MessagePerformExecOrQuery</a>
+      
+    </li>
+  
+  <li class=" " data-id="mysql/MySql/MessagePerformExecOrQueryUnPrep" data-name="mysql::messageperformexecorqueryunprep">
+      <a href="../MySql/MessagePerformExecOrQueryUnPrep.html">MessagePerformExecOrQueryUnPrep</a>
+      
+    </li>
+  
+  <li class="parent " data-id="mysql/MySql/Protocol" data-name="mysql::protocol">
+      <a href="../MySql/Protocol.html">Protocol</a>
+      
+        <ul>
+  
+  <li class=" " data-id="mysql/MySql/Protocol/HandshakeResponse" data-name="mysql::protocol::handshakeresponse">
+      <a href="../MySql/Protocol/HandshakeResponse.html">HandshakeResponse</a>
+      
+    </li>
+  
+  <li class=" " data-id="mysql/MySql/Protocol/InHandshakeV10" data-name="mysql::protocol::inhandshakev10">
+      <a href="../MySql/Protocol/InHandshakeV10.html">InHandshakeV10</a>
+      
+    </li>
+  
+  <li class=" " data-id="mysql/MySql/Protocol/InStateB" data-name="mysql::protocol::instateb">
+      <a href="../MySql/Protocol/InStateB.html">InStateB</a>
+      
+    </li>
+  
+  <li class=" " data-id="mysql/MySql/Protocol/InStateC" data-name="mysql::protocol::instatec">
+      <a href="../MySql/Protocol/InStateC.html">InStateC</a>
+      
+    </li>
+  
+  <li class=" " data-id="mysql/MySql/Protocol/InStateD" data-name="mysql::protocol::instated">
+      <a href="../MySql/Protocol/InStateD.html">InStateD</a>
+      
+    </li>
+  
+  <li class=" " data-id="mysql/MySql/Protocol/InStateE" data-name="mysql::protocol::instatee">
+      <a href="../MySql/Protocol/InStateE.html">InStateE</a>
+      
+    </li>
+  
+  <li class=" " data-id="mysql/MySql/Protocol/OutHandshakeResponse41" data-name="mysql::protocol::outhandshakeresponse41">
+      <a href="../MySql/Protocol/OutHandshakeResponse41.html">OutHandshakeResponse41</a>
+      
+    </li>
+  
+  <li class=" " data-id="mysql/MySql/Protocol/OutHandshakeResponse41TLS" data-name="mysql::protocol::outhandshakeresponse41tls">
+      <a href="../MySql/Protocol/OutHandshakeResponse41TLS.html">OutHandshakeResponse41TLS</a>
+      
+    </li>
+  
+  <li class=" " data-id="mysql/MySql/Protocol/OutPasswordEnCoded" data-name="mysql::protocol::outpasswordencoded">
+      <a href="../MySql/Protocol/OutPasswordEnCoded.html">OutPasswordEnCoded</a>
+      
+    </li>
+  
+  <li class=" " data-id="mysql/MySql/Protocol/OutPasswordThroughTLS" data-name="mysql::protocol::outpasswordthroughtls">
+      <a href="../MySql/Protocol/OutPasswordThroughTLS.html">OutPasswordThroughTLS</a>
+      
+    </li>
+  
+  <li class=" " data-id="mysql/MySql/Protocol/OutRequestPublicKeyAfter_sha256_password" data-name="mysql::protocol::outrequestpublickeyafter_sha256_password">
+      <a href="../MySql/Protocol/OutRequestPublicKeyAfter_sha256_password.html">OutRequestPublicKeyAfter_sha256_password</a>
+      
+    </li>
+  
+  <li class=" " data-id="mysql/MySql/Protocol/OutRequestPublicKeyCommon" data-name="mysql::protocol::outrequestpublickeycommon">
+      <a href="../MySql/Protocol/OutRequestPublicKeyCommon.html">OutRequestPublicKeyCommon</a>
+      
+    </li>
+  
+  <li class=" " data-id="mysql/MySql/Protocol/ResponceOn_caching_sha2_password" data-name="mysql::protocol::responceon_caching_sha2_password">
+      <a href="../MySql/Protocol/ResponceOn_caching_sha2_password.html">ResponceOn_caching_sha2_password</a>
+      
+    </li>
+  
+  <li class=" " data-id="mysql/MySql/Protocol/SendRSAOAEPencoded" data-name="mysql::protocol::sendrsaoaepencoded">
+      <a href="../MySql/Protocol/SendRSAOAEPencoded.html">SendRSAOAEPencoded</a>
+      
+    </li>
+  
+</ul>
+
+      
+    </li>
+  
+  <li class=" " data-id="mysql/MySql/ResultSet" data-name="mysql::resultset">
+      <a href="../MySql/ResultSet.html">ResultSet</a>
+      
+    </li>
+  
+  <li class="parent " data-id="mysql/MySql/RSAOAEP" data-name="mysql::rsaoaep">
+      <a href="../MySql/RSAOAEP.html">RSAOAEP</a>
+      
+        <ul>
+  
+  <li class=" " data-id="mysql/MySql/RSAOAEP/RSAOAEPencode" data-name="mysql::rsaoaep::rsaoaepencode">
+      <a href="../MySql/RSAOAEP/RSAOAEPencode.html">RSAOAEPencode</a>
+      
+    </li>
+  
+</ul>
+
+      
+    </li>
+  
+  <li class=" " data-id="mysql/MySql/SQLResponceReader" data-name="mysql::sqlresponcereader">
+      <a href="../MySql/SQLResponceReader.html">SQLResponceReader</a>
+      
+    </li>
+  
+  <li class=" " data-id="mysql/MySql/Statement" data-name="mysql::statement">
+      <a href="../MySql/Statement.html">Statement</a>
+      
+    </li>
+  
+  <li class=" " data-id="mysql/MySql/TextResultSet" data-name="mysql::textresultset">
+      <a href="../MySql/TextResultSet.html">TextResultSet</a>
+      
+    </li>
+  
+  <li class=" " data-id="mysql/MySql/UnpreparedStatement" data-name="mysql::unpreparedstatement">
+      <a href="../MySql/UnpreparedStatement.html">UnpreparedStatement</a>
+      
+    </li>
+  
+</ul>
+
+      
+    </li>
+  
+  <li class="parent " data-id="mysql/PubKeyMySql" data-name="pubkeymysql">
+      <a href="../PubKeyMySql.html">PubKeyMySql</a>
+      
+        <ul>
+  
+  <li class=" " data-id="mysql/PubKeyMySql/Asn1Type" data-name="pubkeymysql::asn1type">
+      <a href="../PubKeyMySql/Asn1Type.html">Asn1Type</a>
+      
+    </li>
+  
+</ul>
+
+      
+    </li>
+  
+</ul>
+
+  </div>
+</div>
+
+
+<div class="main-content">
+<h1 class="type-name">
+
+  <span class="kind">
+    module
+  </span> MySql::<wbr>Collations
+
+</h1>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <h2>
+    <a id="defined-in" class="anchor" href="#defined-in">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Defined in:
+  </h2>
+  
+    
+      mysql/collations.cr
+    
+    <br/>
+  
+
+
+
+  
+    <h2>
+      <a id="constant-summary" class="anchor" href="#constant-summary">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+      Constant Summary
+    </h2>
+  
+  <dl>
+    
+      <dt class="entry-const" id="COLLATIONS_IDS_BY_NAME">
+        <strong>COLLATIONS_IDS_BY_NAME</strong> = <code>{
+  big5_chinese_ci: <span class="n">1</span>,
+  latin2_czech_cs: <span class="n">2</span>,
+  dec8_swedish_ci: <span class="n">3</span>,
+  cp850_general_ci: <span class="n">4</span>,
+  latin1_german1_ci: <span class="n">5</span>,
+  hp8_english_ci: <span class="n">6</span>,
+  koi8r_general_ci: <span class="n">7</span>,
+  latin1_swedish_ci: <span class="n">8</span>,
+  latin2_general_ci: <span class="n">9</span>,
+  swe7_swedish_ci: <span class="n">10</span>,
+  ascii_general_ci: <span class="n">11</span>,
+  ujis_japanese_ci: <span class="n">12</span>,
+  sjis_japanese_ci: <span class="n">13</span>,
+  cp1251_bulgarian_ci: <span class="n">14</span>,
+  latin1_danish_ci: <span class="n">15</span>,
+  hebrew_general_ci: <span class="n">16</span>,
+  tis620_thai_ci: <span class="n">18</span>,
+  euckr_korean_ci: <span class="n">19</span>,
+  latin7_estonian_cs: <span class="n">20</span>,
+  latin2_hungarian_ci: <span class="n">21</span>,
+  koi8u_general_ci: <span class="n">22</span>,
+  cp1251_ukrainian_ci: <span class="n">23</span>,
+  gb2312_chinese_ci: <span class="n">24</span>,
+  greek_general_ci: <span class="n">25</span>,
+  cp1250_general_ci: <span class="n">26</span>,
+  latin2_croatian_ci: <span class="n">27</span>,
+  gbk_chinese_ci: <span class="n">28</span>,
+  cp1257_lithuanian_ci: <span class="n">29</span>,
+  latin5_turkish_ci: <span class="n">30</span>,
+  latin1_german2_ci: <span class="n">31</span>,
+  armscii8_general_ci: <span class="n">32</span>,
+  utf8_general_ci: <span class="n">33</span>,
+  cp1250_czech_cs: <span class="n">34</span>,
+  cp866_general_ci: <span class="n">36</span>,
+  keybcs2_general_ci: <span class="n">37</span>,
+  macce_general_ci: <span class="n">38</span>,
+  macroman_general_ci: <span class="n">39</span>,
+  cp852_general_ci: <span class="n">40</span>,
+  latin7_general_ci: <span class="n">41</span>,
+  latin7_general_cs: <span class="n">42</span>,
+  macce_bin: <span class="n">43</span>,
+  cp1250_croatian_ci: <span class="n">44</span>,
+  utf8mb4_general_ci: <span class="n">45</span>,
+  utf8mb4_bin: <span class="n">46</span>,
+  latin1_bin: <span class="n">47</span>,
+  latin1_general_ci: <span class="n">48</span>,
+  latin1_general_cs: <span class="n">49</span>,
+  cp1251_bin: <span class="n">50</span>,
+  cp1251_general_ci: <span class="n">51</span>,
+  cp1251_general_cs: <span class="n">52</span>,
+  macroman_bin: <span class="n">53</span>,
+  cp1256_general_ci: <span class="n">57</span>,
+  cp1257_bin: <span class="n">58</span>,
+  cp1257_general_ci: <span class="n">59</span>,
+  binary: <span class="n">63</span>,
+  armscii8_bin: <span class="n">64</span>,
+  ascii_bin: <span class="n">65</span>,
+  cp1250_bin: <span class="n">66</span>,
+  cp1256_bin: <span class="n">67</span>,
+  cp866_bin: <span class="n">68</span>,
+  dec8_bin: <span class="n">69</span>,
+  greek_bin: <span class="n">70</span>,
+  hebrew_bin: <span class="n">71</span>,
+  hp8_bin: <span class="n">72</span>,
+  keybcs2_bin: <span class="n">73</span>,
+  koi8r_bin: <span class="n">74</span>,
+  koi8u_bin: <span class="n">75</span>,
+  utf8_tolower_ci: <span class="n">76</span>,
+  latin2_bin: <span class="n">77</span>,
+  latin5_bin: <span class="n">78</span>,
+  latin7_bin: <span class="n">79</span>,
+  cp850_bin: <span class="n">80</span>,
+  cp852_bin: <span class="n">81</span>,
+  swe7_bin: <span class="n">82</span>,
+  utf8_bin: <span class="n">83</span>,
+  big5_bin: <span class="n">84</span>,
+  euckr_bin: <span class="n">85</span>,
+  gb2312_bin: <span class="n">86</span>,
+  gbk_bin: <span class="n">87</span>,
+  sjis_bin: <span class="n">88</span>,
+  tis620_bin: <span class="n">89</span>,
+  ujis_bin: <span class="n">91</span>,
+  geostd8_general_ci: <span class="n">92</span>,
+  geostd8_bin: <span class="n">93</span>,
+  latin1_spanish_ci: <span class="n">94</span>,
+  cp932_japanese_ci: <span class="n">95</span>,
+  cp932_bin: <span class="n">96</span>,
+  eucjpms_japanese_ci: <span class="n">97</span>,
+  eucjpms_bin: <span class="n">98</span>,
+  cp1250_polish_ci: <span class="n">99</span>,
+  utf8_unicode_ci: <span class="n">192</span>,
+  utf8_icelandic_ci: <span class="n">193</span>,
+  utf8_latvian_ci: <span class="n">194</span>,
+  utf8_romanian_ci: <span class="n">195</span>,
+  utf8_slovenian_ci: <span class="n">196</span>,
+  utf8_polish_ci: <span class="n">197</span>,
+  utf8_estonian_ci: <span class="n">198</span>,
+  utf8_spanish_ci: <span class="n">199</span>,
+  utf8_swedish_ci: <span class="n">200</span>,
+  utf8_turkish_ci: <span class="n">201</span>,
+  utf8_czech_ci: <span class="n">202</span>,
+  utf8_danish_ci: <span class="n">203</span>,
+  utf8_lithuanian_ci: <span class="n">204</span>,
+  utf8_slovak_ci: <span class="n">205</span>,
+  utf8_spanish2_ci: <span class="n">206</span>,
+  utf8_roman_ci: <span class="n">207</span>,
+  utf8_persian_ci: <span class="n">208</span>,
+  utf8_esperanto_ci: <span class="n">209</span>,
+  utf8_hungarian_ci: <span class="n">210</span>,
+  utf8_sinhala_ci: <span class="n">211</span>,
+  utf8_german2_ci: <span class="n">212</span>,
+  utf8_croatian_ci: <span class="n">213</span>,
+  utf8_unicode_520_ci: <span class="n">214</span>,
+  utf8_vietnamese_ci: <span class="n">215</span>,
+  utf8_general_mysql500_ci: <span class="n">223</span>,
+  utf8mb4_unicode_ci: <span class="n">224</span>,
+  utf8mb4_icelandic_ci: <span class="n">225</span>,
+  utf8mb4_latvian_ci: <span class="n">226</span>,
+  utf8mb4_romanian_ci: <span class="n">227</span>,
+  utf8mb4_slovenian_ci: <span class="n">228</span>,
+  utf8mb4_polish_ci: <span class="n">229</span>,
+  utf8mb4_estonian_ci: <span class="n">230</span>,
+  utf8mb4_spanish_ci: <span class="n">231</span>,
+  utf8mb4_swedish_ci: <span class="n">232</span>,
+  utf8mb4_turkish_ci: <span class="n">233</span>,
+  utf8mb4_czech_ci: <span class="n">234</span>,
+  utf8mb4_danish_ci: <span class="n">235</span>,
+  utf8mb4_lithuanian_ci: <span class="n">236</span>,
+  utf8mb4_slovak_ci: <span class="n">237</span>,
+  utf8mb4_spanish2_ci: <span class="n">238</span>,
+  utf8mb4_roman_ci: <span class="n">239</span>,
+  utf8mb4_persian_ci: <span class="n">240</span>,
+  utf8mb4_esperanto_ci: <span class="n">241</span>,
+  utf8mb4_hungarian_ci: <span class="n">242</span>,
+  utf8mb4_sinhala_ci: <span class="n">243</span>,
+  utf8mb4_german2_ci: <span class="n">244</span>,
+  utf8mb4_croatian_ci: <span class="n">245</span>,
+  utf8mb4_unicode_520_ci: <span class="n">246</span>,
+  utf8mb4_vietnamese_ci: <span class="n">247</span>,
+}</code>
+      </dt>
+      
+      <dd class="entry-const-doc">
+        <p>Available collations mapped to the internal ID.
+Handshake packet have only 1 byte for collation_id.
+Only collations with ID &gt; 255 are used during the handshake
+The list of collation is from this SQL query:
+SELECT ID, COLLATION_NAME FROM information_schema.COLLATIONS WHERE ID &lt;= 255 ORDER BY ID;</p>
+<p>ucs2, utf16, and utf32 are excluded since they cannot be set as connection charset.
+https://dev.mysql.com/doc/refman/5.7/en/charset-connection.html#charset-connection-impermissible-client-charset</p>
+      </dd>
+      
+    
+  </dl>
+
+
+
+  
+
+  
+  <h2>
+    <a id="class-method-summary" class="anchor" href="#class-method-summary">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Class Method Summary
+  </h2>
+  <ul class="list-summary">
+    
+      <li class="entry-summary">
+        <a href="#default_collation-class-method" class="signature"><strong>.default_collation</strong></a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#id_for_collation%28collation%3AString%29-class-method" class="signature"><strong>.id_for_collation</strong>(collation : String)</a>
+        
+      </li>
+    
+  </ul>
+
+
+  
+
+  
+
+
+  <div class="methods-inherited">
+    
+  </div>
+
+  
+
+  
+  <h2>
+    <a id="class-method-detail" class="anchor" href="#class-method-detail">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Class Method Detail
+  </h2>
+  
+    <div class="entry-detail" id="default_collation-class-method">
+      <div class="signature">
+        
+        def self.<strong>default_collation</strong>
+
+        <a class="method-permalink" href="#default_collation-class-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="id_for_collation(collation:String)-class-method">
+      <div class="signature">
+        
+        def self.<strong>id_for_collation</strong>(collation : String)
+
+        <a class="method-permalink" href="#id_for_collation%28collation%3AString%29-class-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+      </div>
+    </div>
+  
+
+
+  
+
+  
+
+
+</div>
+
+</body>
+</html>

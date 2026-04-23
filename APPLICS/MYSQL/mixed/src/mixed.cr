@@ -4,29 +4,39 @@ require "tlsclient"
 require "shared"
 require "librfc8439"
 
-
 # cd /Users/willys4/Documents/MYCRYSTAL/AAA/APPLICS/MYSQL/mixed/lib/mysql
 # crystal tool unreachable src/mysql.cr
 # crystal tool dependencies src/mysql.cr
-# 
+#
 # Affects sql auth
 # alter user 'kallelocal'@'localhost' identified by 'mimmi1947!';
 
+# Rename a file in git
+# git mv LIBS/mysql/src/mysql/connectionnyare.cr LIBS/mysql/src/mysql/connection.cr
+
 module Mixed
   VERSION = "0.1.0"
-
+  #
+  # When runing towards a remote server
+  # 1. Suppose the remote server is at IP '192.168.50.244'
+  # 2. Suppose this client is at '192.168.50.201'
+  # 3. Define an user in the server with user:'test' host:'192.168.50.201' (this client) and password:'blabla'
+  # 4. Elaborate around TLS establishing by exercising
+  #    (ALTER USER 'test'@'192.168.50.201' INDENTIFIED  BY 'blabla')
+  #    in the server changing user, IP or password
+  #
   tests = [["mysql://root:soren@localhost/information_schema", "select table_name,column_name from columns WHERE TABLE_NAME like('events_waits_hi%') "],
-           ["mysql://test:blabla@192.168.50.126/information_schema?tls=skip-verify", "select table_name,column_name from columns WHERE TABLE_NAME like('events_waits_hi%')"],
+           ["mysql://test:blabla@192.168.50.244/information_schema?tls=skip-verify", "select table_name,column_name from columns WHERE TABLE_NAME like('events_waits_hi%')"],
            ["mysql://root:soren@localhost/chrisdate", "select * from S"],
-           ["mysql://root:soren@192.168.50.126/chrisdate?tls=skip-verify", "select * from S"],
+           ["mysql://root:soren@192.168.50.244/chrisdate?tls=skip-verify", "select * from S"],
            ["mysql://test:test@localhost/chrisdate", "select * from S"], # good for full caching_sha2_password
            ["mysql://root:soren@localhost/chrisdate", "select * from S"],
            ["mysql://root:soren@localhost/chrisdate?encoding=utf8mb4_0900_ai_ci", "select * from S"],
            ["mysql://kallelocal:mimmi1947!@localhost/chrisdate", "select * from S"],
-           ["mysql://root:soren@192.168.50.126/chrisdate", "select * from S"],
-           ["mysql://root:soren@192.168.50.126/chrisdate?tls=skip-verify", "select * from S"],
-           ["mysql://test:blabla@192.168.50.126/information_schema?tls=skip-verify", "select table_name,column_name from columns limit 4000"],
-           ["mysql://ett:ett@192.168.50.126/chrisdate?tls=skip-verify", "select * from S"],
+           ["mysql://root:soren@192.168.50.244/chrisdate", "select * from S"],
+           ["mysql://root:soren@192.168.50.244/chrisdate?tls=skip-verify", "select * from S"],
+           ["mysql://test:blabla@192.168.50.244/information_schema?tls=skip-verify", "select table_name,column_name from columns limit 4000"],
+           ["mysql://ett:ett@192.168.50.244/chrisdate?tls=skip-verify", "select * from S"],
   ]
   the_url, stm = tests[1]
 
@@ -56,9 +66,7 @@ module Mixed
       end
     end
   end
-
   # rescue e
   #   puts "sorry #{e}"
   # end
-
 end
